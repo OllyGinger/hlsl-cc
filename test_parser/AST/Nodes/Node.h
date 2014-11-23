@@ -22,8 +22,8 @@ namespace AST
 		typedef std::shared_ptr<CNode> TPointer;
 
 		inline CSourceLocation GetSourceLocation() const;
-		inline void SetSourceLocation(const char *pSourceFile, uint32_t line, uint32_t column);
-		inline void SetSourceLocation(const struct YYLTYPE &location);
+		void SetSourceLocation(const char *pSourceFile, uint32_t line, uint32_t column);
+		void SetSourceLocation(const struct YYLTYPE &location);
 
 	protected:
 		// Don't allow instantiations of the base class

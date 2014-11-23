@@ -1155,7 +1155,7 @@ cbuffer_declaration:
 	TOK_CBUFFER any_identifier '{' struct_declaration_list '}'
 	{
 		$$ = std::make_shared<AST::CCBufferSpecifier>($2, $4);
-		//$$->SetSourceLocation(yyloc);
+		$$->SetSourceLocation(yyloc);
 	}
 	;
 
@@ -1589,7 +1589,7 @@ global_declaration:
 	}
 	| cbuffer_declaration
 	{
-	  
+	   $$ = $1;
 	}
 	;
 

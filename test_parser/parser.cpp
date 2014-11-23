@@ -5503,7 +5503,7 @@ yyreduce:
 #line 1156 "parser.yy"
     {
 		(yyval.node) = std::make_shared<AST::CCBufferSpecifier>((yyvsp[(2) - (5)].identifier), (yyvsp[(4) - (5)].node));
-		//$$->SetSourceLocation(yyloc);
+		(yyval.node)->SetSourceLocation(yyloc);
 	}
     break;
 
@@ -6119,7 +6119,7 @@ yyreduce:
 /* Line 1792 of yacc.c  */
 #line 1591 "parser.yy"
     {
-	  
+	   (yyval.node) = (yyvsp[(1) - (1)].node);
 	}
     break;
 

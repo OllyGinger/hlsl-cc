@@ -8,6 +8,11 @@
 
 struct YYLTYPE;
 
+struct THLSLParserState
+{
+	void *scanner;
+};
+
 namespace AST
 {
 	typedef std::string TString;

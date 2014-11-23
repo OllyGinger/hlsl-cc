@@ -50,7 +50,7 @@
 #define YYSKELETON_NAME "yacc.c"
 
 /* Pure parsers.  */
-#define YYPURE 0
+#define YYPURE 1
 
 /* Push parsers.  */
 #define YYPUSH 0
@@ -67,15 +67,18 @@
 
 	#include "AST/AST.h"
 	#include "AST/ParserType.h"
+	#include "parser.hpp"
     #include <cstdio>
     #include <cstdlib>
 	AST::CNode *programBlock; /* the top level root node of our final AST */
 
-	void yyerror(const char *s) { std::printf("Error: %s\n", s);std::exit(1); }
-	//extern int yylex();
+	#define YYLEX_PARAM state->scanner
+	
+	void yyerror(YYLTYPE *loc, void *st, const char *s) { std::printf("Error: %s\n", s); }
+	extern int yylex(YYSTYPE * lvalp, YYLTYPE*,  void*);
 
 /* Line 371 of yacc.c  */
-#line 79 "parser.cpp"
+#line 82 "parser.cpp"
 
 # ifndef YY_NULL
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -341,8 +344,7 @@ typedef struct YYLTYPE
 # define YYLTYPE_IS_TRIVIAL 1
 #endif
 
-extern YYSTYPE yylval;
-extern YYLTYPE yylloc;
+
 #ifdef YYPARSE_PARAM
 #if defined __STDC__ || defined __cplusplus
 int yyparse (void *YYPARSE_PARAM);
@@ -351,7 +353,7 @@ int yyparse ();
 #endif
 #else /* ! YYPARSE_PARAM */
 #if defined __STDC__ || defined __cplusplus
-int yyparse (void);
+int yyparse (struct THLSLParserState *state);
 #else
 int yyparse ();
 #endif
@@ -362,7 +364,7 @@ int yyparse ();
 /* Copy the second part of user declarations.  */
 
 /* Line 390 of yacc.c  */
-#line 366 "parser.cpp"
+#line 368 "parser.cpp"
 
 #ifdef short
 # undef short
@@ -819,45 +821,45 @@ static const yytype_int16 yyrhs[] =
 /* YYRLINE[YYN] -- source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,   190,   190,   190,   201,   202,   203,   207,   211,   218,
-     219,   223,   227,   231,   235,   239,   243,   250,   251,   255,
-     259,   263,   267,   274,   278,   282,   283,   290,   291,   295,
-     296,   300,   304,   314,   318,   322,   326,   333,   334,   338,
-     339,   343,   348,   359,   367,   368,   372,   376,   380,   388,
-     389,   390,   391,   395,   396,   400,   404,   411,   412,   416,
-     423,   424,   428,   435,   436,   440,   444,   448,   455,   456,
-     460,   467,   468,   475,   476,   483,   484,   491,   492,   499,
-     500,   507,   508,   515,   516,   523,   524,   525,   526,   527,
-     528,   529,   530,   531,   532,   533,   537,   541,   548,   552,
-     559,   566,   570,   574,   581,   584,   591,   592,   596,   600,
-     607,   611,   618,   622,   626,   631,   635,   642,   646,   650,
-     654,   658,   662,   663,   667,   674,   678,   682,   686,   690,
-     694,   698,   702,   706,   710,   717,   721,   722,   726,   730,
-     734,   738,   742,   750,   754,   758,   762,   766,   770,   774,
-     778,   785,   789,   796,   803,   804,   811,   815,   822,   826,
-     830,   837,   838,   842,   846,   850,   857,   858,   859,   863,
-     864,   868,   872,   876,   883,   887,   891,   895,   899,   903,
-     907,   911,   915,   919,   923,   927,   931,   935,   939,   946,
-     950,   957,   958,   962,   966,   970,   974,   981,   985,   989,
-     993,   997,  1001,  1005,  1009,  1013,  1020,  1021,  1022,  1023,
-    1024,  1025,  1026,  1027,  1028,  1029,  1030,  1031,  1032,  1033,
-    1034,  1035,  1036,  1037,  1038,  1039,  1040,  1041,  1042,  1043,
-    1044,  1045,  1046,  1047,  1048,  1049,  1050,  1051,  1052,  1053,
-    1054,  1055,  1056,  1057,  1058,  1059,  1060,  1061,  1062,  1063,
-    1064,  1065,  1066,  1067,  1068,  1069,  1070,  1071,  1072,  1073,
-    1078,  1079,  1080,  1081,  1082,  1083,  1084,  1085,  1086,  1087,
-    1088,  1089,  1090,  1091,  1092,  1093,  1097,  1098,  1099,  1103,
-    1107,  1111,  1114,  1117,  1123,  1127,  1131,  1135,  1139,  1143,
-    1150,  1157,  1161,  1168,  1175,  1179,  1186,  1187,  1191,  1195,
-    1202,  1206,  1213,  1217,  1221,  1225,  1232,  1236,  1242,  1243,
-    1250,  1254,  1258,  1265,  1271,  1272,  1273,  1277,  1284,  1285,
-    1286,  1287,  1288,  1289,  1293,  1298,  1297,  1308,  1309,  1313,
-    1317,  1324,  1328,  1335,  1339,  1346,  1353,  1357,  1364,  1368,
-    1379,  1386,  1390,  1397,  1401,  1408,  1412,  1419,  1423,  1430,
-    1434,  1441,  1445,  1449,  1456,  1457,  1461,  1463,  1469,  1473,
-    1481,  1485,  1489,  1493,  1497,  1504,  1505,  1509,  1513,  1520,
-    1524,  1531,  1535,  1539,  1543,  1550,  1554,  1561,  1565,  1572,
-    1576,  1580,  1584
+       0,   195,   195,   195,   206,   207,   208,   212,   216,   223,
+     224,   228,   232,   236,   240,   244,   248,   255,   256,   260,
+     264,   268,   272,   279,   283,   287,   288,   295,   296,   300,
+     301,   305,   309,   319,   323,   327,   331,   338,   339,   343,
+     344,   348,   353,   364,   372,   373,   377,   381,   385,   393,
+     394,   395,   396,   400,   401,   405,   409,   416,   417,   421,
+     428,   429,   433,   440,   441,   445,   449,   453,   460,   461,
+     465,   472,   473,   480,   481,   488,   489,   496,   497,   504,
+     505,   512,   513,   520,   521,   528,   529,   530,   531,   532,
+     533,   534,   535,   536,   537,   538,   542,   546,   553,   557,
+     564,   571,   575,   579,   586,   589,   596,   597,   601,   605,
+     612,   616,   623,   627,   631,   636,   640,   647,   651,   655,
+     659,   663,   667,   668,   672,   679,   683,   687,   691,   695,
+     699,   703,   707,   711,   715,   722,   726,   727,   731,   735,
+     739,   743,   747,   755,   759,   763,   767,   771,   775,   779,
+     783,   790,   794,   801,   808,   809,   816,   820,   827,   831,
+     835,   842,   843,   847,   851,   855,   862,   863,   864,   868,
+     869,   873,   877,   881,   888,   892,   896,   900,   904,   908,
+     912,   916,   920,   924,   928,   932,   936,   940,   944,   951,
+     955,   962,   963,   967,   971,   975,   979,   986,   990,   994,
+     998,  1002,  1006,  1010,  1014,  1018,  1025,  1026,  1027,  1028,
+    1029,  1030,  1031,  1032,  1033,  1034,  1035,  1036,  1037,  1038,
+    1039,  1040,  1041,  1042,  1043,  1044,  1045,  1046,  1047,  1048,
+    1049,  1050,  1051,  1052,  1053,  1054,  1055,  1056,  1057,  1058,
+    1059,  1060,  1061,  1062,  1063,  1064,  1065,  1066,  1067,  1068,
+    1069,  1070,  1071,  1072,  1073,  1074,  1075,  1076,  1077,  1078,
+    1083,  1084,  1085,  1086,  1087,  1088,  1089,  1090,  1091,  1092,
+    1093,  1094,  1095,  1096,  1097,  1098,  1102,  1103,  1104,  1108,
+    1112,  1116,  1119,  1122,  1128,  1132,  1136,  1140,  1144,  1148,
+    1155,  1163,  1167,  1174,  1181,  1185,  1192,  1193,  1197,  1201,
+    1208,  1212,  1219,  1223,  1227,  1231,  1238,  1242,  1248,  1249,
+    1256,  1260,  1264,  1271,  1277,  1278,  1279,  1283,  1290,  1291,
+    1292,  1293,  1294,  1295,  1299,  1304,  1303,  1314,  1315,  1319,
+    1323,  1330,  1334,  1341,  1345,  1352,  1359,  1363,  1370,  1374,
+    1385,  1392,  1396,  1403,  1407,  1414,  1418,  1425,  1429,  1436,
+    1440,  1447,  1451,  1455,  1462,  1463,  1467,  1469,  1475,  1479,
+    1487,  1491,  1495,  1499,  1503,  1510,  1511,  1515,  1519,  1526,
+    1530,  1537,  1541,  1545,  1549,  1556,  1560,  1567,  1571,  1578,
+    1582,  1586,  1590
 };
 #endif
 
@@ -2817,7 +2819,7 @@ do                                                              \
     }                                                           \
   else                                                          \
     {                                                           \
-      yyerror (YY_("syntax error: cannot back up")); \
+      yyerror (&yylloc, state, YY_("syntax error: cannot back up")); \
       YYERROR;							\
     }								\
 while (YYID (0))
@@ -2916,9 +2918,9 @@ yy_location_print_ (yyo, yylocp)
 
 /* YYLEX -- calling `yylex' with the right arguments.  */
 #ifdef YYLEX_PARAM
-# define YYLEX yylex (YYLEX_PARAM)
+# define YYLEX yylex (&yylval, &yylloc, YYLEX_PARAM)
 #else
-# define YYLEX yylex ()
+# define YYLEX yylex (&yylval, &yylloc, scanner)
 #endif
 
 /* Enable debugging if requested.  */
@@ -2941,7 +2943,7 @@ do {									  \
     {									  \
       YYFPRINTF (stderr, "%s ", Title);					  \
       yy_symbol_print (stderr,						  \
-		  Type, Value, Location); \
+		  Type, Value, Location, state); \
       YYFPRINTF (stderr, "\n");						  \
     }									  \
 } while (YYID (0))
@@ -2955,14 +2957,15 @@ do {									  \
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 static void
-yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, YYLTYPE const * const yylocationp)
+yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, YYLTYPE const * const yylocationp, struct THLSLParserState *state)
 #else
 static void
-yy_symbol_value_print (yyoutput, yytype, yyvaluep, yylocationp)
+yy_symbol_value_print (yyoutput, yytype, yyvaluep, yylocationp, state)
     FILE *yyoutput;
     int yytype;
     YYSTYPE const * const yyvaluep;
     YYLTYPE const * const yylocationp;
+    struct THLSLParserState *state;
 #endif
 {
   FILE *yyo = yyoutput;
@@ -2970,6 +2973,7 @@ yy_symbol_value_print (yyoutput, yytype, yyvaluep, yylocationp)
   if (!yyvaluep)
     return;
   YYUSE (yylocationp);
+  YYUSE (state);
 # ifdef YYPRINT
   if (yytype < YYNTOKENS)
     YYPRINT (yyoutput, yytoknum[yytype], *yyvaluep);
@@ -2991,14 +2995,15 @@ yy_symbol_value_print (yyoutput, yytype, yyvaluep, yylocationp)
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 static void
-yy_symbol_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, YYLTYPE const * const yylocationp)
+yy_symbol_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvaluep, YYLTYPE const * const yylocationp, struct THLSLParserState *state)
 #else
 static void
-yy_symbol_print (yyoutput, yytype, yyvaluep, yylocationp)
+yy_symbol_print (yyoutput, yytype, yyvaluep, yylocationp, state)
     FILE *yyoutput;
     int yytype;
     YYSTYPE const * const yyvaluep;
     YYLTYPE const * const yylocationp;
+    struct THLSLParserState *state;
 #endif
 {
   if (yytype < YYNTOKENS)
@@ -3008,7 +3013,7 @@ yy_symbol_print (yyoutput, yytype, yyvaluep, yylocationp)
 
   YY_LOCATION_PRINT (yyoutput, *yylocationp);
   YYFPRINTF (yyoutput, ": ");
-  yy_symbol_value_print (yyoutput, yytype, yyvaluep, yylocationp);
+  yy_symbol_value_print (yyoutput, yytype, yyvaluep, yylocationp, state);
   YYFPRINTF (yyoutput, ")");
 }
 
@@ -3051,13 +3056,14 @@ do {								\
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 static void
-yy_reduce_print (YYSTYPE *yyvsp, YYLTYPE *yylsp, int yyrule)
+yy_reduce_print (YYSTYPE *yyvsp, YYLTYPE *yylsp, int yyrule, struct THLSLParserState *state)
 #else
 static void
-yy_reduce_print (yyvsp, yylsp, yyrule)
+yy_reduce_print (yyvsp, yylsp, yyrule, state)
     YYSTYPE *yyvsp;
     YYLTYPE *yylsp;
     int yyrule;
+    struct THLSLParserState *state;
 #endif
 {
   int yynrhs = yyr2[yyrule];
@@ -3071,7 +3077,7 @@ yy_reduce_print (yyvsp, yylsp, yyrule)
       YYFPRINTF (stderr, "   $%d = ", yyi + 1);
       yy_symbol_print (stderr, yyrhs[yyprhs[yyrule] + yyi],
 		       &(yyvsp[(yyi + 1) - (yynrhs)])
-		       , &(yylsp[(yyi + 1) - (yynrhs)])		       );
+		       , &(yylsp[(yyi + 1) - (yynrhs)])		       , state);
       YYFPRINTF (stderr, "\n");
     }
 }
@@ -3079,7 +3085,7 @@ yy_reduce_print (yyvsp, yylsp, yyrule)
 # define YY_REDUCE_PRINT(Rule)		\
 do {					\
   if (yydebug)				\
-    yy_reduce_print (yyvsp, yylsp, Rule); \
+    yy_reduce_print (yyvsp, yylsp, Rule, state); \
 } while (YYID (0))
 
 /* Nonzero means print parse trace.  It is left uninitialized so that
@@ -3359,18 +3365,20 @@ yysyntax_error (YYSIZE_T *yymsg_alloc, char **yymsg,
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 static void
-yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep, YYLTYPE *yylocationp)
+yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep, YYLTYPE *yylocationp, struct THLSLParserState *state)
 #else
 static void
-yydestruct (yymsg, yytype, yyvaluep, yylocationp)
+yydestruct (yymsg, yytype, yyvaluep, yylocationp, state)
     const char *yymsg;
     int yytype;
     YYSTYPE *yyvaluep;
     YYLTYPE *yylocationp;
+    struct THLSLParserState *state;
 #endif
 {
   YYUSE (yyvaluep);
   YYUSE (yylocationp);
+  YYUSE (state);
 
   if (!yymsg)
     yymsg = "Deleting";
@@ -3385,33 +3393,6 @@ yydestruct (yymsg, yytype, yyvaluep, yylocationp)
 }
 
 
-
-
-/* The lookahead symbol.  */
-int yychar;
-
-
-#ifndef YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-# define YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-# define YY_IGNORE_MAYBE_UNINITIALIZED_END
-#endif
-#ifndef YY_INITIAL_VALUE
-# define YY_INITIAL_VALUE(Value) /* Nothing. */
-#endif
-
-/* The semantic value of the lookahead symbol.  */
-YYSTYPE yylval YY_INITIAL_VALUE(yyval_default);
-
-/* Location data for the lookahead symbol.  */
-YYLTYPE yylloc
-# if defined YYLTYPE_IS_TRIVIAL && YYLTYPE_IS_TRIVIAL
-  = { 1, 1, 1, 1 }
-# endif
-;
-
-
-/* Number of syntax errors so far.  */
-int yynerrs;
 
 
 /*----------.
@@ -3432,14 +3413,55 @@ yyparse (YYPARSE_PARAM)
 #if (defined __STDC__ || defined __C99__FUNC__ \
      || defined __cplusplus || defined _MSC_VER)
 int
-yyparse (void)
+yyparse (struct THLSLParserState *state)
 #else
 int
-yyparse ()
-
+yyparse (state)
+    struct THLSLParserState *state;
 #endif
 #endif
 {
+/* The lookahead symbol.  */
+int yychar;
+
+
+#if defined __GNUC__ && 407 <= __GNUC__ * 100 + __GNUC_MINOR__
+/* Suppress an incorrect diagnostic about yylval being uninitialized.  */
+# define YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN \
+    _Pragma ("GCC diagnostic push") \
+    _Pragma ("GCC diagnostic ignored \"-Wuninitialized\"")\
+    _Pragma ("GCC diagnostic ignored \"-Wmaybe-uninitialized\"")
+# define YY_IGNORE_MAYBE_UNINITIALIZED_END \
+    _Pragma ("GCC diagnostic pop")
+#else
+/* Default value used for initialization, for pacifying older GCCs
+   or non-GCC compilers.  */
+static YYSTYPE yyval_default;
+# define YY_INITIAL_VALUE(Value) = Value
+#endif
+static YYLTYPE yyloc_default
+# if defined YYLTYPE_IS_TRIVIAL && YYLTYPE_IS_TRIVIAL
+  = { 1, 1, 1, 1 }
+# endif
+;
+#ifndef YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+# define YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
+# define YY_IGNORE_MAYBE_UNINITIALIZED_END
+#endif
+#ifndef YY_INITIAL_VALUE
+# define YY_INITIAL_VALUE(Value) /* Nothing. */
+#endif
+
+/* The semantic value of the lookahead symbol.  */
+YYSTYPE yylval YY_INITIAL_VALUE(yyval_default);
+
+/* Location data for the lookahead symbol.  */
+YYLTYPE yylloc = yyloc_default;
+
+
+    /* Number of syntax errors so far.  */
+    int yynerrs;
+
     int yystate;
     /* Number of tokens to shift before error messages enabled.  */
     int yyerrstatus;
@@ -3508,7 +3530,7 @@ yyparse ()
 
 /* User initialization code.  */
 /* Line 1575 of yacc.c  */
-#line 17 "parser.yy"
+#line 20 "parser.yy"
 {
    yylloc.first_line = 1;
    yylloc.first_column = 1;
@@ -3516,7 +3538,7 @@ yyparse ()
    yylloc.last_column = 1;
 }
 /* Line 1575 of yacc.c  */
-#line 3520 "parser.cpp"
+#line 3542 "parser.cpp"
   yylsp[0] = yylloc;
   goto yysetstate;
 
@@ -3704,7 +3726,7 @@ yyreduce:
     {
         case 2:
 /* Line 1792 of yacc.c  */
-#line 190 "parser.yy"
+#line 195 "parser.yy"
     {
 	   
 	}
@@ -3712,7 +3734,7 @@ yyreduce:
 
   case 3:
 /* Line 1792 of yacc.c  */
-#line 194 "parser.yy"
+#line 199 "parser.yy"
     {
 	   
 	}
@@ -3720,7 +3742,7 @@ yyreduce:
 
   case 7:
 /* Line 1792 of yacc.c  */
-#line 208 "parser.yy"
+#line 213 "parser.yy"
     {
 	   
 	}
@@ -3728,7 +3750,7 @@ yyreduce:
 
   case 8:
 /* Line 1792 of yacc.c  */
-#line 212 "parser.yy"
+#line 217 "parser.yy"
     {
 	   
 	}
@@ -3736,7 +3758,7 @@ yyreduce:
 
   case 11:
 /* Line 1792 of yacc.c  */
-#line 224 "parser.yy"
+#line 229 "parser.yy"
     {
 	   
 	}
@@ -3744,7 +3766,7 @@ yyreduce:
 
   case 12:
 /* Line 1792 of yacc.c  */
-#line 228 "parser.yy"
+#line 233 "parser.yy"
     {
 	  
 	}
@@ -3752,7 +3774,7 @@ yyreduce:
 
   case 13:
 /* Line 1792 of yacc.c  */
-#line 232 "parser.yy"
+#line 237 "parser.yy"
     {
 	   
 	}
@@ -3760,7 +3782,7 @@ yyreduce:
 
   case 14:
 /* Line 1792 of yacc.c  */
-#line 236 "parser.yy"
+#line 241 "parser.yy"
     {
 	  
 	}
@@ -3768,7 +3790,7 @@ yyreduce:
 
   case 15:
 /* Line 1792 of yacc.c  */
-#line 240 "parser.yy"
+#line 245 "parser.yy"
     {
 	  
 	}
@@ -3776,7 +3798,7 @@ yyreduce:
 
   case 16:
 /* Line 1792 of yacc.c  */
-#line 244 "parser.yy"
+#line 249 "parser.yy"
     {
 	  
 	}
@@ -3784,7 +3806,7 @@ yyreduce:
 
   case 18:
 /* Line 1792 of yacc.c  */
-#line 252 "parser.yy"
+#line 257 "parser.yy"
     {
 	  
 	}
@@ -3792,7 +3814,7 @@ yyreduce:
 
   case 19:
 /* Line 1792 of yacc.c  */
-#line 256 "parser.yy"
+#line 261 "parser.yy"
     {
 	
 	}
@@ -3800,7 +3822,7 @@ yyreduce:
 
   case 20:
 /* Line 1792 of yacc.c  */
-#line 260 "parser.yy"
+#line 265 "parser.yy"
     {
 	   
 	}
@@ -3808,7 +3830,7 @@ yyreduce:
 
   case 21:
 /* Line 1792 of yacc.c  */
-#line 264 "parser.yy"
+#line 269 "parser.yy"
     {
 	   
 	}
@@ -3816,7 +3838,7 @@ yyreduce:
 
   case 22:
 /* Line 1792 of yacc.c  */
-#line 268 "parser.yy"
+#line 273 "parser.yy"
     {
 	   
 	}
@@ -3824,7 +3846,7 @@ yyreduce:
 
   case 26:
 /* Line 1792 of yacc.c  */
-#line 284 "parser.yy"
+#line 289 "parser.yy"
     {
 	   
 	}
@@ -3832,7 +3854,7 @@ yyreduce:
 
   case 31:
 /* Line 1792 of yacc.c  */
-#line 301 "parser.yy"
+#line 306 "parser.yy"
     {
 	   
 	}
@@ -3840,7 +3862,7 @@ yyreduce:
 
   case 32:
 /* Line 1792 of yacc.c  */
-#line 305 "parser.yy"
+#line 310 "parser.yy"
     {
 	  
 	}
@@ -3848,7 +3870,7 @@ yyreduce:
 
   case 34:
 /* Line 1792 of yacc.c  */
-#line 319 "parser.yy"
+#line 324 "parser.yy"
     {
 	  
    	}
@@ -3856,7 +3878,7 @@ yyreduce:
 
   case 35:
 /* Line 1792 of yacc.c  */
-#line 323 "parser.yy"
+#line 328 "parser.yy"
     {
 	  
    	}
@@ -3864,7 +3886,7 @@ yyreduce:
 
   case 36:
 /* Line 1792 of yacc.c  */
-#line 327 "parser.yy"
+#line 332 "parser.yy"
     {
 	   
    	}
@@ -3872,7 +3894,7 @@ yyreduce:
 
   case 41:
 /* Line 1792 of yacc.c  */
-#line 344 "parser.yy"
+#line 349 "parser.yy"
     {
 	
 	   
@@ -3881,7 +3903,7 @@ yyreduce:
 
   case 42:
 /* Line 1792 of yacc.c  */
-#line 349 "parser.yy"
+#line 354 "parser.yy"
     {
 	 
 	  
@@ -3890,7 +3912,7 @@ yyreduce:
 
   case 43:
 /* Line 1792 of yacc.c  */
-#line 360 "parser.yy"
+#line 365 "parser.yy"
     {
 	  
    	}
@@ -3898,7 +3920,7 @@ yyreduce:
 
   case 45:
 /* Line 1792 of yacc.c  */
-#line 369 "parser.yy"
+#line 374 "parser.yy"
     {
 	  
 	}
@@ -3906,7 +3928,7 @@ yyreduce:
 
   case 46:
 /* Line 1792 of yacc.c  */
-#line 373 "parser.yy"
+#line 378 "parser.yy"
     {
 	  
 	}
@@ -3914,7 +3936,7 @@ yyreduce:
 
   case 47:
 /* Line 1792 of yacc.c  */
-#line 377 "parser.yy"
+#line 382 "parser.yy"
     {
 	  
 	}
@@ -3922,7 +3944,7 @@ yyreduce:
 
   case 48:
 /* Line 1792 of yacc.c  */
-#line 381 "parser.yy"
+#line 386 "parser.yy"
     {
 		
 	}
@@ -3930,31 +3952,31 @@ yyreduce:
 
   case 49:
 /* Line 1792 of yacc.c  */
-#line 388 "parser.yy"
+#line 393 "parser.yy"
     {  }
     break;
 
   case 50:
 /* Line 1792 of yacc.c  */
-#line 389 "parser.yy"
+#line 394 "parser.yy"
     { }
     break;
 
   case 51:
 /* Line 1792 of yacc.c  */
-#line 390 "parser.yy"
+#line 395 "parser.yy"
     {  }
     break;
 
   case 52:
 /* Line 1792 of yacc.c  */
-#line 391 "parser.yy"
+#line 396 "parser.yy"
     {  }
     break;
 
   case 54:
 /* Line 1792 of yacc.c  */
-#line 397 "parser.yy"
+#line 402 "parser.yy"
     {
 	  
 	}
@@ -3962,7 +3984,7 @@ yyreduce:
 
   case 55:
 /* Line 1792 of yacc.c  */
-#line 401 "parser.yy"
+#line 406 "parser.yy"
     {
 	   
 	}
@@ -3970,7 +3992,7 @@ yyreduce:
 
   case 56:
 /* Line 1792 of yacc.c  */
-#line 405 "parser.yy"
+#line 410 "parser.yy"
     {
 	  
 	}
@@ -3978,7 +4000,7 @@ yyreduce:
 
   case 58:
 /* Line 1792 of yacc.c  */
-#line 413 "parser.yy"
+#line 418 "parser.yy"
     {
 	  
 	}
@@ -3986,7 +4008,7 @@ yyreduce:
 
   case 59:
 /* Line 1792 of yacc.c  */
-#line 417 "parser.yy"
+#line 422 "parser.yy"
     {
 	   
 	}
@@ -3994,7 +4016,7 @@ yyreduce:
 
   case 61:
 /* Line 1792 of yacc.c  */
-#line 425 "parser.yy"
+#line 430 "parser.yy"
     {
 	   
 	}
@@ -4002,7 +4024,7 @@ yyreduce:
 
   case 62:
 /* Line 1792 of yacc.c  */
-#line 429 "parser.yy"
+#line 434 "parser.yy"
     {
 	  
 	}
@@ -4010,7 +4032,7 @@ yyreduce:
 
   case 64:
 /* Line 1792 of yacc.c  */
-#line 437 "parser.yy"
+#line 442 "parser.yy"
     {
 	  
 	}
@@ -4018,7 +4040,7 @@ yyreduce:
 
   case 65:
 /* Line 1792 of yacc.c  */
-#line 441 "parser.yy"
+#line 446 "parser.yy"
     {
 	   
 	}
@@ -4026,7 +4048,7 @@ yyreduce:
 
   case 66:
 /* Line 1792 of yacc.c  */
-#line 445 "parser.yy"
+#line 450 "parser.yy"
     {
 	  
 	}
@@ -4034,7 +4056,7 @@ yyreduce:
 
   case 67:
 /* Line 1792 of yacc.c  */
-#line 449 "parser.yy"
+#line 454 "parser.yy"
     {
 	  
 	}
@@ -4042,7 +4064,7 @@ yyreduce:
 
   case 69:
 /* Line 1792 of yacc.c  */
-#line 457 "parser.yy"
+#line 462 "parser.yy"
     {
 	  
 	}
@@ -4050,7 +4072,7 @@ yyreduce:
 
   case 70:
 /* Line 1792 of yacc.c  */
-#line 461 "parser.yy"
+#line 466 "parser.yy"
     {
 	   
 	}
@@ -4058,7 +4080,7 @@ yyreduce:
 
   case 72:
 /* Line 1792 of yacc.c  */
-#line 469 "parser.yy"
+#line 474 "parser.yy"
     {
 	 
 	}
@@ -4066,7 +4088,7 @@ yyreduce:
 
   case 74:
 /* Line 1792 of yacc.c  */
-#line 477 "parser.yy"
+#line 482 "parser.yy"
     {
 	  
 	}
@@ -4074,7 +4096,7 @@ yyreduce:
 
   case 76:
 /* Line 1792 of yacc.c  */
-#line 485 "parser.yy"
+#line 490 "parser.yy"
     {
 	  
 	}
@@ -4082,7 +4104,7 @@ yyreduce:
 
   case 78:
 /* Line 1792 of yacc.c  */
-#line 493 "parser.yy"
+#line 498 "parser.yy"
     {
 	  
 	}
@@ -4090,7 +4112,7 @@ yyreduce:
 
   case 80:
 /* Line 1792 of yacc.c  */
-#line 501 "parser.yy"
+#line 506 "parser.yy"
     {
 	  
 	}
@@ -4098,7 +4120,7 @@ yyreduce:
 
   case 82:
 /* Line 1792 of yacc.c  */
-#line 509 "parser.yy"
+#line 514 "parser.yy"
     {
 	  
 	}
@@ -4106,7 +4128,7 @@ yyreduce:
 
   case 84:
 /* Line 1792 of yacc.c  */
-#line 517 "parser.yy"
+#line 522 "parser.yy"
     {
 	  
 	}
@@ -4114,73 +4136,73 @@ yyreduce:
 
   case 85:
 /* Line 1792 of yacc.c  */
-#line 523 "parser.yy"
+#line 528 "parser.yy"
     {  }
     break;
 
   case 86:
 /* Line 1792 of yacc.c  */
-#line 524 "parser.yy"
+#line 529 "parser.yy"
     {}
     break;
 
   case 87:
 /* Line 1792 of yacc.c  */
-#line 525 "parser.yy"
+#line 530 "parser.yy"
     {  }
     break;
 
   case 88:
 /* Line 1792 of yacc.c  */
-#line 526 "parser.yy"
+#line 531 "parser.yy"
     {  }
     break;
 
   case 89:
 /* Line 1792 of yacc.c  */
-#line 527 "parser.yy"
+#line 532 "parser.yy"
     {  }
     break;
 
   case 90:
 /* Line 1792 of yacc.c  */
-#line 528 "parser.yy"
+#line 533 "parser.yy"
     {  }
     break;
 
   case 91:
 /* Line 1792 of yacc.c  */
-#line 529 "parser.yy"
+#line 534 "parser.yy"
     { }
     break;
 
   case 92:
 /* Line 1792 of yacc.c  */
-#line 530 "parser.yy"
+#line 535 "parser.yy"
     { }
     break;
 
   case 93:
 /* Line 1792 of yacc.c  */
-#line 531 "parser.yy"
+#line 536 "parser.yy"
     {  }
     break;
 
   case 94:
 /* Line 1792 of yacc.c  */
-#line 532 "parser.yy"
+#line 537 "parser.yy"
     {  }
     break;
 
   case 95:
 /* Line 1792 of yacc.c  */
-#line 533 "parser.yy"
+#line 538 "parser.yy"
     { }
     break;
 
   case 96:
 /* Line 1792 of yacc.c  */
-#line 538 "parser.yy"
+#line 543 "parser.yy"
     {
 	  
 	}
@@ -4188,7 +4210,7 @@ yyreduce:
 
   case 97:
 /* Line 1792 of yacc.c  */
-#line 542 "parser.yy"
+#line 547 "parser.yy"
     {
 	  
 	}
@@ -4196,7 +4218,7 @@ yyreduce:
 
   case 99:
 /* Line 1792 of yacc.c  */
-#line 553 "parser.yy"
+#line 558 "parser.yy"
     {
 	  
 	}
@@ -4204,7 +4226,7 @@ yyreduce:
 
   case 100:
 /* Line 1792 of yacc.c  */
-#line 560 "parser.yy"
+#line 565 "parser.yy"
     {
 	  
 	}
@@ -4212,7 +4234,7 @@ yyreduce:
 
   case 101:
 /* Line 1792 of yacc.c  */
-#line 567 "parser.yy"
+#line 572 "parser.yy"
     {
 		
 	}
@@ -4220,7 +4242,7 @@ yyreduce:
 
   case 102:
 /* Line 1792 of yacc.c  */
-#line 571 "parser.yy"
+#line 576 "parser.yy"
     {
 	   
 	}
@@ -4228,7 +4250,7 @@ yyreduce:
 
   case 103:
 /* Line 1792 of yacc.c  */
-#line 575 "parser.yy"
+#line 580 "parser.yy"
     {
 	  
 	}
@@ -4236,14 +4258,14 @@ yyreduce:
 
   case 104:
 /* Line 1792 of yacc.c  */
-#line 582 "parser.yy"
+#line 587 "parser.yy"
     {
 	}
     break;
 
   case 105:
 /* Line 1792 of yacc.c  */
-#line 585 "parser.yy"
+#line 590 "parser.yy"
     {
 		
 	}
@@ -4251,7 +4273,7 @@ yyreduce:
 
   case 108:
 /* Line 1792 of yacc.c  */
-#line 597 "parser.yy"
+#line 602 "parser.yy"
     {
 	 
 	}
@@ -4259,7 +4281,7 @@ yyreduce:
 
   case 109:
 /* Line 1792 of yacc.c  */
-#line 601 "parser.yy"
+#line 606 "parser.yy"
     {
 	  
 	}
@@ -4267,7 +4289,7 @@ yyreduce:
 
   case 110:
 /* Line 1792 of yacc.c  */
-#line 608 "parser.yy"
+#line 613 "parser.yy"
     {
 	   
 	}
@@ -4275,7 +4297,7 @@ yyreduce:
 
   case 111:
 /* Line 1792 of yacc.c  */
-#line 612 "parser.yy"
+#line 617 "parser.yy"
     {
 	 
 	}
@@ -4283,7 +4305,7 @@ yyreduce:
 
   case 112:
 /* Line 1792 of yacc.c  */
-#line 619 "parser.yy"
+#line 624 "parser.yy"
     {
 	  
 	}
@@ -4291,7 +4313,7 @@ yyreduce:
 
   case 113:
 /* Line 1792 of yacc.c  */
-#line 623 "parser.yy"
+#line 628 "parser.yy"
     {
 		
 	}
@@ -4299,7 +4321,7 @@ yyreduce:
 
   case 114:
 /* Line 1792 of yacc.c  */
-#line 627 "parser.yy"
+#line 632 "parser.yy"
     {
 	
 		
@@ -4308,7 +4330,7 @@ yyreduce:
 
   case 115:
 /* Line 1792 of yacc.c  */
-#line 632 "parser.yy"
+#line 637 "parser.yy"
     {
 	   
 	}
@@ -4316,7 +4338,7 @@ yyreduce:
 
   case 116:
 /* Line 1792 of yacc.c  */
-#line 636 "parser.yy"
+#line 641 "parser.yy"
     {
 	  
 	}
@@ -4324,7 +4346,7 @@ yyreduce:
 
   case 117:
 /* Line 1792 of yacc.c  */
-#line 643 "parser.yy"
+#line 648 "parser.yy"
     {
 	  
 	}
@@ -4332,7 +4354,7 @@ yyreduce:
 
   case 118:
 /* Line 1792 of yacc.c  */
-#line 647 "parser.yy"
+#line 652 "parser.yy"
     {
 	   
 	}
@@ -4340,7 +4362,7 @@ yyreduce:
 
   case 119:
 /* Line 1792 of yacc.c  */
-#line 651 "parser.yy"
+#line 656 "parser.yy"
     {
 	  
 	}
@@ -4348,7 +4370,7 @@ yyreduce:
 
   case 120:
 /* Line 1792 of yacc.c  */
-#line 655 "parser.yy"
+#line 660 "parser.yy"
     {
 	  
 	}
@@ -4356,7 +4378,7 @@ yyreduce:
 
   case 121:
 /* Line 1792 of yacc.c  */
-#line 659 "parser.yy"
+#line 664 "parser.yy"
     {
 	 
 	}
@@ -4364,7 +4386,7 @@ yyreduce:
 
   case 123:
 /* Line 1792 of yacc.c  */
-#line 664 "parser.yy"
+#line 669 "parser.yy"
     {
 	  
 	}
@@ -4372,7 +4394,7 @@ yyreduce:
 
   case 124:
 /* Line 1792 of yacc.c  */
-#line 668 "parser.yy"
+#line 673 "parser.yy"
     {
 	  
 	}
@@ -4380,7 +4402,7 @@ yyreduce:
 
   case 125:
 /* Line 1792 of yacc.c  */
-#line 675 "parser.yy"
+#line 680 "parser.yy"
     {
 	  
 	}
@@ -4388,7 +4410,7 @@ yyreduce:
 
   case 126:
 /* Line 1792 of yacc.c  */
-#line 679 "parser.yy"
+#line 684 "parser.yy"
     {
 	  
 	}
@@ -4396,7 +4418,7 @@ yyreduce:
 
   case 127:
 /* Line 1792 of yacc.c  */
-#line 683 "parser.yy"
+#line 688 "parser.yy"
     {
 	  
 	}
@@ -4404,7 +4426,7 @@ yyreduce:
 
   case 128:
 /* Line 1792 of yacc.c  */
-#line 687 "parser.yy"
+#line 692 "parser.yy"
     {
 	
 	}
@@ -4412,7 +4434,7 @@ yyreduce:
 
   case 129:
 /* Line 1792 of yacc.c  */
-#line 691 "parser.yy"
+#line 696 "parser.yy"
     {
 		
 	}
@@ -4420,7 +4442,7 @@ yyreduce:
 
   case 130:
 /* Line 1792 of yacc.c  */
-#line 695 "parser.yy"
+#line 700 "parser.yy"
     {
 		
 	}
@@ -4428,7 +4450,7 @@ yyreduce:
 
   case 131:
 /* Line 1792 of yacc.c  */
-#line 699 "parser.yy"
+#line 704 "parser.yy"
     {
 		
 	}
@@ -4436,7 +4458,7 @@ yyreduce:
 
   case 132:
 /* Line 1792 of yacc.c  */
-#line 703 "parser.yy"
+#line 708 "parser.yy"
     {
 		
 	}
@@ -4444,7 +4466,7 @@ yyreduce:
 
   case 133:
 /* Line 1792 of yacc.c  */
-#line 707 "parser.yy"
+#line 712 "parser.yy"
     {
 		
 	}
@@ -4452,7 +4474,7 @@ yyreduce:
 
   case 134:
 /* Line 1792 of yacc.c  */
-#line 711 "parser.yy"
+#line 716 "parser.yy"
     {
 		
 	}
@@ -4460,7 +4482,7 @@ yyreduce:
 
   case 137:
 /* Line 1792 of yacc.c  */
-#line 723 "parser.yy"
+#line 728 "parser.yy"
     {
 	  
 	}
@@ -4468,7 +4490,7 @@ yyreduce:
 
   case 138:
 /* Line 1792 of yacc.c  */
-#line 727 "parser.yy"
+#line 732 "parser.yy"
     {
 	  
 	}
@@ -4476,7 +4498,7 @@ yyreduce:
 
   case 139:
 /* Line 1792 of yacc.c  */
-#line 731 "parser.yy"
+#line 736 "parser.yy"
     {
 	  
 	}
@@ -4484,7 +4506,7 @@ yyreduce:
 
   case 140:
 /* Line 1792 of yacc.c  */
-#line 735 "parser.yy"
+#line 740 "parser.yy"
     {
 	   
 	}
@@ -4492,7 +4514,7 @@ yyreduce:
 
   case 141:
 /* Line 1792 of yacc.c  */
-#line 739 "parser.yy"
+#line 744 "parser.yy"
     {
 	  
 	}
@@ -4500,7 +4522,7 @@ yyreduce:
 
   case 142:
 /* Line 1792 of yacc.c  */
-#line 743 "parser.yy"
+#line 748 "parser.yy"
     {
 	  
 	}
@@ -4508,7 +4530,7 @@ yyreduce:
 
   case 143:
 /* Line 1792 of yacc.c  */
-#line 751 "parser.yy"
+#line 756 "parser.yy"
     {
 	  
 	}
@@ -4516,7 +4538,7 @@ yyreduce:
 
   case 144:
 /* Line 1792 of yacc.c  */
-#line 755 "parser.yy"
+#line 760 "parser.yy"
     {
 	  
 	}
@@ -4524,7 +4546,7 @@ yyreduce:
 
   case 145:
 /* Line 1792 of yacc.c  */
-#line 759 "parser.yy"
+#line 764 "parser.yy"
     {
 	  
 	}
@@ -4532,7 +4554,7 @@ yyreduce:
 
   case 146:
 /* Line 1792 of yacc.c  */
-#line 763 "parser.yy"
+#line 768 "parser.yy"
     {
 	 
 	}
@@ -4540,7 +4562,7 @@ yyreduce:
 
   case 147:
 /* Line 1792 of yacc.c  */
-#line 767 "parser.yy"
+#line 772 "parser.yy"
     {
 	  
 	}
@@ -4548,7 +4570,7 @@ yyreduce:
 
   case 148:
 /* Line 1792 of yacc.c  */
-#line 771 "parser.yy"
+#line 776 "parser.yy"
     {
 	 
 	}
@@ -4556,7 +4578,7 @@ yyreduce:
 
   case 149:
 /* Line 1792 of yacc.c  */
-#line 775 "parser.yy"
+#line 780 "parser.yy"
     {
 	  
 	}
@@ -4564,7 +4586,7 @@ yyreduce:
 
   case 150:
 /* Line 1792 of yacc.c  */
-#line 779 "parser.yy"
+#line 784 "parser.yy"
     {
 	   
 	}
@@ -4572,7 +4594,7 @@ yyreduce:
 
   case 151:
 /* Line 1792 of yacc.c  */
-#line 786 "parser.yy"
+#line 791 "parser.yy"
     {
 	  
 	}
@@ -4580,7 +4602,7 @@ yyreduce:
 
   case 152:
 /* Line 1792 of yacc.c  */
-#line 790 "parser.yy"
+#line 795 "parser.yy"
     {
 	  
 	}
@@ -4588,7 +4610,7 @@ yyreduce:
 
   case 153:
 /* Line 1792 of yacc.c  */
-#line 797 "parser.yy"
+#line 802 "parser.yy"
     {
 	
 	}
@@ -4596,7 +4618,7 @@ yyreduce:
 
   case 155:
 /* Line 1792 of yacc.c  */
-#line 805 "parser.yy"
+#line 810 "parser.yy"
     {
 	   
 	}
@@ -4604,7 +4626,7 @@ yyreduce:
 
   case 156:
 /* Line 1792 of yacc.c  */
-#line 812 "parser.yy"
+#line 817 "parser.yy"
     {
 	 
 	}
@@ -4612,7 +4634,7 @@ yyreduce:
 
   case 157:
 /* Line 1792 of yacc.c  */
-#line 816 "parser.yy"
+#line 821 "parser.yy"
     {
 	   
 	}
@@ -4620,7 +4642,7 @@ yyreduce:
 
   case 158:
 /* Line 1792 of yacc.c  */
-#line 823 "parser.yy"
+#line 828 "parser.yy"
     {
 	  
 	}
@@ -4628,7 +4650,7 @@ yyreduce:
 
   case 159:
 /* Line 1792 of yacc.c  */
-#line 827 "parser.yy"
+#line 832 "parser.yy"
     {
 	 
 	}
@@ -4636,7 +4658,7 @@ yyreduce:
 
   case 160:
 /* Line 1792 of yacc.c  */
-#line 831 "parser.yy"
+#line 836 "parser.yy"
     {
 	  
 	}
@@ -4644,7 +4666,7 @@ yyreduce:
 
   case 162:
 /* Line 1792 of yacc.c  */
-#line 839 "parser.yy"
+#line 844 "parser.yy"
     {
 		
 	}
@@ -4652,7 +4674,7 @@ yyreduce:
 
   case 163:
 /* Line 1792 of yacc.c  */
-#line 843 "parser.yy"
+#line 848 "parser.yy"
     {
 		
 	}
@@ -4660,7 +4682,7 @@ yyreduce:
 
   case 164:
 /* Line 1792 of yacc.c  */
-#line 847 "parser.yy"
+#line 852 "parser.yy"
     {
 	
 	}
@@ -4668,7 +4690,7 @@ yyreduce:
 
   case 165:
 /* Line 1792 of yacc.c  */
-#line 851 "parser.yy"
+#line 856 "parser.yy"
     {
 	  
 	}
@@ -4676,7 +4698,7 @@ yyreduce:
 
   case 168:
 /* Line 1792 of yacc.c  */
-#line 860 "parser.yy"
+#line 865 "parser.yy"
     {
 	  
 	}
@@ -4684,7 +4706,7 @@ yyreduce:
 
   case 170:
 /* Line 1792 of yacc.c  */
-#line 865 "parser.yy"
+#line 870 "parser.yy"
     {
 	  
 	}
@@ -4692,7 +4714,7 @@ yyreduce:
 
   case 171:
 /* Line 1792 of yacc.c  */
-#line 869 "parser.yy"
+#line 874 "parser.yy"
     {
 	  
 	}
@@ -4700,7 +4722,7 @@ yyreduce:
 
   case 172:
 /* Line 1792 of yacc.c  */
-#line 873 "parser.yy"
+#line 878 "parser.yy"
     {
 	
 	}
@@ -4708,7 +4730,7 @@ yyreduce:
 
   case 173:
 /* Line 1792 of yacc.c  */
-#line 877 "parser.yy"
+#line 882 "parser.yy"
     {
 	   
 	}
@@ -4716,7 +4738,7 @@ yyreduce:
 
   case 174:
 /* Line 1792 of yacc.c  */
-#line 884 "parser.yy"
+#line 889 "parser.yy"
     {
 	  
 	}
@@ -4724,7 +4746,7 @@ yyreduce:
 
   case 175:
 /* Line 1792 of yacc.c  */
-#line 888 "parser.yy"
+#line 893 "parser.yy"
     {
 	 
 	}
@@ -4732,7 +4754,7 @@ yyreduce:
 
   case 176:
 /* Line 1792 of yacc.c  */
-#line 892 "parser.yy"
+#line 897 "parser.yy"
     {
 	 
 	}
@@ -4740,7 +4762,7 @@ yyreduce:
 
   case 177:
 /* Line 1792 of yacc.c  */
-#line 896 "parser.yy"
+#line 901 "parser.yy"
     {
 	 
 	}
@@ -4748,7 +4770,7 @@ yyreduce:
 
   case 178:
 /* Line 1792 of yacc.c  */
-#line 900 "parser.yy"
+#line 905 "parser.yy"
     {
 	  
 	}
@@ -4756,7 +4778,7 @@ yyreduce:
 
   case 179:
 /* Line 1792 of yacc.c  */
-#line 904 "parser.yy"
+#line 909 "parser.yy"
     {
 	  
 	}
@@ -4764,7 +4786,7 @@ yyreduce:
 
   case 180:
 /* Line 1792 of yacc.c  */
-#line 908 "parser.yy"
+#line 913 "parser.yy"
     {
 	  
 	}
@@ -4772,7 +4794,7 @@ yyreduce:
 
   case 181:
 /* Line 1792 of yacc.c  */
-#line 912 "parser.yy"
+#line 917 "parser.yy"
     {
 	  
 	}
@@ -4780,7 +4802,7 @@ yyreduce:
 
   case 182:
 /* Line 1792 of yacc.c  */
-#line 916 "parser.yy"
+#line 921 "parser.yy"
     {
 		
 	}
@@ -4788,7 +4810,7 @@ yyreduce:
 
   case 183:
 /* Line 1792 of yacc.c  */
-#line 920 "parser.yy"
+#line 925 "parser.yy"
     {
 		
 	}
@@ -4796,7 +4818,7 @@ yyreduce:
 
   case 184:
 /* Line 1792 of yacc.c  */
-#line 924 "parser.yy"
+#line 929 "parser.yy"
     {
 		
 	}
@@ -4804,7 +4826,7 @@ yyreduce:
 
   case 185:
 /* Line 1792 of yacc.c  */
-#line 928 "parser.yy"
+#line 933 "parser.yy"
     {
 		
 	}
@@ -4812,7 +4834,7 @@ yyreduce:
 
   case 186:
 /* Line 1792 of yacc.c  */
-#line 932 "parser.yy"
+#line 937 "parser.yy"
     {
 		
 	}
@@ -4820,7 +4842,7 @@ yyreduce:
 
   case 187:
 /* Line 1792 of yacc.c  */
-#line 936 "parser.yy"
+#line 941 "parser.yy"
     {
 		
 	}
@@ -4828,7 +4850,7 @@ yyreduce:
 
   case 188:
 /* Line 1792 of yacc.c  */
-#line 940 "parser.yy"
+#line 945 "parser.yy"
     {
 		
 	}
@@ -4836,7 +4858,7 @@ yyreduce:
 
   case 189:
 /* Line 1792 of yacc.c  */
-#line 947 "parser.yy"
+#line 952 "parser.yy"
     {
 	  
 	}
@@ -4844,7 +4866,7 @@ yyreduce:
 
   case 190:
 /* Line 1792 of yacc.c  */
-#line 951 "parser.yy"
+#line 956 "parser.yy"
     {
 	 
 	}
@@ -4852,7 +4874,7 @@ yyreduce:
 
   case 193:
 /* Line 1792 of yacc.c  */
-#line 963 "parser.yy"
+#line 968 "parser.yy"
     {
 	  
 	}
@@ -4860,7 +4882,7 @@ yyreduce:
 
   case 194:
 /* Line 1792 of yacc.c  */
-#line 967 "parser.yy"
+#line 972 "parser.yy"
     {
 	  
 	}
@@ -4868,7 +4890,7 @@ yyreduce:
 
   case 195:
 /* Line 1792 of yacc.c  */
-#line 971 "parser.yy"
+#line 976 "parser.yy"
     {
 	  
 	}
@@ -4876,7 +4898,7 @@ yyreduce:
 
   case 196:
 /* Line 1792 of yacc.c  */
-#line 975 "parser.yy"
+#line 980 "parser.yy"
     {
 	  
 	}
@@ -4884,7 +4906,7 @@ yyreduce:
 
   case 197:
 /* Line 1792 of yacc.c  */
-#line 982 "parser.yy"
+#line 987 "parser.yy"
     {
 	 
 	}
@@ -4892,7 +4914,7 @@ yyreduce:
 
   case 198:
 /* Line 1792 of yacc.c  */
-#line 986 "parser.yy"
+#line 991 "parser.yy"
     {
 		
 	}
@@ -4900,7 +4922,7 @@ yyreduce:
 
   case 199:
 /* Line 1792 of yacc.c  */
-#line 990 "parser.yy"
+#line 995 "parser.yy"
     {
 		
 	}
@@ -4908,7 +4930,7 @@ yyreduce:
 
   case 200:
 /* Line 1792 of yacc.c  */
-#line 994 "parser.yy"
+#line 999 "parser.yy"
     {
 		
 	}
@@ -4916,7 +4938,7 @@ yyreduce:
 
   case 201:
 /* Line 1792 of yacc.c  */
-#line 998 "parser.yy"
+#line 1003 "parser.yy"
     {
 		
 	}
@@ -4924,7 +4946,7 @@ yyreduce:
 
   case 202:
 /* Line 1792 of yacc.c  */
-#line 1002 "parser.yy"
+#line 1007 "parser.yy"
     {
 		
 	}
@@ -4932,7 +4954,7 @@ yyreduce:
 
   case 203:
 /* Line 1792 of yacc.c  */
-#line 1006 "parser.yy"
+#line 1011 "parser.yy"
     {
 		
 	}
@@ -4940,7 +4962,7 @@ yyreduce:
 
   case 204:
 /* Line 1792 of yacc.c  */
-#line 1010 "parser.yy"
+#line 1015 "parser.yy"
     {
 	  
 	}
@@ -4948,7 +4970,7 @@ yyreduce:
 
   case 205:
 /* Line 1792 of yacc.c  */
-#line 1014 "parser.yy"
+#line 1019 "parser.yy"
     {
 	  
 	}
@@ -4956,457 +4978,457 @@ yyreduce:
 
   case 206:
 /* Line 1792 of yacc.c  */
-#line 1020 "parser.yy"
+#line 1025 "parser.yy"
     {  }
     break;
 
   case 207:
 /* Line 1792 of yacc.c  */
-#line 1021 "parser.yy"
+#line 1026 "parser.yy"
     {  }
     break;
 
   case 208:
 /* Line 1792 of yacc.c  */
-#line 1022 "parser.yy"
+#line 1027 "parser.yy"
     { }
     break;
 
   case 209:
 /* Line 1792 of yacc.c  */
-#line 1023 "parser.yy"
+#line 1028 "parser.yy"
     {  }
     break;
 
   case 210:
 /* Line 1792 of yacc.c  */
-#line 1024 "parser.yy"
+#line 1029 "parser.yy"
     {  }
     break;
 
   case 211:
 /* Line 1792 of yacc.c  */
-#line 1025 "parser.yy"
+#line 1030 "parser.yy"
     {  }
     break;
 
   case 212:
 /* Line 1792 of yacc.c  */
-#line 1026 "parser.yy"
+#line 1031 "parser.yy"
     {  }
     break;
 
   case 213:
 /* Line 1792 of yacc.c  */
-#line 1027 "parser.yy"
+#line 1032 "parser.yy"
     {  }
     break;
 
   case 214:
 /* Line 1792 of yacc.c  */
-#line 1028 "parser.yy"
+#line 1033 "parser.yy"
     {  }
     break;
 
   case 215:
 /* Line 1792 of yacc.c  */
-#line 1029 "parser.yy"
+#line 1034 "parser.yy"
     {  }
     break;
 
   case 216:
 /* Line 1792 of yacc.c  */
-#line 1030 "parser.yy"
+#line 1035 "parser.yy"
     {  }
     break;
 
   case 217:
 /* Line 1792 of yacc.c  */
-#line 1031 "parser.yy"
+#line 1036 "parser.yy"
     {  }
     break;
 
   case 218:
 /* Line 1792 of yacc.c  */
-#line 1032 "parser.yy"
+#line 1037 "parser.yy"
     {  }
     break;
 
   case 219:
 /* Line 1792 of yacc.c  */
-#line 1033 "parser.yy"
+#line 1038 "parser.yy"
     {  }
     break;
 
   case 220:
 /* Line 1792 of yacc.c  */
-#line 1034 "parser.yy"
+#line 1039 "parser.yy"
     { }
     break;
 
   case 221:
 /* Line 1792 of yacc.c  */
-#line 1035 "parser.yy"
+#line 1040 "parser.yy"
     { }
     break;
 
   case 222:
 /* Line 1792 of yacc.c  */
-#line 1036 "parser.yy"
+#line 1041 "parser.yy"
     {  }
     break;
 
   case 223:
 /* Line 1792 of yacc.c  */
-#line 1037 "parser.yy"
+#line 1042 "parser.yy"
     {  }
     break;
 
   case 224:
 /* Line 1792 of yacc.c  */
-#line 1038 "parser.yy"
+#line 1043 "parser.yy"
     {  }
     break;
 
   case 225:
 /* Line 1792 of yacc.c  */
-#line 1039 "parser.yy"
+#line 1044 "parser.yy"
     { }
     break;
 
   case 226:
 /* Line 1792 of yacc.c  */
-#line 1040 "parser.yy"
+#line 1045 "parser.yy"
     { }
     break;
 
   case 227:
 /* Line 1792 of yacc.c  */
-#line 1041 "parser.yy"
+#line 1046 "parser.yy"
     { }
     break;
 
   case 228:
 /* Line 1792 of yacc.c  */
-#line 1042 "parser.yy"
+#line 1047 "parser.yy"
     { }
     break;
 
   case 229:
 /* Line 1792 of yacc.c  */
-#line 1043 "parser.yy"
+#line 1048 "parser.yy"
     { }
     break;
 
   case 230:
 /* Line 1792 of yacc.c  */
-#line 1044 "parser.yy"
+#line 1049 "parser.yy"
     { }
     break;
 
   case 231:
 /* Line 1792 of yacc.c  */
-#line 1045 "parser.yy"
+#line 1050 "parser.yy"
     { }
     break;
 
   case 232:
 /* Line 1792 of yacc.c  */
-#line 1046 "parser.yy"
+#line 1051 "parser.yy"
     {  }
     break;
 
   case 233:
 /* Line 1792 of yacc.c  */
-#line 1047 "parser.yy"
+#line 1052 "parser.yy"
     {  }
     break;
 
   case 234:
 /* Line 1792 of yacc.c  */
-#line 1048 "parser.yy"
+#line 1053 "parser.yy"
     {  }
     break;
 
   case 235:
 /* Line 1792 of yacc.c  */
-#line 1049 "parser.yy"
+#line 1054 "parser.yy"
     {  }
     break;
 
   case 236:
 /* Line 1792 of yacc.c  */
-#line 1050 "parser.yy"
+#line 1055 "parser.yy"
     {  }
     break;
 
   case 237:
 /* Line 1792 of yacc.c  */
-#line 1051 "parser.yy"
+#line 1056 "parser.yy"
     {  }
     break;
 
   case 238:
 /* Line 1792 of yacc.c  */
-#line 1052 "parser.yy"
+#line 1057 "parser.yy"
     {  }
     break;
 
   case 239:
 /* Line 1792 of yacc.c  */
-#line 1053 "parser.yy"
+#line 1058 "parser.yy"
     {  }
     break;
 
   case 240:
 /* Line 1792 of yacc.c  */
-#line 1054 "parser.yy"
+#line 1059 "parser.yy"
     { }
     break;
 
   case 241:
 /* Line 1792 of yacc.c  */
-#line 1055 "parser.yy"
+#line 1060 "parser.yy"
     { }
     break;
 
   case 242:
 /* Line 1792 of yacc.c  */
-#line 1056 "parser.yy"
+#line 1061 "parser.yy"
     { }
     break;
 
   case 243:
 /* Line 1792 of yacc.c  */
-#line 1057 "parser.yy"
+#line 1062 "parser.yy"
     { }
     break;
 
   case 244:
 /* Line 1792 of yacc.c  */
-#line 1058 "parser.yy"
+#line 1063 "parser.yy"
     { }
     break;
 
   case 245:
 /* Line 1792 of yacc.c  */
-#line 1059 "parser.yy"
+#line 1064 "parser.yy"
     { }
     break;
 
   case 246:
 /* Line 1792 of yacc.c  */
-#line 1060 "parser.yy"
+#line 1065 "parser.yy"
     { }
     break;
 
   case 247:
 /* Line 1792 of yacc.c  */
-#line 1061 "parser.yy"
+#line 1066 "parser.yy"
     { }
     break;
 
   case 248:
 /* Line 1792 of yacc.c  */
-#line 1062 "parser.yy"
+#line 1067 "parser.yy"
     { }
     break;
 
   case 249:
 /* Line 1792 of yacc.c  */
-#line 1063 "parser.yy"
+#line 1068 "parser.yy"
     {  }
     break;
 
   case 250:
 /* Line 1792 of yacc.c  */
-#line 1064 "parser.yy"
+#line 1069 "parser.yy"
     {  }
     break;
 
   case 251:
 /* Line 1792 of yacc.c  */
-#line 1065 "parser.yy"
+#line 1070 "parser.yy"
     {  }
     break;
 
   case 252:
 /* Line 1792 of yacc.c  */
-#line 1066 "parser.yy"
+#line 1071 "parser.yy"
     {  }
     break;
 
   case 253:
 /* Line 1792 of yacc.c  */
-#line 1067 "parser.yy"
+#line 1072 "parser.yy"
     {  }
     break;
 
   case 254:
 /* Line 1792 of yacc.c  */
-#line 1068 "parser.yy"
+#line 1073 "parser.yy"
     {  }
     break;
 
   case 255:
 /* Line 1792 of yacc.c  */
-#line 1069 "parser.yy"
+#line 1074 "parser.yy"
     {  }
     break;
 
   case 256:
 /* Line 1792 of yacc.c  */
-#line 1070 "parser.yy"
+#line 1075 "parser.yy"
     {  }
     break;
 
   case 257:
 /* Line 1792 of yacc.c  */
-#line 1071 "parser.yy"
+#line 1076 "parser.yy"
     {  }
     break;
 
   case 258:
 /* Line 1792 of yacc.c  */
-#line 1072 "parser.yy"
+#line 1077 "parser.yy"
     {  }
     break;
 
   case 259:
 /* Line 1792 of yacc.c  */
-#line 1073 "parser.yy"
+#line 1078 "parser.yy"
     { }
     break;
 
   case 260:
 /* Line 1792 of yacc.c  */
-#line 1078 "parser.yy"
+#line 1083 "parser.yy"
     { }
     break;
 
   case 261:
 /* Line 1792 of yacc.c  */
-#line 1079 "parser.yy"
+#line 1084 "parser.yy"
     { }
     break;
 
   case 262:
 /* Line 1792 of yacc.c  */
-#line 1080 "parser.yy"
+#line 1085 "parser.yy"
     {  }
     break;
 
   case 263:
 /* Line 1792 of yacc.c  */
-#line 1081 "parser.yy"
+#line 1086 "parser.yy"
     { }
     break;
 
   case 264:
 /* Line 1792 of yacc.c  */
-#line 1082 "parser.yy"
+#line 1087 "parser.yy"
     {  }
     break;
 
   case 265:
 /* Line 1792 of yacc.c  */
-#line 1083 "parser.yy"
+#line 1088 "parser.yy"
     { }
     break;
 
   case 266:
 /* Line 1792 of yacc.c  */
-#line 1084 "parser.yy"
+#line 1089 "parser.yy"
     {  }
     break;
 
   case 267:
 /* Line 1792 of yacc.c  */
-#line 1085 "parser.yy"
+#line 1090 "parser.yy"
     {  }
     break;
 
   case 268:
 /* Line 1792 of yacc.c  */
-#line 1086 "parser.yy"
+#line 1091 "parser.yy"
     {  }
     break;
 
   case 269:
 /* Line 1792 of yacc.c  */
-#line 1087 "parser.yy"
+#line 1092 "parser.yy"
     { }
     break;
 
   case 270:
 /* Line 1792 of yacc.c  */
-#line 1088 "parser.yy"
+#line 1093 "parser.yy"
     { }
     break;
 
   case 271:
 /* Line 1792 of yacc.c  */
-#line 1089 "parser.yy"
+#line 1094 "parser.yy"
     { }
     break;
 
   case 272:
 /* Line 1792 of yacc.c  */
-#line 1090 "parser.yy"
+#line 1095 "parser.yy"
     { }
     break;
 
   case 273:
 /* Line 1792 of yacc.c  */
-#line 1091 "parser.yy"
+#line 1096 "parser.yy"
     {  }
     break;
 
   case 274:
 /* Line 1792 of yacc.c  */
-#line 1092 "parser.yy"
+#line 1097 "parser.yy"
     { }
     break;
 
   case 275:
 /* Line 1792 of yacc.c  */
-#line 1093 "parser.yy"
+#line 1098 "parser.yy"
     {  }
     break;
 
   case 276:
 /* Line 1792 of yacc.c  */
-#line 1097 "parser.yy"
+#line 1102 "parser.yy"
     {  }
     break;
 
   case 277:
 /* Line 1792 of yacc.c  */
-#line 1098 "parser.yy"
+#line 1103 "parser.yy"
     { }
     break;
 
   case 278:
 /* Line 1792 of yacc.c  */
-#line 1099 "parser.yy"
+#line 1104 "parser.yy"
     {  }
     break;
 
   case 279:
 /* Line 1792 of yacc.c  */
-#line 1103 "parser.yy"
+#line 1108 "parser.yy"
     {  }
     break;
 
   case 280:
 /* Line 1792 of yacc.c  */
-#line 1107 "parser.yy"
+#line 1112 "parser.yy"
     { }
     break;
 
   case 281:
 /* Line 1792 of yacc.c  */
-#line 1111 "parser.yy"
+#line 1116 "parser.yy"
     {
 		    
 		  }
@@ -5414,7 +5436,7 @@ yyreduce:
 
   case 282:
 /* Line 1792 of yacc.c  */
-#line 1114 "parser.yy"
+#line 1119 "parser.yy"
     {
 		    
 		  }
@@ -5422,7 +5444,7 @@ yyreduce:
 
   case 283:
 /* Line 1792 of yacc.c  */
-#line 1117 "parser.yy"
+#line 1122 "parser.yy"
     {
 		    
 		  }
@@ -5430,7 +5452,7 @@ yyreduce:
 
   case 284:
 /* Line 1792 of yacc.c  */
-#line 1124 "parser.yy"
+#line 1129 "parser.yy"
     {
 	 
 	}
@@ -5438,7 +5460,7 @@ yyreduce:
 
   case 285:
 /* Line 1792 of yacc.c  */
-#line 1128 "parser.yy"
+#line 1133 "parser.yy"
     {
 	  
 	}
@@ -5446,7 +5468,7 @@ yyreduce:
 
   case 286:
 /* Line 1792 of yacc.c  */
-#line 1132 "parser.yy"
+#line 1137 "parser.yy"
     {
 	 
 	}
@@ -5454,7 +5476,7 @@ yyreduce:
 
   case 287:
 /* Line 1792 of yacc.c  */
-#line 1136 "parser.yy"
+#line 1141 "parser.yy"
     {
 		
 	}
@@ -5462,7 +5484,7 @@ yyreduce:
 
   case 288:
 /* Line 1792 of yacc.c  */
-#line 1140 "parser.yy"
+#line 1145 "parser.yy"
     {
 		
 	}
@@ -5470,7 +5492,7 @@ yyreduce:
 
   case 289:
 /* Line 1792 of yacc.c  */
-#line 1144 "parser.yy"
+#line 1149 "parser.yy"
     {
 		
 	}
@@ -5478,15 +5500,16 @@ yyreduce:
 
   case 290:
 /* Line 1792 of yacc.c  */
-#line 1151 "parser.yy"
+#line 1156 "parser.yy"
     {
-	  
+		(yyval.node) = std::make_shared<AST::CCBufferSpecifier>((yyvsp[(2) - (5)].identifier), (yyvsp[(4) - (5)].node));
+		//$$->SetSourceLocation(yyloc);
 	}
     break;
 
   case 291:
 /* Line 1792 of yacc.c  */
-#line 1158 "parser.yy"
+#line 1164 "parser.yy"
     {
 	  
 	}
@@ -5494,7 +5517,7 @@ yyreduce:
 
   case 292:
 /* Line 1792 of yacc.c  */
-#line 1162 "parser.yy"
+#line 1168 "parser.yy"
     {
 	
 	}
@@ -5502,7 +5525,7 @@ yyreduce:
 
   case 293:
 /* Line 1792 of yacc.c  */
-#line 1169 "parser.yy"
+#line 1175 "parser.yy"
     {
 	   
 	}
@@ -5510,7 +5533,7 @@ yyreduce:
 
   case 294:
 /* Line 1792 of yacc.c  */
-#line 1176 "parser.yy"
+#line 1182 "parser.yy"
     {
 		
 	}
@@ -5518,7 +5541,7 @@ yyreduce:
 
   case 295:
 /* Line 1792 of yacc.c  */
-#line 1180 "parser.yy"
+#line 1186 "parser.yy"
     {
 		
 	}
@@ -5526,7 +5549,7 @@ yyreduce:
 
   case 297:
 /* Line 1792 of yacc.c  */
-#line 1188 "parser.yy"
+#line 1194 "parser.yy"
     {
 		
 	}
@@ -5534,7 +5557,7 @@ yyreduce:
 
   case 298:
 /* Line 1792 of yacc.c  */
-#line 1192 "parser.yy"
+#line 1198 "parser.yy"
     {
 		
 	}
@@ -5542,7 +5565,7 @@ yyreduce:
 
   case 299:
 /* Line 1792 of yacc.c  */
-#line 1196 "parser.yy"
+#line 1202 "parser.yy"
     {
 		
 	}
@@ -5550,7 +5573,7 @@ yyreduce:
 
   case 300:
 /* Line 1792 of yacc.c  */
-#line 1203 "parser.yy"
+#line 1209 "parser.yy"
     {
 	  
 	}
@@ -5558,7 +5581,7 @@ yyreduce:
 
   case 301:
 /* Line 1792 of yacc.c  */
-#line 1207 "parser.yy"
+#line 1213 "parser.yy"
     {
 	  
 	}
@@ -5566,7 +5589,7 @@ yyreduce:
 
   case 302:
 /* Line 1792 of yacc.c  */
-#line 1214 "parser.yy"
+#line 1220 "parser.yy"
     {
 	  
 	}
@@ -5574,7 +5597,7 @@ yyreduce:
 
   case 303:
 /* Line 1792 of yacc.c  */
-#line 1218 "parser.yy"
+#line 1224 "parser.yy"
     {
 	 
 	}
@@ -5582,7 +5605,7 @@ yyreduce:
 
   case 304:
 /* Line 1792 of yacc.c  */
-#line 1222 "parser.yy"
+#line 1228 "parser.yy"
     {
 		
 	}
@@ -5590,7 +5613,7 @@ yyreduce:
 
   case 305:
 /* Line 1792 of yacc.c  */
-#line 1226 "parser.yy"
+#line 1232 "parser.yy"
     {
 	  
 	}
@@ -5598,7 +5621,7 @@ yyreduce:
 
   case 306:
 /* Line 1792 of yacc.c  */
-#line 1233 "parser.yy"
+#line 1239 "parser.yy"
     {
 	  
 	}
@@ -5606,7 +5629,7 @@ yyreduce:
 
   case 307:
 /* Line 1792 of yacc.c  */
-#line 1237 "parser.yy"
+#line 1243 "parser.yy"
     {
 	  
 	}
@@ -5614,7 +5637,7 @@ yyreduce:
 
   case 309:
 /* Line 1792 of yacc.c  */
-#line 1244 "parser.yy"
+#line 1250 "parser.yy"
     {
 		
 	}
@@ -5622,7 +5645,7 @@ yyreduce:
 
   case 310:
 /* Line 1792 of yacc.c  */
-#line 1251 "parser.yy"
+#line 1257 "parser.yy"
     {
 		
 	}
@@ -5630,7 +5653,7 @@ yyreduce:
 
   case 311:
 /* Line 1792 of yacc.c  */
-#line 1255 "parser.yy"
+#line 1261 "parser.yy"
     {
 		
 	}
@@ -5638,7 +5661,7 @@ yyreduce:
 
   case 312:
 /* Line 1792 of yacc.c  */
-#line 1259 "parser.yy"
+#line 1265 "parser.yy"
     {
 	
 	}
@@ -5646,13 +5669,13 @@ yyreduce:
 
   case 314:
 /* Line 1792 of yacc.c  */
-#line 1271 "parser.yy"
+#line 1277 "parser.yy"
     {  }
     break;
 
   case 316:
 /* Line 1792 of yacc.c  */
-#line 1274 "parser.yy"
+#line 1280 "parser.yy"
     {
 		
 	}
@@ -5660,7 +5683,7 @@ yyreduce:
 
   case 317:
 /* Line 1792 of yacc.c  */
-#line 1278 "parser.yy"
+#line 1284 "parser.yy"
     {
 		
 	}
@@ -5668,7 +5691,7 @@ yyreduce:
 
   case 324:
 /* Line 1792 of yacc.c  */
-#line 1294 "parser.yy"
+#line 1300 "parser.yy"
     {
 	  
 	}
@@ -5676,7 +5699,7 @@ yyreduce:
 
   case 325:
 /* Line 1792 of yacc.c  */
-#line 1298 "parser.yy"
+#line 1304 "parser.yy"
     {
 	   
 	}
@@ -5684,7 +5707,7 @@ yyreduce:
 
   case 326:
 /* Line 1792 of yacc.c  */
-#line 1302 "parser.yy"
+#line 1308 "parser.yy"
     {
 	  
 	}
@@ -5692,13 +5715,13 @@ yyreduce:
 
   case 327:
 /* Line 1792 of yacc.c  */
-#line 1308 "parser.yy"
+#line 1314 "parser.yy"
     {  }
     break;
 
   case 329:
 /* Line 1792 of yacc.c  */
-#line 1314 "parser.yy"
+#line 1320 "parser.yy"
     {
 	  
 	}
@@ -5706,7 +5729,7 @@ yyreduce:
 
   case 330:
 /* Line 1792 of yacc.c  */
-#line 1318 "parser.yy"
+#line 1324 "parser.yy"
     {
 	   
 	}
@@ -5714,7 +5737,7 @@ yyreduce:
 
   case 331:
 /* Line 1792 of yacc.c  */
-#line 1325 "parser.yy"
+#line 1331 "parser.yy"
     {
 	  
 	}
@@ -5722,7 +5745,7 @@ yyreduce:
 
   case 332:
 /* Line 1792 of yacc.c  */
-#line 1329 "parser.yy"
+#line 1335 "parser.yy"
     {
 	  
 	}
@@ -5730,7 +5753,7 @@ yyreduce:
 
   case 333:
 /* Line 1792 of yacc.c  */
-#line 1336 "parser.yy"
+#line 1342 "parser.yy"
     {
 	 
 	}
@@ -5738,7 +5761,7 @@ yyreduce:
 
   case 334:
 /* Line 1792 of yacc.c  */
-#line 1340 "parser.yy"
+#line 1346 "parser.yy"
     {
 	 
 	}
@@ -5746,7 +5769,7 @@ yyreduce:
 
   case 335:
 /* Line 1792 of yacc.c  */
-#line 1347 "parser.yy"
+#line 1353 "parser.yy"
     {
 	   
 	}
@@ -5754,7 +5777,7 @@ yyreduce:
 
   case 336:
 /* Line 1792 of yacc.c  */
-#line 1354 "parser.yy"
+#line 1360 "parser.yy"
     {
 	  
 	}
@@ -5762,7 +5785,7 @@ yyreduce:
 
   case 337:
 /* Line 1792 of yacc.c  */
-#line 1358 "parser.yy"
+#line 1364 "parser.yy"
     {
 	  
 	}
@@ -5770,7 +5793,7 @@ yyreduce:
 
   case 338:
 /* Line 1792 of yacc.c  */
-#line 1365 "parser.yy"
+#line 1371 "parser.yy"
     {
 	  
 	}
@@ -5778,7 +5801,7 @@ yyreduce:
 
   case 339:
 /* Line 1792 of yacc.c  */
-#line 1369 "parser.yy"
+#line 1375 "parser.yy"
     {
 	  
 	}
@@ -5786,7 +5809,7 @@ yyreduce:
 
   case 340:
 /* Line 1792 of yacc.c  */
-#line 1380 "parser.yy"
+#line 1386 "parser.yy"
     {
 	  
 	}
@@ -5794,7 +5817,7 @@ yyreduce:
 
   case 341:
 /* Line 1792 of yacc.c  */
-#line 1387 "parser.yy"
+#line 1393 "parser.yy"
     {
 	  
 	}
@@ -5802,7 +5825,7 @@ yyreduce:
 
   case 342:
 /* Line 1792 of yacc.c  */
-#line 1391 "parser.yy"
+#line 1397 "parser.yy"
     {
 	 
 	}
@@ -5810,7 +5833,7 @@ yyreduce:
 
   case 343:
 /* Line 1792 of yacc.c  */
-#line 1398 "parser.yy"
+#line 1404 "parser.yy"
     {
 	  
 	}
@@ -5818,7 +5841,7 @@ yyreduce:
 
   case 344:
 /* Line 1792 of yacc.c  */
-#line 1402 "parser.yy"
+#line 1408 "parser.yy"
     {
 	  
 	}
@@ -5826,7 +5849,7 @@ yyreduce:
 
   case 345:
 /* Line 1792 of yacc.c  */
-#line 1409 "parser.yy"
+#line 1415 "parser.yy"
     {
 	  
 	}
@@ -5834,7 +5857,7 @@ yyreduce:
 
   case 346:
 /* Line 1792 of yacc.c  */
-#line 1413 "parser.yy"
+#line 1419 "parser.yy"
     {
 	   
 	}
@@ -5842,7 +5865,7 @@ yyreduce:
 
   case 347:
 /* Line 1792 of yacc.c  */
-#line 1420 "parser.yy"
+#line 1426 "parser.yy"
     {
 	  
 	}
@@ -5850,7 +5873,7 @@ yyreduce:
 
   case 348:
 /* Line 1792 of yacc.c  */
-#line 1424 "parser.yy"
+#line 1430 "parser.yy"
     {
 	  
 	}
@@ -5858,7 +5881,7 @@ yyreduce:
 
   case 349:
 /* Line 1792 of yacc.c  */
-#line 1431 "parser.yy"
+#line 1437 "parser.yy"
     {
 	   
 	}
@@ -5866,7 +5889,7 @@ yyreduce:
 
   case 350:
 /* Line 1792 of yacc.c  */
-#line 1435 "parser.yy"
+#line 1441 "parser.yy"
     {
 	  
 	}
@@ -5874,7 +5897,7 @@ yyreduce:
 
   case 351:
 /* Line 1792 of yacc.c  */
-#line 1442 "parser.yy"
+#line 1448 "parser.yy"
     {
 	  
 	}
@@ -5882,7 +5905,7 @@ yyreduce:
 
   case 352:
 /* Line 1792 of yacc.c  */
-#line 1446 "parser.yy"
+#line 1452 "parser.yy"
     {
 	  
 	}
@@ -5890,7 +5913,7 @@ yyreduce:
 
   case 353:
 /* Line 1792 of yacc.c  */
-#line 1450 "parser.yy"
+#line 1456 "parser.yy"
     {
 	 
 	}
@@ -5898,7 +5921,7 @@ yyreduce:
 
   case 357:
 /* Line 1792 of yacc.c  */
-#line 1463 "parser.yy"
+#line 1469 "parser.yy"
     {
 	  
 	}
@@ -5906,7 +5929,7 @@ yyreduce:
 
   case 358:
 /* Line 1792 of yacc.c  */
-#line 1470 "parser.yy"
+#line 1476 "parser.yy"
     {
 	 
 	}
@@ -5914,7 +5937,7 @@ yyreduce:
 
   case 359:
 /* Line 1792 of yacc.c  */
-#line 1474 "parser.yy"
+#line 1480 "parser.yy"
     {
 	 
 	}
@@ -5922,7 +5945,7 @@ yyreduce:
 
   case 360:
 /* Line 1792 of yacc.c  */
-#line 1482 "parser.yy"
+#line 1488 "parser.yy"
     {
 	 
 	}
@@ -5930,7 +5953,7 @@ yyreduce:
 
   case 361:
 /* Line 1792 of yacc.c  */
-#line 1486 "parser.yy"
+#line 1492 "parser.yy"
     {
 	  
 	}
@@ -5938,7 +5961,7 @@ yyreduce:
 
   case 362:
 /* Line 1792 of yacc.c  */
-#line 1490 "parser.yy"
+#line 1496 "parser.yy"
     {
 	
 	}
@@ -5946,7 +5969,7 @@ yyreduce:
 
   case 363:
 /* Line 1792 of yacc.c  */
-#line 1494 "parser.yy"
+#line 1500 "parser.yy"
     {
 	 
 	}
@@ -5954,7 +5977,7 @@ yyreduce:
 
   case 364:
 /* Line 1792 of yacc.c  */
-#line 1498 "parser.yy"
+#line 1504 "parser.yy"
     {
 	  
 	}
@@ -5962,19 +5985,19 @@ yyreduce:
 
   case 365:
 /* Line 1792 of yacc.c  */
-#line 1504 "parser.yy"
+#line 1510 "parser.yy"
     { }
     break;
 
   case 366:
 /* Line 1792 of yacc.c  */
-#line 1505 "parser.yy"
+#line 1511 "parser.yy"
     { }
     break;
 
   case 367:
 /* Line 1792 of yacc.c  */
-#line 1510 "parser.yy"
+#line 1516 "parser.yy"
     {
 		
 	}
@@ -5982,7 +6005,7 @@ yyreduce:
 
   case 368:
 /* Line 1792 of yacc.c  */
-#line 1514 "parser.yy"
+#line 1520 "parser.yy"
     {
 		
 	}
@@ -5990,7 +6013,7 @@ yyreduce:
 
   case 369:
 /* Line 1792 of yacc.c  */
-#line 1521 "parser.yy"
+#line 1527 "parser.yy"
     {
 	
 	}
@@ -5998,7 +6021,7 @@ yyreduce:
 
   case 370:
 /* Line 1792 of yacc.c  */
-#line 1525 "parser.yy"
+#line 1531 "parser.yy"
     {
 
 	}
@@ -6006,7 +6029,7 @@ yyreduce:
 
   case 371:
 /* Line 1792 of yacc.c  */
-#line 1532 "parser.yy"
+#line 1538 "parser.yy"
     {
 		
 	}
@@ -6014,7 +6037,7 @@ yyreduce:
 
   case 372:
 /* Line 1792 of yacc.c  */
-#line 1536 "parser.yy"
+#line 1542 "parser.yy"
     {
 		
 	}
@@ -6022,7 +6045,7 @@ yyreduce:
 
   case 373:
 /* Line 1792 of yacc.c  */
-#line 1540 "parser.yy"
+#line 1546 "parser.yy"
     {
 		
 	}
@@ -6030,7 +6053,7 @@ yyreduce:
 
   case 374:
 /* Line 1792 of yacc.c  */
-#line 1544 "parser.yy"
+#line 1550 "parser.yy"
     {
 		
 	}
@@ -6038,7 +6061,7 @@ yyreduce:
 
   case 375:
 /* Line 1792 of yacc.c  */
-#line 1551 "parser.yy"
+#line 1557 "parser.yy"
     {
 		
 	}
@@ -6046,7 +6069,7 @@ yyreduce:
 
   case 376:
 /* Line 1792 of yacc.c  */
-#line 1555 "parser.yy"
+#line 1561 "parser.yy"
     {
 		
 	}
@@ -6054,7 +6077,7 @@ yyreduce:
 
   case 377:
 /* Line 1792 of yacc.c  */
-#line 1562 "parser.yy"
+#line 1568 "parser.yy"
     {
 	  
 	}
@@ -6062,7 +6085,7 @@ yyreduce:
 
   case 378:
 /* Line 1792 of yacc.c  */
-#line 1566 "parser.yy"
+#line 1572 "parser.yy"
     {
 	  
 	}
@@ -6070,7 +6093,7 @@ yyreduce:
 
   case 379:
 /* Line 1792 of yacc.c  */
-#line 1573 "parser.yy"
+#line 1579 "parser.yy"
     {
 		
 	}
@@ -6078,7 +6101,7 @@ yyreduce:
 
   case 380:
 /* Line 1792 of yacc.c  */
-#line 1577 "parser.yy"
+#line 1583 "parser.yy"
     {
 		
 	}
@@ -6086,7 +6109,7 @@ yyreduce:
 
   case 381:
 /* Line 1792 of yacc.c  */
-#line 1581 "parser.yy"
+#line 1587 "parser.yy"
     {
 	
 	}
@@ -6094,7 +6117,7 @@ yyreduce:
 
   case 382:
 /* Line 1792 of yacc.c  */
-#line 1585 "parser.yy"
+#line 1591 "parser.yy"
     {
 	  
 	}
@@ -6102,7 +6125,7 @@ yyreduce:
 
 
 /* Line 1792 of yacc.c  */
-#line 6106 "parser.cpp"
+#line 6129 "parser.cpp"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -6153,7 +6176,7 @@ yyerrlab:
     {
       ++yynerrs;
 #if ! YYERROR_VERBOSE
-      yyerror (YY_("syntax error"));
+      yyerror (&yylloc, state, YY_("syntax error"));
 #else
 # define YYSYNTAX_ERROR yysyntax_error (&yymsg_alloc, &yymsg, \
                                         yyssp, yytoken)
@@ -6180,7 +6203,7 @@ yyerrlab:
                 yymsgp = yymsg;
               }
           }
-        yyerror (yymsgp);
+        yyerror (&yylloc, state, yymsgp);
         if (yysyntax_error_status == 2)
           goto yyexhaustedlab;
       }
@@ -6204,7 +6227,7 @@ yyerrlab:
       else
 	{
 	  yydestruct ("Error: discarding",
-		      yytoken, &yylval, &yylloc);
+		      yytoken, &yylval, &yylloc, state);
 	  yychar = YYEMPTY;
 	}
     }
@@ -6261,7 +6284,7 @@ yyerrlab1:
 
       yyerror_range[1] = *yylsp;
       yydestruct ("Error: popping",
-		  yystos[yystate], yyvsp, yylsp);
+		  yystos[yystate], yyvsp, yylsp, state);
       YYPOPSTACK (1);
       yystate = *yyssp;
       YY_STACK_PRINT (yyss, yyssp);
@@ -6303,7 +6326,7 @@ yyabortlab:
 | yyexhaustedlab -- memory exhaustion comes here.  |
 `-------------------------------------------------*/
 yyexhaustedlab:
-  yyerror (YY_("memory exhausted"));
+  yyerror (&yylloc, state, YY_("memory exhausted"));
   yyresult = 2;
   /* Fall through.  */
 #endif
@@ -6315,7 +6338,7 @@ yyreturn:
          user semantic actions for why this is necessary.  */
       yytoken = YYTRANSLATE (yychar);
       yydestruct ("Cleanup: discarding lookahead",
-                  yytoken, &yylval, &yylloc);
+                  yytoken, &yylval, &yylloc, state);
     }
   /* Do not reclaim the symbols of the rule which action triggered
      this YYABORT or YYACCEPT.  */
@@ -6324,7 +6347,7 @@ yyreturn:
   while (yyssp != yyss)
     {
       yydestruct ("Cleanup: popping",
-		  yystos[*yyssp], yyvsp, yylsp);
+		  yystos[*yyssp], yyvsp, yylsp, state);
       YYPOPSTACK (1);
     }
 #ifndef yyoverflow
@@ -6341,4 +6364,4 @@ yyreturn:
 
 
 /* Line 2055 of yacc.c  */
-#line 1591 "parser.yy"
+#line 1597 "parser.yy"

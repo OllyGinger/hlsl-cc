@@ -78,6 +78,9 @@
     <ClInclude Include="AST\ParserType.h">
       <Filter>Header Files\AST</Filter>
     </ClInclude>
+    <ClInclude Include="parser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hlsl_parser.cpp">

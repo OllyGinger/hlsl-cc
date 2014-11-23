@@ -4,11 +4,18 @@
 #include <iostream>
 #include "codegen.h"
 #include "node.h"
+#include "AST/ParserType.h"
 
 using namespace std;
 
-extern int yyparse();
-extern FILE* yyin;
+int yyparse(THLSLParserState *scanner);
+
+typedef void* yyscan_t;
+int yylex_init_extra(THLSLParserState *state, yyscan_t* scanner);
+void yyset_in(FILE * in_str, yyscan_t yyscanner);
+int yylex_destroy(yyscan_t yyscanner);
+
+int yylex(YYSTYPE *yylval, YYLTYPE *yylloc, void *scanner);
 
 int main(int argc, char **argv)
 {
@@ -18,10 +25,16 @@ int main(int argc, char **argv)
 		cout << "I can't open a.snazzle.file!" << endl;
 		return -1;
 	}
-	// set lex to read from it instead of defaulting to STDIN:
-	yyin = myfile;
 
-	yyparse();
+	extern int yydebug;
+	yydebug = 1;
+
+	THLSLParserState state;
+	yylex_init_extra(&state, &state.scanner);
+	yyset_in(myfile, state.scanner);
+	yyparse(&state);
+	yylex_destroy(&state.scanner);
+
 	//std::cout << programBlock << std::endl;
 
 // 	CodeGenContext context;

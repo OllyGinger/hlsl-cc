@@ -1009,30 +1009,30 @@ static yyconst flex_int16_t yy_chk[1049] =
 
 static yyconst flex_int16_t yy_rule_linenum[212] =
     {   0,
-       69,   70,   72,   73,   74,   75,   76,   77,   78,   79,
-       81,   82,   83,   84,   85,   86,   87,   88,   89,   90,
-       91,   94,   95,   96,   97,   98,   99,  100,  101,  102,
-      103,  104,  105,  106,  107,  108,  109,  110,  111,  112,
-      113,  114,  117,  118,  119,  120,  121,  122,  123,  124,
-      126,  127,  129,  130,  131,  132,  133,  134,  135,  136,
-      137,  138,  139,  140,  142,  143,  145,  146,  147,  148,
-      149,  150,  151,  152,  153,  154,  155,  156,  158,  159,
-      160,  161,  162,  163,  166,  167,  168,  169,  170,  171,
-      172,  173,  174,  175,  176,  177,  178,  179,  180,  181,
+       70,   71,   73,   74,   75,   76,   77,   78,   79,   80,
+       82,   83,   84,   85,   86,   87,   88,   89,   90,   91,
+       92,   95,   96,   97,   98,   99,  100,  101,  102,  103,
+      104,  105,  106,  107,  108,  109,  110,  111,  112,  113,
+      114,  115,  118,  119,  120,  121,  122,  123,  124,  125,
+      127,  128,  130,  131,  132,  133,  134,  135,  136,  137,
+      138,  139,  140,  141,  143,  144,  146,  147,  148,  149,
+      150,  151,  152,  153,  154,  155,  156,  157,  159,  160,
+      161,  162,  163,  164,  167,  168,  169,  170,  171,  172,
+      173,  174,  175,  176,  177,  178,  179,  180,  181,  182,
 
-      182,  183,  184,  185,  186,  187,  188,  189,  190,  191,
-      192,  193,  194,  195,  196,  197,  198,  199,  200,  201,
-      202,  203,  204,  205,  206,  207,  208,  209,  210,  211,
-      212,  213,  214,  215,  216,  217,  218,  219,  220,  221,
-      222,  223,  225,  226,  227,  228,  230,  231,  232,  233,
-      234,  235,  236,  237,  238,  239,  240,  241,  242,  243,
-      244,  245,  246,  247,  248,  249,  250,  251,  252,  253,
-      254,  255,  256,  257,  258,  259,  260,  261,  264,  265,
-      266,  267,  268,  269,  270,  271,  272,  273,  275,  276,
-      277,  278,  279,  280,  281,  282,  283,  284,  287,  288,
+      183,  184,  185,  186,  187,  188,  189,  190,  191,  192,
+      193,  194,  195,  196,  197,  198,  199,  200,  201,  202,
+      203,  204,  205,  206,  207,  208,  209,  210,  211,  212,
+      213,  214,  215,  216,  217,  218,  219,  220,  221,  222,
+      223,  224,  226,  227,  228,  229,  231,  232,  233,  234,
+      235,  236,  237,  238,  239,  240,  241,  242,  243,  244,
+      245,  246,  247,  248,  249,  250,  251,  252,  253,  254,
+      255,  256,  257,  258,  259,  260,  261,  262,  265,  266,
+      267,  268,  269,  270,  271,  272,  273,  274,  276,  277,
+      278,  279,  280,  281,  282,  283,  284,  285,  288,  289,
 
-      289,  291,  296,  297,  298,  299,  300,  302,  306,  311,
-      316
+      290,  292,  297,  298,  299,  300,  301,  303,  307,  312,
+      317
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -1058,7 +1058,7 @@ static int classify_identifier(const char *name);
       yycolumn += yyleng;         \
    } while(0);
 
-#define YY_USER_INIT yylineno = 0; yycolumn = 0;
+//#define YY_USER_INIT yylineno = 0; yycolumn = 0;
 
 static int literal_integer(char *text, int len, YYSTYPE *lval, YYLTYPE *lloc, int base)
 {
@@ -1112,9 +1112,7 @@ static int literal_integer(char *text, int len, YYSTYPE *lval, YYLTYPE *lloc, in
 #define isatty _isatty
 #define fileno _fileno
     
-#ifndef YY_EXTRA_TYPE
-#define YY_EXTRA_TYPE void *
-#endif
+#define YY_EXTRA_TYPE struct THLSLParserState *
 
 /* %if-c-only Reentrant structure and macros (non-C++). */
 /* %if-reentrant */
@@ -1404,10 +1402,10 @@ YY_DECL
     struct yyguts_t * yyg = (struct yyguts_t*)yyscanner;
 
 /* %% [7.0] user's declarations go here */
-#line 67 "tokens.ll"
+#line 68 "tokens.ll"
 
 
-#line 1411 "tokens.cpp"
+#line 1409 "tokens.cpp"
 
     yylval = yylval_param;
 
@@ -1523,1046 +1521,1046 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 69 "tokens.ll"
+#line 70 "tokens.ll"
 ;
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 70 "tokens.ll"
+#line 71 "tokens.ll"
 { yylineno++; yycolumn = 0; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 72 "tokens.ll"
+#line 73 "tokens.ll"
 return TOK_CONST;
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 73 "tokens.ll"
+#line 74 "tokens.ll"
 return TOK_BOOL;
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 74 "tokens.ll"
+#line 75 "tokens.ll"
 return TOK_FLOAT;
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 75 "tokens.ll"
+#line 76 "tokens.ll"
 return TOK_FLOAT;
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 76 "tokens.ll"
+#line 77 "tokens.ll"
 return TOK_HALF;
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 77 "tokens.ll"
+#line 78 "tokens.ll"
 return TOK_INT;
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 78 "tokens.ll"
+#line 79 "tokens.ll"
 return TOK_UINT;
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 79 "tokens.ll"
+#line 80 "tokens.ll"
 return TOK_VOID;          
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 81 "tokens.ll"
+#line 82 "tokens.ll"
 return TOK_BREAK;
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 82 "tokens.ll"
+#line 83 "tokens.ll"
 return TOK_CONTINUE;
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 83 "tokens.ll"
+#line 84 "tokens.ll"
 return TOK_DO;
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 84 "tokens.ll"
+#line 85 "tokens.ll"
 return TOK_WHILE;
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 85 "tokens.ll"
+#line 86 "tokens.ll"
 return TOK_ELSE;
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 86 "tokens.ll"
+#line 87 "tokens.ll"
 return TOK_FOR;
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 87 "tokens.ll"
+#line 88 "tokens.ll"
 return TOK_IF;
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 88 "tokens.ll"
+#line 89 "tokens.ll"
 return TOK_DISCARD;
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 89 "tokens.ll"
+#line 90 "tokens.ll"
 return TOK_RETURN;
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 90 "tokens.ll"
+#line 91 "tokens.ll"
 return TOK_STRUCT;
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 91 "tokens.ll"
+#line 92 "tokens.ll"
 return TOK_CBUFFER;
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 94 "tokens.ll"
+#line 95 "tokens.ll"
 return TOK_BOOL_VEC2;
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 95 "tokens.ll"
+#line 96 "tokens.ll"
 return TOK_BOOL_VEC3;
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 96 "tokens.ll"
+#line 97 "tokens.ll"
 return TOK_BOOL_VEC4;
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 97 "tokens.ll"
+#line 98 "tokens.ll"
 return TOK_INT_VEC2;
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 98 "tokens.ll"
+#line 99 "tokens.ll"
 return TOK_INT_VEC3;
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 99 "tokens.ll"
+#line 100 "tokens.ll"
 return TOK_INT_VEC4;
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 100 "tokens.ll"
+#line 101 "tokens.ll"
 return TOK_UINT_VEC2;
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 101 "tokens.ll"
+#line 102 "tokens.ll"
 return TOK_UINT_VEC3;
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 102 "tokens.ll"
+#line 103 "tokens.ll"
 return TOK_UINT_VEC4;
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 103 "tokens.ll"
+#line 104 "tokens.ll"
 return TOK_FLOAT_VEC2;
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 104 "tokens.ll"
+#line 105 "tokens.ll"
 return TOK_FLOAT_VEC3;
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 105 "tokens.ll"
+#line 106 "tokens.ll"
 return TOK_FLOAT_VEC4;
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 106 "tokens.ll"
+#line 107 "tokens.ll"
 return TOK_FLOAT_VEC2X2;
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 107 "tokens.ll"
+#line 108 "tokens.ll"
 return TOK_FLOAT_VEC2X3;
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 108 "tokens.ll"
+#line 109 "tokens.ll"
 return TOK_FLOAT_VEC2X4;
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 109 "tokens.ll"
+#line 110 "tokens.ll"
 return TOK_FLOAT_VEC3X2;
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 110 "tokens.ll"
+#line 111 "tokens.ll"
 return TOK_FLOAT_VEC3X3;
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 111 "tokens.ll"
+#line 112 "tokens.ll"
 return TOK_FLOAT_VEC3X4;
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 112 "tokens.ll"
+#line 113 "tokens.ll"
 return TOK_FLOAT_VEC4X2;
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 113 "tokens.ll"
+#line 114 "tokens.ll"
 return TOK_FLOAT_VEC4X3;
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 114 "tokens.ll"
+#line 115 "tokens.ll"
 return TOK_FLOAT_VEC4X4;
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 117 "tokens.ll"
+#line 118 "tokens.ll"
 return TOK_POINT;
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 118 "tokens.ll"
+#line 119 "tokens.ll"
 return TOK_LINE;
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 119 "tokens.ll"
+#line 120 "tokens.ll"
 return TOK_TRIANGLE;
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 120 "tokens.ll"
+#line 121 "tokens.ll"
 return TOK_LINEADJ;
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 121 "tokens.ll"
+#line 122 "tokens.ll"
 return TOK_TRIANGLEADJ;
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 122 "tokens.ll"
+#line 123 "tokens.ll"
 return TOK_POINTSTREAM;
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 123 "tokens.ll"
+#line 124 "tokens.ll"
 return TOK_LINESTREAM;
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 124 "tokens.ll"
+#line 125 "tokens.ll"
 return TOK_TRIANGLESTREAM;
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 126 "tokens.ll"
+#line 127 "tokens.ll"
 return TOK_INPUTPATCH;
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 127 "tokens.ll"
+#line 128 "tokens.ll"
 return TOK_OUTPUTPATCH;
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 129 "tokens.ll"
+#line 130 "tokens.ll"
 return TOK_IN;
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 130 "tokens.ll"
+#line 131 "tokens.ll"
 return TOK_OUT;
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 131 "tokens.ll"
+#line 132 "tokens.ll"
 return TOK_INOUT;
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 132 "tokens.ll"
+#line 133 "tokens.ll"
 return TOK_UNIFORM;
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 133 "tokens.ll"
+#line 134 "tokens.ll"
 return TOK_VARYING;
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 134 "tokens.ll"
+#line 135 "tokens.ll"
 return TOK_CENTROID;
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 135 "tokens.ll"
+#line 136 "tokens.ll"
 return TOK_INVARIANT;
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 136 "tokens.ll"
+#line 137 "tokens.ll"
 return TOK_NOINTERPOLATION;
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 137 "tokens.ll"
+#line 138 "tokens.ll"
 return TOK_LINEAR;
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 138 "tokens.ll"
+#line 139 "tokens.ll"
 return TOK_NOPERSPECTIVE;
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 139 "tokens.ll"
+#line 140 "tokens.ll"
 return TOK_GLOBALLYCOHERENT;
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 140 "tokens.ll"
+#line 141 "tokens.ll"
 return TOK_GROUPSHARED;
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 142 "tokens.ll"
+#line 143 "tokens.ll"
 return TOK_ROWMAJOR;
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 143 "tokens.ll"
+#line 144 "tokens.ll"
 return TOK_COLUMNMAJOR;
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 145 "tokens.ll"
+#line 146 "tokens.ll"
 return TOK_BUFFER;
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 146 "tokens.ll"
+#line 147 "tokens.ll"
 return TOK_TEXTURE1D;
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 147 "tokens.ll"
+#line 148 "tokens.ll"
 return TOK_TEXTURE1D_ARRAY;
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 148 "tokens.ll"
+#line 149 "tokens.ll"
 return TOK_TEXTURE2D;
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 149 "tokens.ll"
+#line 150 "tokens.ll"
 return TOK_TEXTURE2D_ARRAY;
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 150 "tokens.ll"
+#line 151 "tokens.ll"
 return TOK_TEXTURE2DMS;
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 151 "tokens.ll"
+#line 152 "tokens.ll"
 return TOK_TEXTURE2DMS_ARRAY;
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 152 "tokens.ll"
+#line 153 "tokens.ll"
 return TOK_TEXTURE3D;
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 153 "tokens.ll"
+#line 154 "tokens.ll"
 return TOK_TEXTURECUBE;
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 154 "tokens.ll"
+#line 155 "tokens.ll"
 return TOK_TEXTURECUBE_ARRAY;
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 155 "tokens.ll"
+#line 156 "tokens.ll"
 return TOK_SAMPLERSTATE;
 	YY_BREAK
 case 78:
 YY_RULE_SETUP
-#line 156 "tokens.ll"
+#line 157 "tokens.ll"
 return TOK_SAMPLER_CMP_STATE;
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
-#line 158 "tokens.ll"
+#line 159 "tokens.ll"
 return TOK_RWBUFFER;
 	YY_BREAK
 case 80:
 YY_RULE_SETUP
-#line 159 "tokens.ll"
+#line 160 "tokens.ll"
 return TOK_RWTEXTURE1D;
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
-#line 160 "tokens.ll"
+#line 161 "tokens.ll"
 return TOK_RWTEXTURE1D_ARRAY;
 	YY_BREAK
 case 82:
 YY_RULE_SETUP
-#line 161 "tokens.ll"
+#line 162 "tokens.ll"
 return TOK_RWTEXTURE2D;
 	YY_BREAK
 case 83:
 YY_RULE_SETUP
-#line 162 "tokens.ll"
+#line 163 "tokens.ll"
 return TOK_RWTEXTURE2D_ARRAY;
 	YY_BREAK
 case 84:
 YY_RULE_SETUP
-#line 163 "tokens.ll"
+#line 164 "tokens.ll"
 return TOK_RWTEXTURE3D;
 	YY_BREAK
 case 85:
 YY_RULE_SETUP
-#line 166 "tokens.ll"
+#line 167 "tokens.ll"
 return TOK_ASM;
 	YY_BREAK
 case 86:
 YY_RULE_SETUP
-#line 167 "tokens.ll"
+#line 168 "tokens.ll"
 return TOK_CLASS;
 	YY_BREAK
 case 87:
 YY_RULE_SETUP
-#line 168 "tokens.ll"
+#line 169 "tokens.ll"
 return TOK_UNION;
 	YY_BREAK
 case 88:
 YY_RULE_SETUP
-#line 169 "tokens.ll"
+#line 170 "tokens.ll"
 return TOK_ENUM;
 	YY_BREAK
 case 89:
 YY_RULE_SETUP
-#line 170 "tokens.ll"
+#line 171 "tokens.ll"
 return TOK_TYPEDEF;
 	YY_BREAK
 case 90:
 YY_RULE_SETUP
-#line 171 "tokens.ll"
+#line 172 "tokens.ll"
 return TOK_TEMPLATE;
 	YY_BREAK
 case 91:
 YY_RULE_SETUP
-#line 172 "tokens.ll"
+#line 173 "tokens.ll"
 return TOK_THIS;
 	YY_BREAK
 case 92:
 YY_RULE_SETUP
-#line 173 "tokens.ll"
+#line 174 "tokens.ll"
 return TOK_PACKED;
 	YY_BREAK
 case 93:
 YY_RULE_SETUP
-#line 174 "tokens.ll"
+#line 175 "tokens.ll"
 return TOK_GOTO;
 	YY_BREAK
 case 94:
 YY_RULE_SETUP
-#line 175 "tokens.ll"
+#line 176 "tokens.ll"
 return TOK_SWITCH;
 	YY_BREAK
 case 95:
 YY_RULE_SETUP
-#line 176 "tokens.ll"
+#line 177 "tokens.ll"
 return TOK_DEFAULT;
 	YY_BREAK
 case 96:
 YY_RULE_SETUP
-#line 177 "tokens.ll"
+#line 178 "tokens.ll"
 return TOK_INLINE;
 	YY_BREAK
 case 97:
 YY_RULE_SETUP
-#line 178 "tokens.ll"
+#line 179 "tokens.ll"
 return TOK_NOINLINE;
 	YY_BREAK
 case 98:
 YY_RULE_SETUP
-#line 179 "tokens.ll"
+#line 180 "tokens.ll"
 return TOK_VOLATILE;
 	YY_BREAK
 case 99:
 YY_RULE_SETUP
-#line 180 "tokens.ll"
+#line 181 "tokens.ll"
 return TOK_PUBLIC;
 	YY_BREAK
 case 100:
 YY_RULE_SETUP
-#line 181 "tokens.ll"
+#line 182 "tokens.ll"
 return TOK_STATIC;
 	YY_BREAK
 case 101:
 YY_RULE_SETUP
-#line 182 "tokens.ll"
+#line 183 "tokens.ll"
 return TOK_EXTERN;
 	YY_BREAK
 case 102:
 YY_RULE_SETUP
-#line 183 "tokens.ll"
+#line 184 "tokens.ll"
 return TOK_EXTERNAL;
 	YY_BREAK
 case 103:
 YY_RULE_SETUP
-#line 184 "tokens.ll"
+#line 185 "tokens.ll"
 return TOK_INTERFACE;
 	YY_BREAK
 case 104:
 YY_RULE_SETUP
-#line 185 "tokens.ll"
+#line 186 "tokens.ll"
 return TOK_LONG;
 	YY_BREAK
 case 105:
 YY_RULE_SETUP
-#line 186 "tokens.ll"
+#line 187 "tokens.ll"
 return TOK_SHORT;
 	YY_BREAK
 case 106:
 YY_RULE_SETUP
-#line 187 "tokens.ll"
+#line 188 "tokens.ll"
 return TOK_DOUBLE;
 	YY_BREAK
 case 107:
 YY_RULE_SETUP
-#line 188 "tokens.ll"
+#line 189 "tokens.ll"
 return TOK_FIXED;
 	YY_BREAK
 case 108:
 YY_RULE_SETUP
-#line 189 "tokens.ll"
+#line 190 "tokens.ll"
 return TOK_UNSIGNED;
 	YY_BREAK
 case 109:
 YY_RULE_SETUP
-#line 190 "tokens.ll"
+#line 191 "tokens.ll"
 return TOK_HALF_VEC2;
 	YY_BREAK
 case 110:
 YY_RULE_SETUP
-#line 191 "tokens.ll"
+#line 192 "tokens.ll"
 return TOK_HALF_VEC3;
 	YY_BREAK
 case 111:
 YY_RULE_SETUP
-#line 192 "tokens.ll"
+#line 193 "tokens.ll"
 return TOK_HALF_VEC4;
 	YY_BREAK
 case 112:
 YY_RULE_SETUP
-#line 193 "tokens.ll"
+#line 194 "tokens.ll"
 return TOK_HALF_VEC2X2;
 	YY_BREAK
 case 113:
 YY_RULE_SETUP
-#line 194 "tokens.ll"
+#line 195 "tokens.ll"
 return TOK_HALF_VEC2X3;
 	YY_BREAK
 case 114:
 YY_RULE_SETUP
-#line 195 "tokens.ll"
+#line 196 "tokens.ll"
 return TOK_HALF_VEC2X4;
 	YY_BREAK
 case 115:
 YY_RULE_SETUP
-#line 196 "tokens.ll"
+#line 197 "tokens.ll"
 return TOK_HALF_VEC3X2;
 	YY_BREAK
 case 116:
 YY_RULE_SETUP
-#line 197 "tokens.ll"
+#line 198 "tokens.ll"
 return TOK_HALF_VEC3X3;
 	YY_BREAK
 case 117:
 YY_RULE_SETUP
-#line 198 "tokens.ll"
+#line 199 "tokens.ll"
 return TOK_HALF_VEC3X4;
 	YY_BREAK
 case 118:
 YY_RULE_SETUP
-#line 199 "tokens.ll"
+#line 200 "tokens.ll"
 return TOK_HALF_VEC4X2;
 	YY_BREAK
 case 119:
 YY_RULE_SETUP
-#line 200 "tokens.ll"
+#line 201 "tokens.ll"
 return TOK_HALF_VEC4X3;
 	YY_BREAK
 case 120:
 YY_RULE_SETUP
-#line 201 "tokens.ll"
+#line 202 "tokens.ll"
 return TOK_HALF_VEC4X4;
 	YY_BREAK
 case 121:
 YY_RULE_SETUP
-#line 202 "tokens.ll"
+#line 203 "tokens.ll"
 return TOK_DOUBLE_VEC2;
 	YY_BREAK
 case 122:
 YY_RULE_SETUP
-#line 203 "tokens.ll"
+#line 204 "tokens.ll"
 return TOK_DOUBLE_VEC3;
 	YY_BREAK
 case 123:
 YY_RULE_SETUP
-#line 204 "tokens.ll"
+#line 205 "tokens.ll"
 return TOK_DOUBLE_VEC4;
 	YY_BREAK
 case 124:
 YY_RULE_SETUP
-#line 205 "tokens.ll"
+#line 206 "tokens.ll"
 return TOK_FIXED_VEC2;
 	YY_BREAK
 case 125:
 YY_RULE_SETUP
-#line 206 "tokens.ll"
+#line 207 "tokens.ll"
 return TOK_FIXED_VEC3;
 	YY_BREAK
 case 126:
 YY_RULE_SETUP
-#line 207 "tokens.ll"
+#line 208 "tokens.ll"
 return TOK_FIXED_VEC4;
 	YY_BREAK
 case 127:
 YY_RULE_SETUP
-#line 208 "tokens.ll"
+#line 209 "tokens.ll"
 return TOK_FIXED_VEC2X2;
 	YY_BREAK
 case 128:
 YY_RULE_SETUP
-#line 209 "tokens.ll"
+#line 210 "tokens.ll"
 return TOK_FIXED_VEC2X3;
 	YY_BREAK
 case 129:
 YY_RULE_SETUP
-#line 210 "tokens.ll"
+#line 211 "tokens.ll"
 return TOK_FIXED_VEC2X4;
 	YY_BREAK
 case 130:
 YY_RULE_SETUP
-#line 211 "tokens.ll"
+#line 212 "tokens.ll"
 return TOK_FIXED_VEC3X2;
 	YY_BREAK
 case 131:
 YY_RULE_SETUP
-#line 212 "tokens.ll"
+#line 213 "tokens.ll"
 return TOK_FIXED_VEC3X3;
 	YY_BREAK
 case 132:
 YY_RULE_SETUP
-#line 213 "tokens.ll"
+#line 214 "tokens.ll"
 return TOK_FIXED_VEC3X4;
 	YY_BREAK
 case 133:
 YY_RULE_SETUP
-#line 214 "tokens.ll"
+#line 215 "tokens.ll"
 return TOK_FIXED_VEC4X2;
 	YY_BREAK
 case 134:
 YY_RULE_SETUP
-#line 215 "tokens.ll"
+#line 216 "tokens.ll"
 return TOK_FIXED_VEC4X3;
 	YY_BREAK
 case 135:
 YY_RULE_SETUP
-#line 216 "tokens.ll"
+#line 217 "tokens.ll"
 return TOK_FIXED_VEC4X4;
 	YY_BREAK
 case 136:
 YY_RULE_SETUP
-#line 217 "tokens.ll"
+#line 218 "tokens.ll"
 return TOK_SAMPLER2DRECT;
 	YY_BREAK
 case 137:
 YY_RULE_SETUP
-#line 218 "tokens.ll"
+#line 219 "tokens.ll"
 return TOK_SAMPLER3DRECT;
 	YY_BREAK
 case 138:
 YY_RULE_SETUP
-#line 219 "tokens.ll"
+#line 220 "tokens.ll"
 return TOK_SAMPLER2DRECTSHADOW;
 	YY_BREAK
 case 139:
 YY_RULE_SETUP
-#line 220 "tokens.ll"
+#line 221 "tokens.ll"
 return TOK_SIZEOF;
 	YY_BREAK
 case 140:
 YY_RULE_SETUP
-#line 221 "tokens.ll"
+#line 222 "tokens.ll"
 return TOK_CAST;
 	YY_BREAK
 case 141:
 YY_RULE_SETUP
-#line 222 "tokens.ll"
+#line 223 "tokens.ll"
 return TOK_NAMESPACE;
 	YY_BREAK
 case 142:
 YY_RULE_SETUP
-#line 223 "tokens.ll"
+#line 224 "tokens.ll"
 return TOK_USING;
 	YY_BREAK
 case 143:
 YY_RULE_SETUP
-#line 225 "tokens.ll"
+#line 226 "tokens.ll"
 return TOK_LOWP;
 	YY_BREAK
 case 144:
 YY_RULE_SETUP
-#line 226 "tokens.ll"
+#line 227 "tokens.ll"
 return TOK_MEDIUMP;
 	YY_BREAK
 case 145:
 YY_RULE_SETUP
-#line 227 "tokens.ll"
+#line 228 "tokens.ll"
 return TOK_HIGHP;
 	YY_BREAK
 case 146:
 YY_RULE_SETUP
-#line 228 "tokens.ll"
+#line 229 "tokens.ll"
 return TOK_PRECISION;
 	YY_BREAK
 case 147:
 YY_RULE_SETUP
-#line 230 "tokens.ll"
+#line 231 "tokens.ll"
 return TOK_CASE;
 	YY_BREAK
 case 148:
 YY_RULE_SETUP
-#line 231 "tokens.ll"
+#line 232 "tokens.ll"
 return TOK_COMMON;
 	YY_BREAK
 case 149:
 YY_RULE_SETUP
-#line 232 "tokens.ll"
+#line 233 "tokens.ll"
 return TOK_PARTITION;
 	YY_BREAK
 case 150:
 YY_RULE_SETUP
-#line 233 "tokens.ll"
+#line 234 "tokens.ll"
 return TOK_ACTIVE;
 	YY_BREAK
 case 151:
 YY_RULE_SETUP
-#line 234 "tokens.ll"
+#line 235 "tokens.ll"
 return TOK_SUPERP;
 	YY_BREAK
 case 152:
 YY_RULE_SETUP
-#line 235 "tokens.ll"
+#line 236 "tokens.ll"
 return TOK_SAMPLERBUFFER;
 	YY_BREAK
 case 153:
 YY_RULE_SETUP
-#line 236 "tokens.ll"
+#line 237 "tokens.ll"
 return TOK_FILTER;
 	YY_BREAK
 case 154:
 YY_RULE_SETUP
-#line 237 "tokens.ll"
+#line 238 "tokens.ll"
 return TOK_IMAGE1D;
 	YY_BREAK
 case 155:
 YY_RULE_SETUP
-#line 238 "tokens.ll"
+#line 239 "tokens.ll"
 return TOK_IMAGE2D;
 	YY_BREAK
 case 156:
 YY_RULE_SETUP
-#line 239 "tokens.ll"
+#line 240 "tokens.ll"
 return TOK_IMAGE3D;
 	YY_BREAK
 case 157:
 YY_RULE_SETUP
-#line 240 "tokens.ll"
+#line 241 "tokens.ll"
 return TOK_IMAGECUBE;
 	YY_BREAK
 case 158:
 YY_RULE_SETUP
-#line 241 "tokens.ll"
+#line 242 "tokens.ll"
 return TOK_IIMAGE1D;
 	YY_BREAK
 case 159:
 YY_RULE_SETUP
-#line 242 "tokens.ll"
+#line 243 "tokens.ll"
 return TOK_IIMAGE2D;
 	YY_BREAK
 case 160:
 YY_RULE_SETUP
-#line 243 "tokens.ll"
+#line 244 "tokens.ll"
 return TOK_IIMAGE3D;
 	YY_BREAK
 case 161:
 YY_RULE_SETUP
-#line 244 "tokens.ll"
+#line 245 "tokens.ll"
 return TOK_IIMAGECUBE;
 	YY_BREAK
 case 162:
 YY_RULE_SETUP
-#line 245 "tokens.ll"
+#line 246 "tokens.ll"
 return TOK_UIMAGE1D;
 	YY_BREAK
 case 163:
 YY_RULE_SETUP
-#line 246 "tokens.ll"
+#line 247 "tokens.ll"
 return TOK_UIMAGE2D;
 	YY_BREAK
 case 164:
 YY_RULE_SETUP
-#line 247 "tokens.ll"
+#line 248 "tokens.ll"
 return TOK_UIMAGE3D;
 	YY_BREAK
 case 165:
 YY_RULE_SETUP
-#line 248 "tokens.ll"
+#line 249 "tokens.ll"
 return TOK_UIMAGECUBE;
 	YY_BREAK
 case 166:
 YY_RULE_SETUP
-#line 249 "tokens.ll"
+#line 250 "tokens.ll"
 return TOK_IMAGE1DARRAY;
 	YY_BREAK
 case 167:
 YY_RULE_SETUP
-#line 250 "tokens.ll"
+#line 251 "tokens.ll"
 return TOK_IMAGE2DARRAY;
 	YY_BREAK
 case 168:
 YY_RULE_SETUP
-#line 251 "tokens.ll"
+#line 252 "tokens.ll"
 return TOK_IIMAGE1DARRAY;
 	YY_BREAK
 case 169:
 YY_RULE_SETUP
-#line 252 "tokens.ll"
+#line 253 "tokens.ll"
 return TOK_IIMAGE2DARRAY;
 	YY_BREAK
 case 170:
 YY_RULE_SETUP
-#line 253 "tokens.ll"
+#line 254 "tokens.ll"
 return TOK_UIMAGE1DARRAY;
 	YY_BREAK
 case 171:
 YY_RULE_SETUP
-#line 254 "tokens.ll"
+#line 255 "tokens.ll"
 return TOK_UIMAGE2DARRAY;
 	YY_BREAK
 case 172:
 YY_RULE_SETUP
-#line 255 "tokens.ll"
+#line 256 "tokens.ll"
 return TOK_IMAGE1DSHADOW;
 	YY_BREAK
 case 173:
 YY_RULE_SETUP
-#line 256 "tokens.ll"
+#line 257 "tokens.ll"
 return TOK_IMAGE2DSHADOW;
 	YY_BREAK
 case 174:
 YY_RULE_SETUP
-#line 257 "tokens.ll"
+#line 258 "tokens.ll"
 return TOK_IMAGE1DARRAYSHADOW;
 	YY_BREAK
 case 175:
 YY_RULE_SETUP
-#line 258 "tokens.ll"
+#line 259 "tokens.ll"
 return TOK_IMAGE2DARRAYSHADOW;
 	YY_BREAK
 case 176:
 YY_RULE_SETUP
-#line 259 "tokens.ll"
+#line 260 "tokens.ll"
 return TOK_IMAGEBUFFER;
 	YY_BREAK
 case 177:
 YY_RULE_SETUP
-#line 260 "tokens.ll"
+#line 261 "tokens.ll"
 return TOK_IIMAGEBUFFER;
 	YY_BREAK
 case 178:
 YY_RULE_SETUP
-#line 261 "tokens.ll"
+#line 262 "tokens.ll"
 return TOK_UIMAGEBUFFER;
 	YY_BREAK
 case 179:
 YY_RULE_SETUP
-#line 264 "tokens.ll"
+#line 265 "tokens.ll"
 return TOK_INCREMENT;
 	YY_BREAK
 case 180:
 YY_RULE_SETUP
-#line 265 "tokens.ll"
+#line 266 "tokens.ll"
 return TOK_DECREMENT;
 	YY_BREAK
 case 181:
 YY_RULE_SETUP
-#line 266 "tokens.ll"
+#line 267 "tokens.ll"
 return TOK_LE;
 	YY_BREAK
 case 182:
 YY_RULE_SETUP
-#line 267 "tokens.ll"
+#line 268 "tokens.ll"
 return TOK_GE;
 	YY_BREAK
 case 183:
 YY_RULE_SETUP
-#line 268 "tokens.ll"
+#line 269 "tokens.ll"
 return TOK_EQ;
 	YY_BREAK
 case 184:
 YY_RULE_SETUP
-#line 269 "tokens.ll"
+#line 270 "tokens.ll"
 return TOK_NEQ;
 	YY_BREAK
 case 185:
 YY_RULE_SETUP
-#line 270 "tokens.ll"
+#line 271 "tokens.ll"
 return TOK_BOOL_AND;
 	YY_BREAK
 case 186:
 YY_RULE_SETUP
-#line 271 "tokens.ll"
+#line 272 "tokens.ll"
 return TOK_BOOL_OR;
 	YY_BREAK
 case 187:
 YY_RULE_SETUP
-#line 272 "tokens.ll"
+#line 273 "tokens.ll"
 return TOK_LSHIFT;
 	YY_BREAK
 case 188:
 YY_RULE_SETUP
-#line 273 "tokens.ll"
+#line 274 "tokens.ll"
 return TOK_RSHIFT;
 	YY_BREAK
 case 189:
 YY_RULE_SETUP
-#line 275 "tokens.ll"
+#line 276 "tokens.ll"
 return TOK_MULTIPLY_ASSIGN;
 	YY_BREAK
 case 190:
 YY_RULE_SETUP
-#line 276 "tokens.ll"
+#line 277 "tokens.ll"
 return TOK_DIVIDE_ASSIGN;
 	YY_BREAK
 case 191:
 YY_RULE_SETUP
-#line 277 "tokens.ll"
+#line 278 "tokens.ll"
 return TOK_ADD_ASSIGN;
 	YY_BREAK
 case 192:
 YY_RULE_SETUP
-#line 278 "tokens.ll"
+#line 279 "tokens.ll"
 return TOK_MOD_ASSIGN;
 	YY_BREAK
 case 193:
 YY_RULE_SETUP
-#line 279 "tokens.ll"
+#line 280 "tokens.ll"
 return TOK_LSHIFT_ASSIGN;
 	YY_BREAK
 case 194:
 YY_RULE_SETUP
-#line 280 "tokens.ll"
+#line 281 "tokens.ll"
 return TOK_RSHIFT_ASSIGN;
 	YY_BREAK
 case 195:
 YY_RULE_SETUP
-#line 281 "tokens.ll"
+#line 282 "tokens.ll"
 return TOK_AND_ASSIGN;
 	YY_BREAK
 case 196:
 YY_RULE_SETUP
-#line 282 "tokens.ll"
+#line 283 "tokens.ll"
 return TOK_XOR_ASSIGN;
 	YY_BREAK
 case 197:
 YY_RULE_SETUP
-#line 283 "tokens.ll"
+#line 284 "tokens.ll"
 return TOK_OR_ASSIGN;
 	YY_BREAK
 case 198:
 YY_RULE_SETUP
-#line 284 "tokens.ll"
+#line 285 "tokens.ll"
 return TOK_SUBTRACT_ASSIGN;
 	YY_BREAK
 case 199:
 YY_RULE_SETUP
-#line 287 "tokens.ll"
+#line 288 "tokens.ll"
 return LITERAL_INTEGER(10);
 	YY_BREAK
 case 200:
 YY_RULE_SETUP
-#line 288 "tokens.ll"
+#line 289 "tokens.ll"
 return LITERAL_INTEGER(16);
 	YY_BREAK
 case 201:
 YY_RULE_SETUP
-#line 289 "tokens.ll"
+#line 290 "tokens.ll"
 return LITERAL_INTEGER(8);
 	YY_BREAK
 case 202:
 YY_RULE_SETUP
-#line 291 "tokens.ll"
+#line 292 "tokens.ll"
 {
-                                                yylval->string = new std::string(yytext, yyleng);
+                                                yylval->string = std::string(yytext, yyleng);
                                                 return TOK_STRING_CONSTANT;
                                             }
 	YY_BREAK
 case 203:
 YY_RULE_SETUP
-#line 296 "tokens.ll"
+#line 297 "tokens.ll"
 LITERAL_FLOAT
 	YY_BREAK
 case 204:
 YY_RULE_SETUP
-#line 297 "tokens.ll"
+#line 298 "tokens.ll"
 LITERAL_FLOAT
 	YY_BREAK
 case 205:
 YY_RULE_SETUP
-#line 298 "tokens.ll"
+#line 299 "tokens.ll"
 LITERAL_FLOAT
 	YY_BREAK
 case 206:
 YY_RULE_SETUP
-#line 299 "tokens.ll"
+#line 300 "tokens.ll"
 LITERAL_FLOAT
 	YY_BREAK
 case 207:
 YY_RULE_SETUP
-#line 300 "tokens.ll"
+#line 301 "tokens.ll"
 LITERAL_FLOAT
 	YY_BREAK
 case 208:
 YY_RULE_SETUP
-#line 302 "tokens.ll"
+#line 303 "tokens.ll"
 {
                                                 yylval->number = 1;
                                                 return TOK_BOOL_CONSTANT;
@@ -2570,7 +2568,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 209:
 YY_RULE_SETUP
-#line 306 "tokens.ll"
+#line 307 "tokens.ll"
 {
                                                 yylval->number = 0;
                                                 return TOK_BOOL_CONSTANT;
@@ -2578,23 +2576,23 @@ YY_RULE_SETUP
 	YY_BREAK
 case 210:
 YY_RULE_SETUP
-#line 311 "tokens.ll"
+#line 312 "tokens.ll"
 { 
-                                                yylval->identifier = new std::string(yytext, yyleng);
+                                                yylval->identifier = std::string(yytext, yyleng);
                                                 return classify_identifier(yytext);
                                             }
 	YY_BREAK
 case 211:
 YY_RULE_SETUP
-#line 316 "tokens.ll"
-printf("Unknown token!\n"); yyterminate();
+#line 317 "tokens.ll"
+{ return yytext[0]; }
 	YY_BREAK
 case 212:
 YY_RULE_SETUP
-#line 318 "tokens.ll"
+#line 319 "tokens.ll"
 ECHO;
 	YY_BREAK
-#line 2598 "tokens.cpp"
+#line 2596 "tokens.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -3861,7 +3859,7 @@ void yyfree (void * ptr , yyscan_t yyscanner)
 
 /* %ok-for-header */
 
-#line 317 "tokens.ll"
+#line 318 "tokens.ll"
 
 
 

@@ -13,7 +13,7 @@ static int classify_identifier(const char *name);
       yycolumn += yyleng;         \
    } while(0);
 
-#define YY_USER_INIT yylineno = 0; yycolumn = 0;
+//#define YY_USER_INIT yylineno = 0; yycolumn = 0;
 
 static int literal_integer(char *text, int len, YYSTYPE *lval, YYLTYPE *lloc, int base)
 {
@@ -60,13 +60,14 @@ static int literal_integer(char *text, int len, YYSTYPE *lval, YYLTYPE *lloc, in
 
 %}
 
-%option bison-locations reentrant noyywrap
+%option bison-bridge bison-locations reentrant noyywrap
 %option nounput noyy_top_state
 %option never-interactive
+%option extra-type="struct THLSLParserState *"
 
 %%
 
-[ \t\r]                                     ;
+[ \r\t]                                     ;
 \n                                          { yylineno++; yycolumn = 0; }
             
 const                                       return TOK_CONST;
@@ -289,7 +290,7 @@ uimageBuffer                                return TOK_UIMAGEBUFFER;
 0[0-7]*[uU]?                                return LITERAL_INTEGER(8);
             
 \"[^"\n]*\"                                 {
-                                                yylval->string = new std::string(yytext, yyleng);
+                                                yylval->string = std::string(yytext, yyleng);
                                                 return TOK_STRING_CONSTANT;
                                             }
 
@@ -309,11 +310,11 @@ false                                       {
                                             }
 
 [_a-zA-Z][_a-zA-Z0-9]*                      { 
-                                                yylval->identifier = new std::string(yytext, yyleng);
+                                                yylval->identifier = std::string(yytext, yyleng);
                                                 return classify_identifier(yytext);
                                             }
 
-.                                           printf("Unknown token!\n"); yyterminate();
+.                                           { return yytext[0]; }
 
 %%
 

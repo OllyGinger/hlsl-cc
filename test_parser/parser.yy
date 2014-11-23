@@ -1,17 +1,20 @@
 %{
 	#include "AST/AST.h"
 	#include "AST/ParserType.h"
+	#include "parser.hpp"
     #include <cstdio>
     #include <cstdlib>
 	AST::CNode *programBlock; /* the top level root node of our final AST */
 
-	void yyerror(const char *s) { std::printf("Error: %s\n", s);std::exit(1); }
-	extern int yylex();
+	#define YYLEX_PARAM state->scanner
+	
+	void yyerror(YYLTYPE *loc, void *st, const char *s) { std::printf("Error: %s\n", s); }
+	extern int yylex(YYSTYPE * lvalp, YYLTYPE*,  void*);
 %}
 
 
 
-
+%pure-parser
 %error-verbose
 %locations
 %initial-action {
@@ -20,6 +23,8 @@
    @$.last_line = 1;
    @$.last_column = 1;
 }
+%lex-param   {void *scanner}
+%parse-param {struct THLSLParserState *state}
 
 %token TOK_CONST TOK_BOOL TOK_FLOAT TOK_HALF TOK_INT TOK_UINT TOK_VOID
 %token TOK_BREAK TOK_CONTINUE TOK_DO TOK_WHILE TOK_ELSE TOK_FOR TOK_IF TOK_DISCARD TOK_RETURN TOK_SWITCH TOK_DEFAULT TOK_STRUCT TOK_CBUFFER TOK_INTERFACE
@@ -1149,7 +1154,8 @@ struct_specifier:
 cbuffer_declaration:
 	TOK_CBUFFER any_identifier '{' struct_declaration_list '}'
 	{
-	  
+		$$ = std::make_shared<AST::CCBufferSpecifier>($2, $4);
+		//$$->SetSourceLocation(yyloc);
 	}
 	;
 

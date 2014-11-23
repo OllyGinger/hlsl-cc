@@ -14,8 +14,8 @@
 
 struct YYSTYPE
 {
-	std::string *string;
-	std::string *identifier;
+	std::string string;
+	std::string identifier;
 	int number;
 	double real;
 

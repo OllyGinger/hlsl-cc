@@ -101,7 +101,7 @@
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\llvm\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\llvm\include\;.;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/DWIN32 /D_WINDOWS /MP -D_CRT_SECURE_NO_DEPRECATE -D_CRT_SECURE_NO_WARNINGS -D_CRT_NONSTDC_NO_DEPRECATE -D_CRT_NONSTDC_NO_WARNINGS -D_SCL_SECURE_NO_DEPRECATE -D_SCL_SECURE_NO_WARNINGS -wd4146 -wd4180 -wd4244 -wd4267 -wd4291 -wd4345 -wd4351 -wd4355 -wd4503 -wd4624 -wd4722 -wd4800 -w14062 -we4238 -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS /D_ITERATOR_DEBUG_LEVEL=2 %(AdditionalOptions)</AdditionalOptions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <MinimalRebuild>false</MinimalRebuild>
@@ -152,18 +152,35 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AST\AST.h" />
+    <ClInclude Include="AST\Nodes\Attribute.h" />
+    <ClInclude Include="AST\Nodes\CompoundStatement.h" />
+    <ClInclude Include="AST\Nodes\Declaration.h" />
+    <ClInclude Include="AST\Nodes\Expression.h" />
+    <ClInclude Include="AST\Nodes\FlowControlStatement.h" />
+    <ClInclude Include="AST\Nodes\Function.h" />
+    <ClInclude Include="AST\Nodes\IterationStatement.h" />
+    <ClInclude Include="AST\Nodes\Node.h" />
+    <ClInclude Include="AST\Nodes\ParameterDeclerator.h" />
+    <ClInclude Include="AST\Nodes\SelectionStatement.h" />
+    <ClInclude Include="AST\Nodes\StructSpecifier.h" />
+    <ClInclude Include="AST\Nodes\SwitchStatement.h" />
+    <ClInclude Include="AST\Nodes\TypeSpecifier.h" />
+    <ClInclude Include="AST\ParserType.h" />
     <ClInclude Include="codegen.h" />
-    <ClInclude Include="node.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AST\Nodes\Node.cpp" />
     <ClCompile Include="codegen.cpp" />
     <ClCompile Include="hlsl_parser.cpp" />
-    <ClCompile Include="parser.cpp" />
+    <ClCompile Include="parser.cpp">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Default</CompileAs>
+    </ClCompile>
     <ClCompile Include="tokens.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="tokens.l">
+    <CustomBuild Include="tokens.ll">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"../third_party/bin/win_flex.exe" --wincompat -d -o %(Filename).cpp %(Identity)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"../third_party/bin/win_flex.exe" --wincompat -d -o %(Filename).cpp %(Identity)</Command>
@@ -176,7 +193,7 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="parser.y">
+    <CustomBuild Include="parser.yy">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"../third_party/bin/win_bison.exe" -d -o %(Filename).cpp %(Identity)</Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"../third_party/bin/win_bison.exe" -d -o %(Filename).cpp %(Identity)</Command>

@@ -8,7 +8,6 @@
 using namespace std;
 
 extern int yyparse();
-extern NBlock* programBlock;
 extern FILE* yyin;
 
 int main(int argc, char **argv)
@@ -23,11 +22,11 @@ int main(int argc, char **argv)
 	yyin = myfile;
 
 	yyparse();
-	std::cout << programBlock << std::endl;
+	//std::cout << programBlock << std::endl;
 
-	CodeGenContext context;
-	context.generateCode(*programBlock);
-	context.runCode();
+// 	CodeGenContext context;
+// 	context.generateCode(*programBlock);
+// 	context.runCode();
 
 	return 0;
 }

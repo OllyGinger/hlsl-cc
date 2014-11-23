@@ -16,6 +16,12 @@
     <Filter Include="Source Files\Spec">
       <UniqueIdentifier>{f75b4c26-309d-4a34-8c8b-1937edf6d03d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\AST">
+      <UniqueIdentifier>{41082784-417c-438e-bf3f-bb21347b19f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AST\Nodes">
+      <UniqueIdentifier>{0cfeedd4-e281-4f5e-b44a-64d80e28b4e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -24,11 +30,53 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="node.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="codegen.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AST\Nodes\Expression.h">
+      <Filter>Header Files\AST\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="AST\Nodes\StructSpecifier.h">
+      <Filter>Header Files\AST\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="AST\Nodes\TypeSpecifier.h">
+      <Filter>Header Files\AST\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="AST\Nodes\Node.h">
+      <Filter>Header Files\AST\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="AST\AST.h">
+      <Filter>Header Files\AST</Filter>
+    </ClInclude>
+    <ClInclude Include="AST\Nodes\Attribute.h">
+      <Filter>Header Files\AST\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="AST\Nodes\FlowControlStatement.h">
+      <Filter>Header Files\AST\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="AST\Nodes\IterationStatement.h">
+      <Filter>Header Files\AST\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="AST\Nodes\SwitchStatement.h">
+      <Filter>Header Files\AST\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="AST\Nodes\SelectionStatement.h">
+      <Filter>Header Files\AST\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="AST\Nodes\CompoundStatement.h">
+      <Filter>Header Files\AST\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="AST\Nodes\Declaration.h">
+      <Filter>Header Files\AST\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="AST\Nodes\Function.h">
+      <Filter>Header Files\AST\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="AST\Nodes\ParameterDeclerator.h">
+      <Filter>Header Files\AST\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="AST\ParserType.h">
+      <Filter>Header Files\AST</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -44,12 +92,15 @@
     <ClCompile Include="codegen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AST\Nodes\Node.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="tokens.l">
+    <CustomBuild Include="parser.yy">
       <Filter>Source Files\Spec</Filter>
     </CustomBuild>
-    <CustomBuild Include="parser.y">
+    <CustomBuild Include="tokens.ll">
       <Filter>Source Files\Spec</Filter>
     </CustomBuild>
   </ItemGroup>

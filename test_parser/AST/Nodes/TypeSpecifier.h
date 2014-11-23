@@ -108,6 +108,14 @@ namespace AST
 	{
 	public:
 		typedef std::shared_ptr<CFullySpecifiedType> TPointer;
+		CFullySpecifiedType(CTypeSpecifier::TPointer specifier)
+			: m_Specifier(specifier)
+		{}
+
+		CFullySpecifiedType(TTypeQualifier qualifier, CTypeSpecifier::TPointer specifier)
+			: m_Specifier(specifier)
+			, m_Qualifier(qualifier)
+		{}
 
 	private:
 		CTypeSpecifier::TPointer m_Specifier;

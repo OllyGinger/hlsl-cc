@@ -1,5 +1,6 @@
 #pragma once
 #include "AST/AST.h"
+#include <list>
 
 namespace AST
 {
@@ -20,10 +21,13 @@ namespace AST
 	{
 	public:
 		typedef std::shared_ptr<CNode> TPointer;
+		typedef std::list<TPointer> TSubNodeList;
 
 		inline CSourceLocation GetSourceLocation() const;
 		void SetSourceLocation(const char *pSourceFile, uint32_t line, uint32_t column);
 		void SetSourceLocation(const struct YYLTYPE &location);
+
+		void AddLink(CNode::TPointer node);
 
 	protected:
 		// Don't allow instantiations of the base class
@@ -31,6 +35,7 @@ namespace AST
 
 	private:
 		CSourceLocation m_SourceLocation;
+		TSubNodeList m_Links;
 	};
 
 }

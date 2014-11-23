@@ -142,7 +142,64 @@ namespace AST
 	{
 	public:
 		typedef std::shared_ptr<CExpression> TPointer;
-		CExpression(EOperator::Enum op, CExpression::TPointer exp1, CExpression::TPointer exp2, CExpression::TPointer exp3);
+		CExpression()
+		{}
+
+		CExpression(EOperator::Enum op, CExpression::TPointer exp1, CExpression::TPointer exp2, CExpression::TPointer exp3)
+			: m_Operator(op)
+		{
+			m_SubExpressions[0] = exp1;
+			m_SubExpressions[1] = exp2;
+			m_SubExpressions[2] = exp3;
+		}
+
+		CExpression(EOperator::Enum op, CExpression::TPointer exp1, CExpression::TPointer exp2)
+			: m_Operator(op)
+		{
+			m_SubExpressions[0] = exp1;
+			m_SubExpressions[1] = exp2;
+		}
+
+		CExpression(EOperator::Enum op, CExpression::TPointer exp1)
+			: m_Operator(op)
+		{
+			m_SubExpressions[0] = exp1;
+		}
+
+		inline void MakeIdentifier(TString identifier) 
+		{ 
+			m_Operator = EOperator::Identifier;  
+			m_Identifier = identifier; 
+		}
+
+		inline void MakeIntConstant(int32_t constant)
+		{
+			m_Operator = EOperator::IntConstant;
+			m_Expression.IntConstant = constant;
+		}
+
+		inline void MakeUIntConstant(int32_t constant)
+		{
+			m_Operator = EOperator::UIntConstant;
+			m_Expression.UIntConstant = constant;
+		}
+
+		inline void MakeFloatConstant(float constant)
+		{
+			m_Operator = EOperator::FloatConstant;
+			m_Expression.FloatConstant = constant;
+		}
+
+		inline void MakeBoolConstant(bool constant)
+		{
+			m_Operator = EOperator::BoolConstant;
+			m_Expression.BoolConstant = constant;
+		}
+
+		inline void SetIdentifier(TString identifier)
+		{
+			m_Identifier = identifier;
+		}
 
 	private:
 		typedef std::array<CExpression::TPointer, 3> TSubExpressionList;
@@ -150,6 +207,7 @@ namespace AST
 		TSubExpressionList m_SubExpressions;
 		TString m_Identifier;
 		CTypeSpecifier::TPointer m_TypeSpecifier;
+		EOperator::Enum m_Operator;
 
 		union
 		{

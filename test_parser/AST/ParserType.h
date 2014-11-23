@@ -21,6 +21,7 @@ struct YYSTYPE
 
 	AST::CNode::TPointer node;
 	AST::CTypeSpecifier::TPointer typeSpecifier;
+	AST::TTypeQualifier typeQualifier;
 	AST::CFullySpecifiedType::TPointer fullySpecifiedType;
 	AST::CFunction::TPointer function;
 	AST::CParameterDeclerator::TPointer parameterDeclerator;

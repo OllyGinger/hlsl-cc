@@ -1,4 +1,3 @@
-cbuffer constants
+float main(float x)
 {
-	float g_Float;
 }

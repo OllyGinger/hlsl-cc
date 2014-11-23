@@ -24,6 +24,11 @@ namespace AST
 		m_SourceLocation.Column = location.first_column;
 	}
 
+	void CNode::AddLink(CNode::TPointer node)
+	{
+		m_Links.push_back(node);
+	}
+
 
 }
 

@@ -10,14 +10,22 @@ namespace AST
 	public:
 		typedef std::shared_ptr<CFunction> TPointer;
 
-		CFunction(TString identifier)
+		CFunction(TString identifier, CFullySpecifiedType::TPointer returnType)
 			: m_Identifier(identifier)
+			, m_ReturnType(returnType)
 		{}
+
+		inline void AddParameter(CNode::TPointer param)
+		{
+			m_Parameters.push_back(param);
+		}
 
 	private:
 		TString m_Identifier;
 		TString m_ReturnSemantic;
-		TTypeQualifier m_ReturnType;
+		CFullySpecifiedType::TPointer m_ReturnType;
+
+		TSubNodeList m_Parameters;
 	};
 
 

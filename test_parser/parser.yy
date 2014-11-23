@@ -86,14 +86,12 @@
 %type <node> statement_list
 %type <node> simple_statement
 %type <number> precision_qualifier
-/*
-%type <type_qualifier> type_qualifier
-%type <type_qualifier> storage_qualifier
-%type <type_qualifier> interpolation_qualifier
-%type <type_qualifier> layout_qualifier
-%type <type_qualifier> layout_qualifier_id_list layout_qualifier_id
-%type <type_qualifier> struct_type_qualifier
-*/
+%type <typeQualifier> type_qualifier
+%type <typeQualifier> storage_qualifier
+%type <typeQualifier> interpolation_qualifier
+%type <typeQualifier> layout_qualifier
+%type <typeQualifier> layout_qualifier_id_list layout_qualifier_id
+%type <typeQualifier> struct_type_qualifier
 %type <fullySpecifiedType> struct_type_specifier
 %type <typeSpecifier> type_specifier
 %type <typeSpecifier> type_specifier_no_prec
@@ -113,8 +111,8 @@
 %type <function> function_declarator
 %type <parameterDeclerator> parameter_declarator
 %type <parameterDeclerator> parameter_declaration
-/*%type <type_qualifier> parameter_qualifier
-%type <type_qualifier> parameter_type_qualifier*/
+%type <typeQualifier> parameter_qualifier
+%type <typeQualifier> parameter_type_qualifier
 %type <typeSpecifier> parameter_type_specifier
 %type <functionDefinition> function_definition
 %type <compoundStatement> compound_statement_no_new_scope
@@ -227,27 +225,37 @@ variable_identifier:
 primary_expression:
 	variable_identifier
 	{
-	   
+		$$ = std::make_shared<AST::CExpression();
+		$$->SetLocation(yylloc);
+		$$->MakeIdentifier($1);
 	}
 	| TOK_INT_CONSTANT
 	{
-	  
+		$$ = std::make_shared<AST::CExpression();
+		$$->SetLocation(yylloc);
+		$$->MakeIntConstant($1);
 	}
 	| TOK_UINT_CONSTANT
 	{
-	   
+		$$ = std::make_shared<AST::CExpression();
+		$$->SetLocation(yylloc);
+		$$->MakeUIntConstant($1);
 	}
 	| TOK_FLOAT_CONSTANT
 	{
-	  
+		$$ = std::make_shared<AST::CExpression();
+		$$->SetLocation(yylloc);
+		$$->MakeFloatConstant($1);
 	}
 	| TOK_BOOL_CONSTANT
 	{
-	  
+		$$ = std::make_shared<AST::CExpression();
+		$$->SetLocation(yylloc);
+		$$->MakeBoolConstant($1);
 	}
 	| '(' expression ')'
 	{
-	  
+		$$ = $1;
 	}
 	;
 
@@ -255,23 +263,28 @@ postfix_expression:
 	primary_expression
 	| postfix_expression '[' integer_expression ']'
 	{
-	  
+		$$ = std::make_shared<AST::CExpression(AST::EOperation::ArrayIndex, $1, $3);
+		$$->SetLocation(yylloc);
 	}
 	| function_call
 	{
-	
+		$$ = $1;
 	}
 	| postfix_expression '.' any_identifier
 	{
-	   
+		$$ = std::make_shared<AST::CExpression(AST::EOperation::FieldSelection, $1);
+		$$->SetLocation(yylloc);
+		$$->SetIdentifier($3);
 	}
 	| postfix_expression TOK_INCREMENT
 	{
-	   
+		$$ = std::make_shared<AST::CExpression(AST::EOperation::PostIncrement, $1);
+		$$->SetLocation(yylloc);
 	}
 	| postfix_expression TOK_DECREMENT
 	{
-	   
+		$$ = std::make_shared<AST::CExpression(AST::EOperation::PostDecrement, $1);
+		$$->SetLocation(yylloc);
 	}
 	;
 
@@ -556,7 +569,8 @@ constant_expression:
 function_decl:
 	function_prototype ';'
 	{
-	  
+		state->symbols.PopScope();
+		$$ = $1;
 	}
 	;
 
@@ -600,22 +614,32 @@ function_declarator:
 function_header_with_parameters:
 	function_header parameter_declaration
 	{
-	 
+		$$ = $1;
+		$$->AddParameter($2);
 	}
 	| function_header_with_parameters ',' parameter_declaration
 	{
-	  
+		$$ = $1;
+		$$->AddParameter($3);
 	}
 	;
 
 function_header:
 	fully_specified_type variable_identifier '('
 	{
-	   
+		$$ = std::make_shared<AST::CFunction>($2, $1);
+		$$->SetSourceLocation(yylloc);
+
+		state->symbols.AddFunction(std::make_shared<CFunction>($2));
+		state->symbols.PushScope();
 	}
 	| TOK_INLINE fully_specified_type variable_identifier '('
 	{
-	 
+		$$ = std::make_shared<AST::CFunction>($3, $2);
+		$$->SetSourceLocation(yylloc);
+
+		state->symbols.AddFunction(std::make_shared<CFunction>($3));
+		state->symbols.PushScope();
 	}
 	;
 
@@ -789,11 +813,13 @@ single_declaration:
 fully_specified_type:
 	type_specifier
 	{
-	  
+		$$ = std::make_shared<AST::CFullySpecifiedType>($1);
+		$$->SetSourceLocation(yylloc);
 	}
 	| type_qualifier type_specifier
 	{
-	  
+		$$ = std::make_shared<AST::CFullySpecifiedType>($1, $2);
+		$$->SetSourceLocation(yylloc);
 	}
 	;
 
@@ -950,7 +976,7 @@ storage_qualifier:
 type_specifier:
 	type_specifier_no_prec
 	{
-	  
+		$$ = $1;
 	}
 	| precision_qualifier type_specifier_no_prec
 	{
@@ -1162,11 +1188,12 @@ cbuffer_declaration:
 struct_declaration_list:
 	struct_declaration
 	{
-	  
+		$$ = $1;
 	}
 	| struct_declaration_list struct_declaration
 	{
-	
+		$$ = $1;
+		$$->AddLink($2);
 	}
 	;
 
@@ -1577,7 +1604,7 @@ function_definition:
 global_declaration:
 	function_decl
 	{
-		
+		$$ = $1;
 	}
 	| init_declarator_list ';'
 	{
@@ -1585,7 +1612,7 @@ global_declaration:
 	}
 	| precision_decl
 	{
-	
+		$$ = $1;
 	}
 	| cbuffer_declaration
 	{

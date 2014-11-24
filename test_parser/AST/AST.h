@@ -9,13 +9,6 @@
 
 struct YYLTYPE;
 
-struct THLSLParserState
-{
-	void *scanner;
-
-	CSymbolTable symbols;
-};
-
 namespace AST
 {
 	typedef std::string TString;

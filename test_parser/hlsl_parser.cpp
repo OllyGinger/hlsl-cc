@@ -35,7 +35,10 @@ int main(int argc, char **argv)
 	yyset_in(myfile, state.scanner);
 	yyset_debug(1, state.scanner);
 	yyparse(&state);
-	yylex_destroy(&state.scanner);
+	yylex_destroy(state.scanner);
+	fclose(myfile);
+
+	AST::CCBufferSpecifier* buffer = (AST::CCBufferSpecifier*)state.translationUnits.back().get();
 
 	//std::cout << programBlock << std::endl;
 

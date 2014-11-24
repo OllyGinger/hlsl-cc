@@ -15,10 +15,9 @@ namespace AST
 			, m_ReturnType(returnType)
 		{}
 
-		inline void AddParameter(CNode::TPointer param)
-		{
-			m_Parameters.push_back(param);
-		}
+		inline void AddParameter(CNode::TPointer param)	{ m_Parameters.push_back(param); }
+
+		inline void SetReturnSemantic(TString returnSemantic) { m_ReturnSemantic = returnSemantic; }
 
 	private:
 		TString m_Identifier;

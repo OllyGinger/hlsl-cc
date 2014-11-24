@@ -13,9 +13,12 @@ namespace AST
 			: m_Identifier(identifier), 
 			m_IsArray(isArray), 
 			m_IsUnsizedArray(false), 
-			m_ArraySizeExp(arraySizeExpression), 
+			m_ArraySize(arraySizeExpression), 
 			m_Initialiser(initialiser)
 		{}
+
+		TString GetIdentifier() const { return m_Identifier; }
+		CExpression::TPointer GetArraySize() const { return m_ArraySize; }
 
 	private:
 		TString m_Identifier;
@@ -23,7 +26,7 @@ namespace AST
 
 		bool m_IsArray;
 		bool m_IsUnsizedArray;
-		CExpression::TPointer m_ArraySizeExp;
+		CExpression::TPointer m_ArraySize;
 		CExpression::TPointer m_Initialiser;
 	};
 

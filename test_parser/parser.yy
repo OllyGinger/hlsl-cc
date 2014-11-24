@@ -209,11 +209,17 @@ any_identifier:
 external_declaration_list:
 	external_declaration
 	{
-	   
+	   if($1 != NULL)
+	   {
+			state->translationUnits.push_back($1);
+	   }
 	}
 	| external_declaration_list external_declaration
 	{
-	   
+	   if($2 != NULL)
+	   {
+			state->translationUnits.push_back($2);
+	   }
 	}
 	;
 
@@ -225,37 +231,36 @@ variable_identifier:
 primary_expression:
 	variable_identifier
 	{
-		$$ = std::make_shared<AST::CExpression();
-		$$->SetLocation(yylloc);
-		$$->MakeIdentifier($1);
+		$$ = std::make_shared<AST::CExpression>($1);
+		$$->SetSourceLocation(yylloc);
 	}
 	| TOK_INT_CONSTANT
 	{
-		$$ = std::make_shared<AST::CExpression();
-		$$->SetLocation(yylloc);
+		$$ = std::make_shared<AST::CExpression>();
+		$$->SetSourceLocation(yylloc);
 		$$->MakeIntConstant($1);
 	}
 	| TOK_UINT_CONSTANT
 	{
-		$$ = std::make_shared<AST::CExpression();
-		$$->SetLocation(yylloc);
+		$$ = std::make_shared<AST::CExpression>();
+		$$->SetSourceLocation(yylloc);
 		$$->MakeUIntConstant($1);
 	}
 	| TOK_FLOAT_CONSTANT
 	{
-		$$ = std::make_shared<AST::CExpression();
-		$$->SetLocation(yylloc);
+		$$ = std::make_shared<AST::CExpression>();
+		$$->SetSourceLocation(yylloc);
 		$$->MakeFloatConstant($1);
 	}
 	| TOK_BOOL_CONSTANT
 	{
-		$$ = std::make_shared<AST::CExpression();
-		$$->SetLocation(yylloc);
+		$$ = std::make_shared<AST::CExpression>();
+		$$->SetSourceLocation(yylloc);
 		$$->MakeBoolConstant($1);
 	}
 	| '(' expression ')'
 	{
-		$$ = $1;
+		$$ = $2;
 	}
 	;
 
@@ -263,8 +268,8 @@ postfix_expression:
 	primary_expression
 	| postfix_expression '[' integer_expression ']'
 	{
-		$$ = std::make_shared<AST::CExpression(AST::EOperation::ArrayIndex, $1, $3);
-		$$->SetLocation(yylloc);
+		$$ = std::make_shared<AST::CExpression>(AST::EOperator::ArrayIndex, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	| function_call
 	{
@@ -272,19 +277,19 @@ postfix_expression:
 	}
 	| postfix_expression '.' any_identifier
 	{
-		$$ = std::make_shared<AST::CExpression(AST::EOperation::FieldSelection, $1);
-		$$->SetLocation(yylloc);
+		$$ = std::make_shared<AST::CExpression>(AST::EOperator::FieldSelection, $1);
+		$$->SetSourceLocation(yylloc);
 		$$->SetIdentifier($3);
 	}
 	| postfix_expression TOK_INCREMENT
 	{
-		$$ = std::make_shared<AST::CExpression(AST::EOperation::PostIncrement, $1);
-		$$->SetLocation(yylloc);
+		$$ = std::make_shared<AST::CExpression>(AST::EOperator::PostIncrement, $1);
+		$$->SetSourceLocation(yylloc);
 	}
 	| postfix_expression TOK_DECREMENT
 	{
-		$$ = std::make_shared<AST::CExpression(AST::EOperation::PostDecrement, $1);
-		$$->SetLocation(yylloc);
+		$$ = std::make_shared<AST::CExpression>(AST::EOperator::PostDecrement, $1);
+		$$->SetSourceLocation(yylloc);
 	}
 	;
 
@@ -300,7 +305,8 @@ function_call_or_method:
 	function_call_generic
 	| postfix_expression '.' method_call_generic
 	{
-	   
+		$$ = std::make_shared<AST::CExpression>(AST::EOperator::FieldSelection, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	;
 
@@ -317,11 +323,15 @@ function_call_header_no_parameters:
 function_call_header_with_parameters:
 	function_call_header assignment_expression
 	{
-	   
+		$$ = $1;
+		$$->SetSourceLocation(yylloc);
+		$$->AddChildExpression($2);
 	}
 	| function_call_header_with_parameters ',' assignment_expression
 	{
-	  
+		$$ = $1;
+		$$->SetSourceLocation(yylloc);
+		$$->AddChildExpression($3);
 	}
 	;
 
@@ -335,15 +345,20 @@ function_call_header:
 function_identifier:
 	type_specifier
 	{
-	  
+		$$ = std::make_shared<AST::CFunctionExpression>($1);
+		$$->SetSourceLocation(yylloc);
    	}
 	| variable_identifier
 	{
-	  
+		AST::CExpression::TPointer callee = std::make_shared<AST::CExpression>($1);
+		$$ = std::make_shared<AST::CFunctionExpression>(callee);
+		$$->SetSourceLocation(yylloc);
    	}
 	| TOK_FIELD_SELECTION
 	{
-	   
+		AST::CExpression::TPointer callee = std::make_shared<AST::CExpression>($1);
+		$$ = std::make_shared<AST::CFunctionExpression>(callee);
+		$$->SetSourceLocation(yylloc);
    	}
 	;
 
@@ -360,13 +375,15 @@ method_call_header_no_parameters:
 method_call_header_with_parameters:
 	method_call_header assignment_expression
 	{
-	
-	   
+		$$ = $1;
+		$$->SetSourceLocation(yylloc);
+		$$->AddChildExpression($2);
 	}
 	| method_call_header_with_parameters ',' assignment_expression
 	{
-	 
-	  
+		$$ = $1;
+		$$->SetSourceLocation(yylloc);
+		$$->AddChildExpression($3);
 	}
 	;
 
@@ -376,7 +393,9 @@ method_call_header_with_parameters:
 method_call_header:
 	variable_identifier '('
 	{
-	  
+		AST::CExpression::TPointer callee = std::make_shared<AST::CExpression>($1);
+		$$ = std::make_shared<AST::CFunctionExpression>(callee);
+		$$->SetSourceLocation(yylloc);
    	}
 	;
 
@@ -385,43 +404,51 @@ unary_expression:
 	postfix_expression
 	| TOK_INCREMENT unary_expression
 	{
-	  
+		$$ = std::make_shared<AST::CExpression>(AST::EOperator::PreIncrement, $2);
+		$$->SetSourceLocation(yylloc);
 	}
 	| TOK_DECREMENT unary_expression
 	{
-	  
+		$$ = std::make_shared<AST::CExpression>(AST::EOperator::PreDecrement, $2);
+		$$->SetSourceLocation(yylloc);
 	}
 	| unary_operator unary_expression
 	{
-	  
+		$$ = std::make_shared<AST::CExpression>((AST::EOperator::Enum)$1, $2);
+		$$->SetSourceLocation(yylloc);
 	}
 	| '(' type_specifier_nonarray ')' unary_expression
 	{
-		
+		$$ = std::make_shared<AST::CExpression>(AST::EOperator::TypeCast, $4);
+		$$->SetTypeSpecifier($2);
+		$$->SetSourceLocation(yylloc);
 	}
 	;
 
 	// Grammar Note: No '*' or '&' unary ops. Pointers are not supported.
 unary_operator:
-	'+'	{  }
-	| '-'	{ }
-	| '!'	{  }
-	| '~'	{  }
+	'+'		{ $$ = AST::EOperator::Plus; }
+	| '-'	{ $$ = AST::EOperator::Negative; }
+	| '!'	{ $$ = AST::EOperator::LogicalNot; }
+	| '~'	{ $$ = AST::EOperator::BitwiseNot; }
 	;
 
 multiplicative_expression:
 	unary_expression
 	| multiplicative_expression '*' unary_expression
 	{
-	  
+		$$ = std::make_shared<AST::CBinaryExpression>(AST::EOperator::Multiply, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	| multiplicative_expression '/' unary_expression
 	{
-	   
+		$$ = std::make_shared<AST::CBinaryExpression>(AST::EOperator::Divide, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	| multiplicative_expression '%' unary_expression
 	{
-	  
+		$$ = std::make_shared<AST::CBinaryExpression>(AST::EOperator::Modulo, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	;
 
@@ -429,11 +456,13 @@ additive_expression:
 	multiplicative_expression
 	| additive_expression '+' multiplicative_expression
 	{
-	  
+		$$ = std::make_shared<AST::CBinaryExpression>(AST::EOperator::Add, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	| additive_expression '-' multiplicative_expression
 	{
-	   
+		$$ = std::make_shared<AST::CBinaryExpression>(AST::EOperator::Subtract, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	;
 
@@ -441,11 +470,13 @@ shift_expression:
 	additive_expression
 	| shift_expression TOK_LSHIFT additive_expression
 	{
-	   
+		$$ = std::make_shared<AST::CBinaryExpression>(AST::EOperator::LeftShift, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	| shift_expression TOK_RSHIFT additive_expression
 	{
-	  
+		$$ = std::make_shared<AST::CBinaryExpression>(AST::EOperator::RightShift, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	;
 
@@ -453,19 +484,23 @@ relational_expression:
 	shift_expression
 	| relational_expression '<' shift_expression
 	{
-	  
+		$$ = std::make_shared<AST::CBinaryExpression>(AST::EOperator::LessThan, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	| relational_expression '>' shift_expression
 	{
-	   
+		$$ = std::make_shared<AST::CBinaryExpression>(AST::EOperator::GreaterThan, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	| relational_expression TOK_LE shift_expression
 	{
-	  
+		$$ = std::make_shared<AST::CBinaryExpression>(AST::EOperator::LessOrEqual, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	| relational_expression TOK_GE shift_expression
 	{
-	  
+		$$ = std::make_shared<AST::CBinaryExpression>(AST::EOperator::GreaterOrEqual, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	;
 
@@ -473,11 +508,13 @@ equality_expression:
 	relational_expression
 	| equality_expression TOK_EQ relational_expression
 	{
-	  
+		$$ = std::make_shared<AST::CBinaryExpression>(AST::EOperator::Equal, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	| equality_expression TOK_NEQ relational_expression
 	{
-	   
+		$$ = std::make_shared<AST::CBinaryExpression>(AST::EOperator::NotEqual, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	;
 
@@ -485,7 +522,8 @@ and_expression:
 	equality_expression
 	| and_expression '&' equality_expression
 	{
-	 
+		$$ = std::make_shared<AST::CBinaryExpression>(AST::EOperator::BitwiseAnd, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	;
 
@@ -493,7 +531,8 @@ exclusive_or_expression:
 	and_expression
 	| exclusive_or_expression '^' and_expression
 	{
-	  
+		$$ = std::make_shared<AST::CBinaryExpression>(AST::EOperator::BitwiseXOr, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	;
 
@@ -501,7 +540,8 @@ inclusive_or_expression:
 	exclusive_or_expression
 	| inclusive_or_expression '|' exclusive_or_expression
 	{
-	  
+		$$ = std::make_shared<AST::CBinaryExpression>(AST::EOperator::BitwiseOr, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	;
 
@@ -509,7 +549,8 @@ logical_and_expression:
 	inclusive_or_expression
 	| logical_and_expression TOK_BOOL_AND inclusive_or_expression
 	{
-	  
+		$$ = std::make_shared<AST::CBinaryExpression>(AST::EOperator::LogicalAnd, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	;
 
@@ -517,7 +558,8 @@ logical_or_expression:
 	logical_and_expression
 	| logical_or_expression TOK_BOOL_OR logical_and_expression
 	{
-	  
+		$$ = std::make_shared<AST::CBinaryExpression>(AST::EOperator::LogicalOr, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	;
 
@@ -525,7 +567,8 @@ conditional_expression:
 	logical_or_expression
 	| logical_or_expression '?' expression ':' assignment_expression
 	{
-	  
+		$$ = std::make_shared<AST::CExpression>(AST::EOperator::Conditional, $1, $3, $5);
+		$$->SetSourceLocation(yylloc);
 	}
 	;
 
@@ -533,32 +576,44 @@ assignment_expression:
 	conditional_expression
 	| unary_expression assignment_operator assignment_expression
 	{
-	  
+		$$ = std::make_shared<AST::CExpression>((AST::EOperator::Enum)$2, $1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	;
 
 assignment_operator:
-	'='		{  }
-	| TOK_MULTIPLY_ASSIGN	{}
-	| TOK_DIVIDE_ASSIGN	{  }
-	| TOK_MOD_ASSIGN	{  }
-	| TOK_ADD_ASSIGN	{  }
-	| TOK_SUBTRACT_ASSIGN	{  }
-	| TOK_LSHIFT_ASSIGN	{ }
-	| TOK_RSHIFT_ASSIGN	{ }
-	| TOK_AND_ASSIGN	{  }
-	| TOK_XOR_ASSIGN	{  }
-	| TOK_OR_ASSIGN	{ }
+	'='							{ $$ = AST::EOperator::Assign; }
+	| TOK_MULTIPLY_ASSIGN		{ $$ = AST::EOperator::MultiplyAssign; }
+	| TOK_DIVIDE_ASSIGN			{ $$ = AST::EOperator::DivideAssign; }
+	| TOK_MOD_ASSIGN			{ $$ = AST::EOperator::ModuloAssign; }
+	| TOK_ADD_ASSIGN			{ $$ = AST::EOperator::AddAssign; }
+	| TOK_SUBTRACT_ASSIGN		{ $$ = AST::EOperator::SubtractAssign; }
+	| TOK_LSHIFT_ASSIGN			{ $$ = AST::EOperator::LeftShiftAssign; }
+	| TOK_RSHIFT_ASSIGN			{ $$ = AST::EOperator::RightShiftAssign; }
+	| TOK_AND_ASSIGN			{ $$ = AST::EOperator::AndAssign; }
+	| TOK_XOR_ASSIGN			{ $$ = AST::EOperator::XOrAssign; }
+	| TOK_OR_ASSIGN				{ $$ = AST::EOperator::OrAssign; }
 	;
 
 expression:
 	assignment_expression
 	{
-	  
+		$$ = $1;
 	}
 	| expression ',' assignment_expression
 	{
-	  
+		if($1->GetOperator() != AST::EOperator::Sequence)
+		{
+			$$ = std::make_shared<AST::CExpression>(AST::EOperator::Sequence);
+			$$->SetSourceLocation(yylloc);
+			$$->AddChildExpression($1);
+		}
+		else
+		{
+			$$ = $1;
+		}
+
+		$$->AddChildExpression($3);
 	}
 	;
 
@@ -584,15 +639,15 @@ precision_decl:
 declaration:
 	function_decl
 	{
-		
+		$$ = $1;
 	}
 	| init_declarator_list ';'
 	{
-	   
+		$$ = $1;
 	}
 	| precision_decl
 	{
-	  
+		$$ = $1;
 	}
 	;
 
@@ -602,7 +657,8 @@ function_prototype:
 	}
 	| function_declarator ')' ':' any_identifier
 	{
-		
+		$$ = $1;
+		$$->SetReturnSemantic($4);
 	}
 	;
 
@@ -646,31 +702,67 @@ function_header:
 parameter_declarator:
 	type_specifier any_identifier
 	{
-	  
+		AST::CFullySpecifiedType::TPointer type = std::make_shared<AST::CFullySpecifiedType>($1);
+		type->SetSourceLocation(yylloc);
+
+		$$ = std::make_shared<AST::CParameterDeclerator>();
+		$$->SetSourceLocation(yylloc);
+		$$->SetIdentifier($2);
+		$$->SetType(type);
 	}
 	| type_specifier any_identifier '=' constant_expression
 	{
-		
+		AST::CFullySpecifiedType::TPointer type = std::make_shared<AST::CFullySpecifiedType>($1);
+		type->SetSourceLocation(yylloc);
+
+		$$ = std::make_shared<AST::CParameterDeclerator>();
+		$$->SetSourceLocation(yylloc);
+		$$->SetIdentifier($2);
+		$$->SetType(type);
+		$$->SetDefaultValue($4);
 	}
 	| type_specifier any_identifier ':' any_identifier
 	{
-	
-		
+		AST::CFullySpecifiedType::TPointer type = std::make_shared<AST::CFullySpecifiedType>($1);
+		type->SetSourceLocation(yylloc);
+
+		$$ = std::make_shared<AST::CParameterDeclerator>();
+		$$->SetSourceLocation(yylloc);
+		$$->SetIdentifier($2);
+		$$->SetType(type);
+		$$->SetSemantic($4);
 	}
 	| type_specifier array_identifier
 	{
-	   
+		AST::CFullySpecifiedType::TPointer type = std::make_shared<AST::CFullySpecifiedType>($1);
+		type->SetSourceLocation(yylloc);
+
+		$$ = std::make_shared<AST::CParameterDeclerator>();
+		$$->SetSourceLocation(yylloc);
+		$$->SetIdentifier($2->GetIdentifier());
+		$$->SetType(type);
+		$$->SetIsArray(true);
+		$$->SetArraySize($2->GetArraySize());
 	}
 	| type_specifier any_identifier '[' constant_expression ']' ':' any_identifier
 	{
-	  
+		AST::CFullySpecifiedType::TPointer type = std::make_shared<AST::CFullySpecifiedType>($1);
+		type->SetSourceLocation(yylloc);
+
+		$$ = std::make_shared<AST::CParameterDeclerator>();
+		$$->SetSourceLocation(yylloc);
+		$$->SetIdentifier($2);
+		$$->SetType(type);
+		$$->SetIsArray(true);
+		$$->SetArraySize($4);
+		$$->SetSemantic($7);
 	}
 	;
 
 parameter_declaration:
 	parameter_type_qualifier parameter_qualifier parameter_declarator
 	{
-	  
+		#pragma message("FIXME")
 	}
 	| parameter_qualifier parameter_type_qualifier parameter_declarator
 	{
@@ -702,7 +794,7 @@ parameter_declaration:
 parameter_qualifier:
 	TOK_IN
 	{
-	  
+		#pragma message("FIXME")
 	}
 	| TOK_OUT
 	{
@@ -1534,8 +1626,8 @@ jump_statement:
 	;
 
 external_declaration:
-	function_definition	{ }
-	| global_declaration { }
+	function_definition		{ $$ = $1; }
+	| global_declaration	{ $$ = $1; }
 	;
 
 attribute_arg:

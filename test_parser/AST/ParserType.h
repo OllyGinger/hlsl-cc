@@ -39,3 +39,13 @@ struct YYSTYPE
 	AST::CAttribute::TPointer attribute;
 	AST::CAttributeArgument::TPointer attributeArg;
 };
+
+struct THLSLParserState
+{
+	typedef std::list<AST::CNode::TPointer> TTranslationUnitList;
+
+	void *scanner;
+
+	CSymbolTable symbols;
+	TTranslationUnitList translationUnits;
+};

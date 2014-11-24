@@ -166,10 +166,21 @@ namespace AST
 			m_SubExpressions[0] = exp1;
 		}
 
-		inline void MakeIdentifier(TString identifier) 
-		{ 
-			m_Operator = EOperator::Identifier;  
-			m_Identifier = identifier; 
+		CExpression(EOperator::Enum op, CTypeSpecifier::TPointer specifier)
+			: m_Operator(op)
+		{
+			m_SubExpressions[0] = specifier;
+		}
+
+		CExpression(EOperator::Enum op)
+			: m_Operator(op)
+		{
+		}
+
+		CExpression(TString identifier)
+			: m_Operator(EOperator::Identifier)
+			, m_Identifier(identifier)
+		{
 		}
 
 		inline void MakeIntConstant(int32_t constant)
@@ -201,13 +212,26 @@ namespace AST
 			m_Identifier = identifier;
 		}
 
+		inline void SetTypeSpecifier(CTypeSpecifier::TPointer typeSpecifier)
+		{
+			m_TypeSpecifier = typeSpecifier;
+		}
+
+		void AddChildExpression(CNode::TPointer expression)
+		{
+			m_ChildExpressions.push_back(expression);
+		}
+
+		inline EOperator::Enum GetOperator() const { return m_Operator; }
+
 	private:
-		typedef std::array<CExpression::TPointer, 3> TSubExpressionList;
+		typedef std::array<CNode::TPointer, 3> TSubExpressionList;
 
 		TSubExpressionList m_SubExpressions;
 		TString m_Identifier;
 		CTypeSpecifier::TPointer m_TypeSpecifier;
 		EOperator::Enum m_Operator;
+		TSubNodeList m_ChildExpressions;
 
 		union
 		{
@@ -219,12 +243,12 @@ namespace AST
 	};
 
 
-	class CBineryExpression : public CExpression
+	class CBinaryExpression : public CExpression
 	{
 	public:
-		typedef std::shared_ptr<CBineryExpression> TPointer;
-		CBineryExpression(EOperator::Enum op, CExpression::TPointer exprA, CExpression::TPointer exprB)
-			: CExpression(op, exprA, exprB, CExpression::TPointer())
+		typedef std::shared_ptr<CBinaryExpression> TPointer;
+		CBinaryExpression(EOperator::Enum op, CExpression::TPointer exprA, CExpression::TPointer exprB)
+			: CExpression(op, exprA, exprB)
 		{}
 	};
 
@@ -232,16 +256,16 @@ namespace AST
 	class CFunctionExpression : public CExpression
 	{
 	public:
-		typedef std::shared_ptr<CBineryExpression> TPointer;
+		typedef std::shared_ptr<CBinaryExpression> TPointer;
 		CFunctionExpression(CExpression::TPointer callee)
-			: CExpression(EOperator::FunctionCall, callee, CExpression::TPointer(), CExpression::TPointer())
+			: CExpression(EOperator::FunctionCall, callee)
 			, m_IsConstructor(false)
 		{}
 
-		/*CFunctionExpression(CTypeSpecifier::TPointer type)
-			: CExpression(EOperator::FunctionCall, type, CExpression::TPointer(), CExpression::TPointer())
+		CFunctionExpression(CTypeSpecifier::TPointer type)
+			: CExpression(EOperator::FunctionCall, type)
 			, m_IsConstructor(true)
-		{}*/
+		{}
 
 		bool IsConstructor() const { return m_IsConstructor; }
 
@@ -253,7 +277,7 @@ namespace AST
 	class CInitialiserListExpression : public CExpression
 	{
 	public:
-		typedef std::shared_ptr<CBineryExpression> TPointer;
+		typedef std::shared_ptr<CBinaryExpression> TPointer;
 		CInitialiserListExpression()
 			: CExpression(EOperator::InitializerList, CExpression::TPointer(), CExpression::TPointer(), CExpression::TPointer())
 		{}

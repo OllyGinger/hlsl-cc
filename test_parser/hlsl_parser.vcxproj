@@ -162,6 +162,8 @@
     <ClInclude Include="AST\Nodes\IterationStatement.h" />
     <ClInclude Include="AST\Nodes\Node.h" />
     <ClInclude Include="AST\Nodes\ParameterDeclerator.h" />
+    <ClInclude Include="AST\Nodes\Precision.h" />
+    <ClInclude Include="AST\Nodes\PrecisionType.h" />
     <ClInclude Include="AST\Nodes\SelectionStatement.h" />
     <ClInclude Include="AST\Nodes\StructSpecifier.h" />
     <ClInclude Include="AST\Nodes\SwitchStatement.h" />
@@ -175,6 +177,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AST\Nodes\Node.cpp" />
+    <ClCompile Include="AST\Nodes\PrecisionType.cpp" />
+    <ClCompile Include="AST\Nodes\TypeSpecifier.cpp" />
     <ClCompile Include="codegen.cpp" />
     <ClCompile Include="hlsl_parser.cpp" />
     <ClCompile Include="parser.cpp">

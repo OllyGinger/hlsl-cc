@@ -19,6 +19,8 @@ namespace AST
 
 		TString GetIdentifier() const { return m_Identifier; }
 		CExpression::TPointer GetArraySize() const { return m_ArraySize; }
+		CExpression::TPointer GetInitialiser() const { return m_Initialiser; }
+		void SetInitialiser(CExpression::TPointer val) { m_Initialiser = val; }
 
 	private:
 		TString m_Identifier;
@@ -28,6 +30,7 @@ namespace AST
 		bool m_IsUnsizedArray;
 		CExpression::TPointer m_ArraySize;
 		CExpression::TPointer m_Initialiser;
+		
 	};
 
 
@@ -40,7 +43,13 @@ namespace AST
 			: m_Type(type)
 		{}
 
+		inline void AddDecleration(CNode::TPointer param)	{ m_Declerations.push_back(param); }
+		bool GetInvariant() const { return m_Invariant; }
+		void SetInvariant(bool val) { m_Invariant = val; }
+
 	private:
 		CFullySpecifiedType::TPointer m_Type;
+		TSubNodeList m_Declerations;
+		bool m_Invariant;
 	};
 }

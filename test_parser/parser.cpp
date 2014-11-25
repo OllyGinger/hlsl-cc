@@ -834,32 +834,32 @@ static const yytype_uint16 yyrline[] =
      633,   640,   644,   648,   655,   658,   666,   667,   671,   676,
      684,   692,   703,   713,   724,   735,   747,   763,   767,   771,
      775,   779,   783,   784,   788,   795,   799,   803,   807,   811,
-     815,   819,   823,   827,   831,   838,   842,   843,   847,   851,
-     855,   859,   863,   871,   875,   879,   883,   887,   891,   895,
-     899,   906,   911,   919,   926,   927,   934,   938,   945,   949,
-     953,   960,   961,   965,   969,   973,   980,   981,   982,   986,
-     987,   991,   995,   999,  1006,  1010,  1014,  1018,  1022,  1026,
-    1030,  1034,  1038,  1042,  1046,  1050,  1054,  1058,  1062,  1069,
-    1073,  1080,  1081,  1085,  1089,  1093,  1097,  1104,  1108,  1112,
-    1116,  1120,  1124,  1128,  1132,  1136,  1143,  1144,  1145,  1146,
-    1147,  1148,  1149,  1150,  1151,  1152,  1153,  1154,  1155,  1156,
-    1157,  1158,  1159,  1160,  1161,  1162,  1163,  1164,  1165,  1166,
-    1167,  1168,  1169,  1170,  1171,  1172,  1173,  1174,  1175,  1176,
-    1177,  1178,  1179,  1180,  1181,  1182,  1183,  1184,  1185,  1186,
-    1187,  1188,  1189,  1190,  1191,  1192,  1193,  1194,  1195,  1196,
-    1201,  1202,  1203,  1204,  1205,  1206,  1207,  1208,  1209,  1210,
-    1211,  1212,  1213,  1214,  1215,  1216,  1220,  1221,  1222,  1226,
-    1230,  1234,  1237,  1240,  1246,  1250,  1254,  1258,  1262,  1266,
-    1273,  1281,  1285,  1293,  1300,  1304,  1311,  1312,  1316,  1320,
-    1327,  1331,  1338,  1342,  1346,  1350,  1357,  1361,  1367,  1368,
-    1375,  1379,  1383,  1390,  1396,  1397,  1398,  1402,  1409,  1410,
-    1411,  1412,  1413,  1414,  1418,  1423,  1422,  1433,  1434,  1438,
-    1442,  1449,  1453,  1460,  1464,  1471,  1478,  1482,  1489,  1493,
-    1504,  1511,  1515,  1522,  1526,  1533,  1537,  1544,  1548,  1555,
-    1559,  1566,  1570,  1574,  1581,  1582,  1586,  1588,  1594,  1598,
-    1606,  1610,  1614,  1618,  1622,  1629,  1630,  1634,  1638,  1645,
-    1649,  1656,  1660,  1664,  1668,  1675,  1679,  1686,  1690,  1697,
-    1701,  1705,  1709
+     815,   819,   823,   827,   831,   838,   842,   843,   853,   863,
+     872,   882,   891,   905,   910,   918,   926,   934,   942,   951,
+     959,   971,   976,   984,   991,   992,   999,  1003,  1010,  1014,
+    1018,  1025,  1026,  1030,  1034,  1038,  1045,  1046,  1047,  1051,
+    1052,  1056,  1060,  1064,  1071,  1075,  1079,  1083,  1087,  1091,
+    1095,  1099,  1103,  1107,  1111,  1115,  1119,  1123,  1127,  1134,
+    1138,  1145,  1146,  1150,  1156,  1161,  1167,  1174,  1179,  1184,
+    1190,  1195,  1200,  1206,  1211,  1216,  1224,  1225,  1226,  1227,
+    1228,  1229,  1230,  1231,  1232,  1233,  1234,  1235,  1236,  1237,
+    1238,  1239,  1240,  1241,  1242,  1243,  1244,  1245,  1246,  1247,
+    1248,  1249,  1250,  1251,  1252,  1253,  1254,  1255,  1256,  1257,
+    1258,  1259,  1260,  1261,  1262,  1263,  1264,  1265,  1266,  1267,
+    1268,  1269,  1270,  1271,  1272,  1273,  1274,  1275,  1276,  1277,
+    1282,  1283,  1284,  1285,  1286,  1287,  1288,  1289,  1290,  1291,
+    1292,  1293,  1294,  1295,  1296,  1297,  1301,  1302,  1303,  1307,
+    1311,  1315,  1318,  1321,  1327,  1334,  1339,  1344,  1351,  1358,
+    1366,  1374,  1378,  1386,  1393,  1398,  1406,  1407,  1411,  1415,
+    1422,  1426,  1434,  1438,  1442,  1446,  1453,  1457,  1463,  1464,
+    1471,  1475,  1479,  1486,  1492,  1493,  1494,  1498,  1505,  1506,
+    1507,  1508,  1509,  1510,  1514,  1519,  1518,  1529,  1530,  1534,
+    1538,  1545,  1549,  1556,  1560,  1567,  1574,  1578,  1585,  1589,
+    1600,  1607,  1611,  1618,  1622,  1629,  1633,  1640,  1644,  1651,
+    1655,  1662,  1666,  1670,  1677,  1678,  1682,  1684,  1690,  1694,
+    1702,  1706,  1710,  1714,  1718,  1725,  1726,  1730,  1734,  1741,
+    1745,  1752,  1756,  1760,  1764,  1771,  1775,  1782,  1786,  1793,
+    1797,  1801,  1805
 };
 #endif
 
@@ -4602,117 +4602,182 @@ yyreduce:
 /* Line 1792 of yacc.c  */
 #line 844 "parser.yy"
     {
-	  
+		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>((yyvsp[(3) - (3)].identifier), false, AST::CExpression::TPointer(), AST::CExpression::TPointer());
+		decleration->SetSourceLocation(yylloc);
+
+		(yyval.decleratorList) = (yyvsp[(1) - (3)].decleratorList);
+		(yyval.decleratorList)->AddDecleration(decleration);
+
+		state->symbols.AddVariable(std::make_shared<CVariable>((yyvsp[(3) - (3)].identifier)));
 	}
     break;
 
   case 138:
 /* Line 1792 of yacc.c  */
-#line 848 "parser.yy"
+#line 854 "parser.yy"
     {
-	  
+		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>((yyvsp[(3) - (5)].identifier), true, AST::CExpression::TPointer(), AST::CExpression::TPointer());
+		decleration->SetSourceLocation(yylloc);
+
+		(yyval.decleratorList) = (yyvsp[(1) - (5)].decleratorList);
+		(yyval.decleratorList)->AddDecleration(decleration);
+
+		state->symbols.AddVariable(std::make_shared<CVariable>((yyvsp[(3) - (5)].identifier)));
 	}
     break;
 
   case 139:
 /* Line 1792 of yacc.c  */
-#line 852 "parser.yy"
+#line 864 "parser.yy"
     {
-	  
+		AST::CDecleration::TPointer decleration = (yyvsp[(3) - (3)].declaration);
+
+		(yyval.decleratorList) = (yyvsp[(1) - (3)].decleratorList);
+		(yyval.decleratorList)->AddDecleration(decleration);
+
+		state->symbols.AddVariable(std::make_shared<CVariable>((yyvsp[(3) - (3)].declaration)->GetIdentifier()));
 	}
     break;
 
   case 140:
 /* Line 1792 of yacc.c  */
-#line 856 "parser.yy"
+#line 873 "parser.yy"
     {
-	   
+		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>((yyvsp[(3) - (7)].identifier), true, AST::CExpression::TPointer(), (yyvsp[(7) - (7)].expression));
+		decleration->SetSourceLocation(yylloc);
+
+		(yyval.decleratorList) = (yyvsp[(1) - (7)].decleratorList);
+		(yyval.decleratorList)->AddDecleration(decleration);
+
+		state->symbols.AddVariable(std::make_shared<CVariable>((yyvsp[(3) - (7)].identifier)));
 	}
     break;
 
   case 141:
 /* Line 1792 of yacc.c  */
-#line 860 "parser.yy"
+#line 883 "parser.yy"
     {
-	  
+		AST::CDecleration::TPointer decleration = (yyvsp[(3) - (5)].declaration);
+
+		(yyval.decleratorList) = (yyvsp[(1) - (5)].decleratorList);
+		(yyval.decleratorList)->AddDecleration(decleration);
+
+		state->symbols.AddVariable(std::make_shared<CVariable>((yyvsp[(3) - (5)].declaration)->GetIdentifier()));
 	}
     break;
 
   case 142:
 /* Line 1792 of yacc.c  */
-#line 864 "parser.yy"
+#line 892 "parser.yy"
     {
-	  
+		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>((yyvsp[(3) - (5)].identifier), false, AST::CExpression::TPointer(), (yyvsp[(5) - (5)].expression));
+		decleration->SetSourceLocation(yylloc);
+
+		(yyval.decleratorList) = (yyvsp[(1) - (5)].decleratorList);
+		(yyval.decleratorList)->AddDecleration(decleration);
+
+		state->symbols.AddVariable(std::make_shared<CVariable>((yyvsp[(3) - (5)].identifier)));
 	}
     break;
 
   case 143:
 /* Line 1792 of yacc.c  */
-#line 872 "parser.yy"
+#line 906 "parser.yy"
     {
-	  
+		(yyval.decleratorList) = std::make_shared<AST::CDecleratorList>((yyvsp[(1) - (1)].fullySpecifiedType));
+		(yyval.decleratorList)->SetSourceLocation(yylloc);
 	}
     break;
 
   case 144:
 /* Line 1792 of yacc.c  */
-#line 876 "parser.yy"
+#line 911 "parser.yy"
     {
-	  
+		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>((yyvsp[(2) - (2)].identifier), false, AST::CExpression::TPointer(), AST::CExpression::TPointer());
+
+		(yyval.decleratorList) = std::make_shared<AST::CDecleratorList>((yyvsp[(1) - (2)].fullySpecifiedType));
+		(yyval.decleratorList)->SetSourceLocation(yylloc);
+		(yyval.decleratorList)->AddDecleration(decleration);
 	}
     break;
 
   case 145:
 /* Line 1792 of yacc.c  */
-#line 880 "parser.yy"
+#line 919 "parser.yy"
     {
-	  
+		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>((yyvsp[(2) - (4)].identifier), true, AST::CExpression::TPointer(), AST::CExpression::TPointer());
+
+		(yyval.decleratorList) = std::make_shared<AST::CDecleratorList>((yyvsp[(1) - (4)].fullySpecifiedType));
+		(yyval.decleratorList)->SetSourceLocation(yylloc);
+		(yyval.decleratorList)->AddDecleration(decleration);
 	}
     break;
 
   case 146:
 /* Line 1792 of yacc.c  */
-#line 884 "parser.yy"
+#line 927 "parser.yy"
     {
-	 
+		AST::CDecleration::TPointer decleration = (yyvsp[(2) - (2)].declaration);
+
+		(yyval.decleratorList) = std::make_shared<AST::CDecleratorList>((yyvsp[(1) - (2)].fullySpecifiedType));
+		(yyval.decleratorList)->SetSourceLocation(yylloc);
+		(yyval.decleratorList)->AddDecleration(decleration);
 	}
     break;
 
   case 147:
 /* Line 1792 of yacc.c  */
-#line 888 "parser.yy"
+#line 935 "parser.yy"
     {
-	  
+		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>((yyvsp[(2) - (6)].identifier), true, AST::CExpression::TPointer(), (yyvsp[(6) - (6)].expression));
+
+		(yyval.decleratorList) = std::make_shared<AST::CDecleratorList>((yyvsp[(1) - (6)].fullySpecifiedType));
+		(yyval.decleratorList)->SetSourceLocation(yylloc);
+		(yyval.decleratorList)->AddDecleration(decleration);
 	}
     break;
 
   case 148:
 /* Line 1792 of yacc.c  */
-#line 892 "parser.yy"
+#line 943 "parser.yy"
     {
-	 
+		AST::CDecleration::TPointer decleration = (yyvsp[(2) - (4)].declaration);
+		decleration->SetInitialiser((yyvsp[(4) - (4)].expression));
+
+		(yyval.decleratorList) = std::make_shared<AST::CDecleratorList>((yyvsp[(1) - (4)].fullySpecifiedType));
+		(yyval.decleratorList)->SetSourceLocation(yylloc);
+		(yyval.decleratorList)->AddDecleration(decleration);
 	}
     break;
 
   case 149:
 /* Line 1792 of yacc.c  */
-#line 896 "parser.yy"
+#line 952 "parser.yy"
     {
-	  
+		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>((yyvsp[(2) - (4)].identifier), false, AST::CExpression::TPointer(), (yyvsp[(4) - (4)].expression));
+
+		(yyval.decleratorList) = std::make_shared<AST::CDecleratorList>((yyvsp[(1) - (4)].fullySpecifiedType));
+		(yyval.decleratorList)->SetSourceLocation(yylloc);
+		(yyval.decleratorList)->AddDecleration(decleration);
 	}
     break;
 
   case 150:
 /* Line 1792 of yacc.c  */
-#line 900 "parser.yy"
+#line 960 "parser.yy"
     {
-	   
+		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>((yyvsp[(2) - (2)].identifier), false, AST::CExpression::TPointer(), AST::CExpression::TPointer());
+
+		(yyval.decleratorList) = std::make_shared<AST::CDecleratorList>(AST::CFullySpecifiedType::TPointer());
+		(yyval.decleratorList)->SetSourceLocation(yylloc);
+		(yyval.decleratorList)->SetInvariant(true);
+		(yyval.decleratorList)->AddDecleration(decleration);
 	}
     break;
 
   case 151:
 /* Line 1792 of yacc.c  */
-#line 907 "parser.yy"
+#line 972 "parser.yy"
     {
 		(yyval.fullySpecifiedType) = std::make_shared<AST::CFullySpecifiedType>((yyvsp[(1) - (1)].typeSpecifier));
 		(yyval.fullySpecifiedType)->SetSourceLocation(yylloc);
@@ -4721,7 +4786,7 @@ yyreduce:
 
   case 152:
 /* Line 1792 of yacc.c  */
-#line 912 "parser.yy"
+#line 977 "parser.yy"
     {
 		(yyval.fullySpecifiedType) = std::make_shared<AST::CFullySpecifiedType>((yyvsp[(1) - (2)].typeQualifier), (yyvsp[(2) - (2)].typeSpecifier));
 		(yyval.fullySpecifiedType)->SetSourceLocation(yylloc);
@@ -4730,15 +4795,15 @@ yyreduce:
 
   case 153:
 /* Line 1792 of yacc.c  */
-#line 920 "parser.yy"
+#line 985 "parser.yy"
     {
-	
+		(yyval.typeQualifier) = (yyvsp[(3) - (4)].typeQualifier);
 	}
     break;
 
   case 155:
 /* Line 1792 of yacc.c  */
-#line 928 "parser.yy"
+#line 993 "parser.yy"
     {
 	   
 	}
@@ -4746,7 +4811,7 @@ yyreduce:
 
   case 156:
 /* Line 1792 of yacc.c  */
-#line 935 "parser.yy"
+#line 1000 "parser.yy"
     {
 	 
 	}
@@ -4754,7 +4819,7 @@ yyreduce:
 
   case 157:
 /* Line 1792 of yacc.c  */
-#line 939 "parser.yy"
+#line 1004 "parser.yy"
     {
 	   
 	}
@@ -4762,7 +4827,7 @@ yyreduce:
 
   case 158:
 /* Line 1792 of yacc.c  */
-#line 946 "parser.yy"
+#line 1011 "parser.yy"
     {
 	  
 	}
@@ -4770,7 +4835,7 @@ yyreduce:
 
   case 159:
 /* Line 1792 of yacc.c  */
-#line 950 "parser.yy"
+#line 1015 "parser.yy"
     {
 	 
 	}
@@ -4778,7 +4843,7 @@ yyreduce:
 
   case 160:
 /* Line 1792 of yacc.c  */
-#line 954 "parser.yy"
+#line 1019 "parser.yy"
     {
 	  
 	}
@@ -4786,7 +4851,7 @@ yyreduce:
 
   case 162:
 /* Line 1792 of yacc.c  */
-#line 962 "parser.yy"
+#line 1027 "parser.yy"
     {
 		
 	}
@@ -4794,7 +4859,7 @@ yyreduce:
 
   case 163:
 /* Line 1792 of yacc.c  */
-#line 966 "parser.yy"
+#line 1031 "parser.yy"
     {
 		
 	}
@@ -4802,7 +4867,7 @@ yyreduce:
 
   case 164:
 /* Line 1792 of yacc.c  */
-#line 970 "parser.yy"
+#line 1035 "parser.yy"
     {
 	
 	}
@@ -4810,7 +4875,7 @@ yyreduce:
 
   case 165:
 /* Line 1792 of yacc.c  */
-#line 974 "parser.yy"
+#line 1039 "parser.yy"
     {
 	  
 	}
@@ -4818,7 +4883,7 @@ yyreduce:
 
   case 168:
 /* Line 1792 of yacc.c  */
-#line 983 "parser.yy"
+#line 1048 "parser.yy"
     {
 	  
 	}
@@ -4826,7 +4891,7 @@ yyreduce:
 
   case 170:
 /* Line 1792 of yacc.c  */
-#line 988 "parser.yy"
+#line 1053 "parser.yy"
     {
 	  
 	}
@@ -4834,7 +4899,7 @@ yyreduce:
 
   case 171:
 /* Line 1792 of yacc.c  */
-#line 992 "parser.yy"
+#line 1057 "parser.yy"
     {
 	  
 	}
@@ -4842,7 +4907,7 @@ yyreduce:
 
   case 172:
 /* Line 1792 of yacc.c  */
-#line 996 "parser.yy"
+#line 1061 "parser.yy"
     {
 	
 	}
@@ -4850,7 +4915,7 @@ yyreduce:
 
   case 173:
 /* Line 1792 of yacc.c  */
-#line 1000 "parser.yy"
+#line 1065 "parser.yy"
     {
 	   
 	}
@@ -4858,7 +4923,7 @@ yyreduce:
 
   case 174:
 /* Line 1792 of yacc.c  */
-#line 1007 "parser.yy"
+#line 1072 "parser.yy"
     {
 	  
 	}
@@ -4866,7 +4931,7 @@ yyreduce:
 
   case 175:
 /* Line 1792 of yacc.c  */
-#line 1011 "parser.yy"
+#line 1076 "parser.yy"
     {
 	 
 	}
@@ -4874,7 +4939,7 @@ yyreduce:
 
   case 176:
 /* Line 1792 of yacc.c  */
-#line 1015 "parser.yy"
+#line 1080 "parser.yy"
     {
 	 
 	}
@@ -4882,7 +4947,7 @@ yyreduce:
 
   case 177:
 /* Line 1792 of yacc.c  */
-#line 1019 "parser.yy"
+#line 1084 "parser.yy"
     {
 	 
 	}
@@ -4890,7 +4955,7 @@ yyreduce:
 
   case 178:
 /* Line 1792 of yacc.c  */
-#line 1023 "parser.yy"
+#line 1088 "parser.yy"
     {
 	  
 	}
@@ -4898,7 +4963,7 @@ yyreduce:
 
   case 179:
 /* Line 1792 of yacc.c  */
-#line 1027 "parser.yy"
+#line 1092 "parser.yy"
     {
 	  
 	}
@@ -4906,7 +4971,7 @@ yyreduce:
 
   case 180:
 /* Line 1792 of yacc.c  */
-#line 1031 "parser.yy"
+#line 1096 "parser.yy"
     {
 	  
 	}
@@ -4914,7 +4979,7 @@ yyreduce:
 
   case 181:
 /* Line 1792 of yacc.c  */
-#line 1035 "parser.yy"
+#line 1100 "parser.yy"
     {
 	  
 	}
@@ -4922,7 +4987,7 @@ yyreduce:
 
   case 182:
 /* Line 1792 of yacc.c  */
-#line 1039 "parser.yy"
+#line 1104 "parser.yy"
     {
 		
 	}
@@ -4930,7 +4995,7 @@ yyreduce:
 
   case 183:
 /* Line 1792 of yacc.c  */
-#line 1043 "parser.yy"
+#line 1108 "parser.yy"
     {
 		
 	}
@@ -4938,7 +5003,7 @@ yyreduce:
 
   case 184:
 /* Line 1792 of yacc.c  */
-#line 1047 "parser.yy"
+#line 1112 "parser.yy"
     {
 		
 	}
@@ -4946,7 +5011,7 @@ yyreduce:
 
   case 185:
 /* Line 1792 of yacc.c  */
-#line 1051 "parser.yy"
+#line 1116 "parser.yy"
     {
 		
 	}
@@ -4954,7 +5019,7 @@ yyreduce:
 
   case 186:
 /* Line 1792 of yacc.c  */
-#line 1055 "parser.yy"
+#line 1120 "parser.yy"
     {
 		
 	}
@@ -4962,7 +5027,7 @@ yyreduce:
 
   case 187:
 /* Line 1792 of yacc.c  */
-#line 1059 "parser.yy"
+#line 1124 "parser.yy"
     {
 		
 	}
@@ -4970,7 +5035,7 @@ yyreduce:
 
   case 188:
 /* Line 1792 of yacc.c  */
-#line 1063 "parser.yy"
+#line 1128 "parser.yy"
     {
 		
 	}
@@ -4978,7 +5043,7 @@ yyreduce:
 
   case 189:
 /* Line 1792 of yacc.c  */
-#line 1070 "parser.yy"
+#line 1135 "parser.yy"
     {
 		(yyval.typeSpecifier) = (yyvsp[(1) - (1)].typeSpecifier);
 	}
@@ -4986,569 +5051,585 @@ yyreduce:
 
   case 190:
 /* Line 1792 of yacc.c  */
-#line 1074 "parser.yy"
+#line 1139 "parser.yy"
     {
-	 
+		(yyval.typeSpecifier) = (yyvsp[(2) - (2)].typeSpecifier);
 	}
     break;
 
   case 193:
 /* Line 1792 of yacc.c  */
-#line 1086 "parser.yy"
+#line 1151 "parser.yy"
     {
-	  
+		(yyval.typeSpecifier) = (yyvsp[(1) - (3)].typeSpecifier);
+		(yyval.typeSpecifier)->SetIsArray(true);
+		(yyval.typeSpecifier)->SetIsUnSizedArray(true);
 	}
     break;
 
   case 194:
 /* Line 1792 of yacc.c  */
-#line 1090 "parser.yy"
+#line 1157 "parser.yy"
     {
-	  
+		(yyval.typeSpecifier) = (yyvsp[(1) - (3)].typeSpecifier);
+		(yyval.typeSpecifier)->SetIsUnSizedArray(true);
 	}
     break;
 
   case 195:
 /* Line 1792 of yacc.c  */
-#line 1094 "parser.yy"
+#line 1162 "parser.yy"
     {
-	  
+		(yyval.typeSpecifier) = (yyvsp[(1) - (4)].typeSpecifier);
+		(yyval.typeSpecifier)->SetIsArray(true);
+		(yyval.typeSpecifier)->SetArraySize((yyvsp[(3) - (4)].expression).get());
 	}
     break;
 
   case 196:
 /* Line 1792 of yacc.c  */
-#line 1098 "parser.yy"
+#line 1168 "parser.yy"
     {
-	  
+	  #pragma message("fix me")
 	}
     break;
 
   case 197:
 /* Line 1792 of yacc.c  */
-#line 1105 "parser.yy"
+#line 1175 "parser.yy"
     {
-	 
+		(yyval.typeSpecifier) = std::make_shared<AST::CTypeSpecifier>((yyvsp[(1) - (1)].precisionType));
+		(yyval.typeSpecifier)->SetSourceLocation(yylloc);
 	}
     break;
 
   case 198:
 /* Line 1792 of yacc.c  */
-#line 1109 "parser.yy"
+#line 1180 "parser.yy"
     {
-		
+		(yyval.typeSpecifier) = std::make_shared<AST::CTypeSpecifier>("float4");
+		(yyval.typeSpecifier)->SetSourceLocation(yylloc);
 	}
     break;
 
   case 199:
 /* Line 1792 of yacc.c  */
-#line 1113 "parser.yy"
+#line 1185 "parser.yy"
     {
-		
+		(yyval.typeSpecifier) = std::make_shared<AST::CTypeSpecifier>((yyvsp[(1) - (6)].identifier), (yyvsp[(3) - (6)].precisionType));
+		(yyval.typeSpecifier)->SetSourceLocation(yylloc);
+		(yyval.typeSpecifier)->SetTextureMSNumSamples((yyvsp[(5) - (6)].number));
 	}
     break;
 
   case 200:
 /* Line 1792 of yacc.c  */
-#line 1117 "parser.yy"
+#line 1191 "parser.yy"
     {
-		
+		(yyval.typeSpecifier) = std::make_shared<AST::CTypeSpecifier>((yyvsp[(1) - (4)].identifier), (yyvsp[(3) - (4)].precisionType));
+		(yyval.typeSpecifier)->SetSourceLocation(yylloc);
 	}
     break;
 
   case 201:
 /* Line 1792 of yacc.c  */
-#line 1121 "parser.yy"
+#line 1196 "parser.yy"
     {
-		
+		(yyval.typeSpecifier) = std::make_shared<AST::CTypeSpecifier>((yyvsp[(1) - (4)].identifier), (yyvsp[(3) - (4)].identifier));
+		(yyval.typeSpecifier)->SetSourceLocation(yylloc);
 	}
     break;
 
   case 202:
 /* Line 1792 of yacc.c  */
-#line 1125 "parser.yy"
+#line 1201 "parser.yy"
     {
-		
+		(yyval.typeSpecifier) = std::make_shared<AST::CTypeSpecifier>((yyvsp[(1) - (6)].identifier), (yyvsp[(3) - (6)].identifier));
+		(yyval.typeSpecifier)->SetSourceLocation(yylloc);
+		(yyval.typeSpecifier)->SetPatchSize((yyvsp[(5) - (6)].number));
 	}
     break;
 
   case 203:
 /* Line 1792 of yacc.c  */
-#line 1129 "parser.yy"
+#line 1207 "parser.yy"
     {
-		
+		(yyval.typeSpecifier) = std::make_shared<AST::CTypeSpecifier>((yyvsp[(1) - (6)].identifier), (yyvsp[(1) - (6)].identifier));
+		(yyval.typeSpecifier)->SetSourceLocation(yylloc);
 	}
     break;
 
   case 204:
 /* Line 1792 of yacc.c  */
-#line 1133 "parser.yy"
+#line 1212 "parser.yy"
     {
-	  
+		(yyval.typeSpecifier) = std::make_shared<AST::CTypeSpecifier>((yyvsp[(1) - (1)].structSpecifier));
+		(yyval.typeSpecifier)->SetSourceLocation(yylloc);
 	}
     break;
 
   case 205:
 /* Line 1792 of yacc.c  */
-#line 1137 "parser.yy"
+#line 1217 "parser.yy"
     {
-	  
+		(yyval.typeSpecifier) = std::make_shared<AST::CTypeSpecifier>((yyvsp[(1) - (1)].identifier));
+		(yyval.typeSpecifier)->SetSourceLocation(yylloc);
 	}
     break;
 
   case 206:
 /* Line 1792 of yacc.c  */
-#line 1143 "parser.yy"
-    {  }
+#line 1224 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Void; }
     break;
 
   case 207:
 /* Line 1792 of yacc.c  */
-#line 1144 "parser.yy"
-    {  }
+#line 1225 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Float; }
     break;
 
   case 208:
 /* Line 1792 of yacc.c  */
-#line 1145 "parser.yy"
-    { }
+#line 1226 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Half; }
     break;
 
   case 209:
 /* Line 1792 of yacc.c  */
-#line 1146 "parser.yy"
-    {  }
+#line 1227 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Fixed; }
     break;
 
   case 210:
 /* Line 1792 of yacc.c  */
-#line 1147 "parser.yy"
-    {  }
+#line 1228 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Int; }
     break;
 
   case 211:
 /* Line 1792 of yacc.c  */
-#line 1148 "parser.yy"
-    {  }
+#line 1229 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::UInt; }
     break;
 
   case 212:
 /* Line 1792 of yacc.c  */
-#line 1149 "parser.yy"
-    {  }
+#line 1230 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Bool; }
     break;
 
   case 213:
 /* Line 1792 of yacc.c  */
-#line 1150 "parser.yy"
-    {  }
+#line 1231 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Float2; }
     break;
 
   case 214:
 /* Line 1792 of yacc.c  */
-#line 1151 "parser.yy"
-    {  }
+#line 1232 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Float3; }
     break;
 
   case 215:
 /* Line 1792 of yacc.c  */
-#line 1152 "parser.yy"
-    {  }
+#line 1233 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Float4; }
     break;
 
   case 216:
 /* Line 1792 of yacc.c  */
-#line 1153 "parser.yy"
-    {  }
+#line 1234 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Half2; }
     break;
 
   case 217:
 /* Line 1792 of yacc.c  */
-#line 1154 "parser.yy"
-    {  }
+#line 1235 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Half3; }
     break;
 
   case 218:
 /* Line 1792 of yacc.c  */
-#line 1155 "parser.yy"
-    {  }
+#line 1236 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Half4; }
     break;
 
   case 219:
 /* Line 1792 of yacc.c  */
-#line 1156 "parser.yy"
-    {  }
+#line 1237 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Fixed2; }
     break;
 
   case 220:
 /* Line 1792 of yacc.c  */
-#line 1157 "parser.yy"
-    { }
+#line 1238 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Fixed3; }
     break;
 
   case 221:
 /* Line 1792 of yacc.c  */
-#line 1158 "parser.yy"
-    { }
+#line 1239 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Fixed4; }
     break;
 
   case 222:
 /* Line 1792 of yacc.c  */
-#line 1159 "parser.yy"
-    {  }
+#line 1240 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Bool2; }
     break;
 
   case 223:
 /* Line 1792 of yacc.c  */
-#line 1160 "parser.yy"
-    {  }
+#line 1241 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Bool3; }
     break;
 
   case 224:
 /* Line 1792 of yacc.c  */
-#line 1161 "parser.yy"
-    {  }
+#line 1242 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Bool4; }
     break;
 
   case 225:
 /* Line 1792 of yacc.c  */
-#line 1162 "parser.yy"
-    { }
+#line 1243 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Int2; }
     break;
 
   case 226:
 /* Line 1792 of yacc.c  */
-#line 1163 "parser.yy"
-    { }
+#line 1244 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Int3; }
     break;
 
   case 227:
 /* Line 1792 of yacc.c  */
-#line 1164 "parser.yy"
-    { }
+#line 1245 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Int4; }
     break;
 
   case 228:
 /* Line 1792 of yacc.c  */
-#line 1165 "parser.yy"
-    { }
+#line 1246 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::UInt2; }
     break;
 
   case 229:
 /* Line 1792 of yacc.c  */
-#line 1166 "parser.yy"
-    { }
+#line 1247 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::UInt3; }
     break;
 
   case 230:
 /* Line 1792 of yacc.c  */
-#line 1167 "parser.yy"
-    { }
+#line 1248 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::UInt4; }
     break;
 
   case 231:
 /* Line 1792 of yacc.c  */
-#line 1168 "parser.yy"
-    { }
+#line 1249 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Float2x2; }
     break;
 
   case 232:
 /* Line 1792 of yacc.c  */
-#line 1169 "parser.yy"
-    {  }
+#line 1250 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Float2x3; }
     break;
 
   case 233:
 /* Line 1792 of yacc.c  */
-#line 1170 "parser.yy"
-    {  }
+#line 1251 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Float2x4; }
     break;
 
   case 234:
 /* Line 1792 of yacc.c  */
-#line 1171 "parser.yy"
-    {  }
+#line 1252 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Float3x2; }
     break;
 
   case 235:
 /* Line 1792 of yacc.c  */
-#line 1172 "parser.yy"
-    {  }
+#line 1253 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Float3x3; }
     break;
 
   case 236:
 /* Line 1792 of yacc.c  */
-#line 1173 "parser.yy"
-    {  }
+#line 1254 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Float3x4; }
     break;
 
   case 237:
 /* Line 1792 of yacc.c  */
-#line 1174 "parser.yy"
-    {  }
+#line 1255 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Float4x2; }
     break;
 
   case 238:
 /* Line 1792 of yacc.c  */
-#line 1175 "parser.yy"
-    {  }
+#line 1256 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Float4x3; }
     break;
 
   case 239:
 /* Line 1792 of yacc.c  */
-#line 1176 "parser.yy"
-    {  }
+#line 1257 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Float4x4; }
     break;
 
   case 240:
 /* Line 1792 of yacc.c  */
-#line 1177 "parser.yy"
-    { }
+#line 1258 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Half2x2; }
     break;
 
   case 241:
 /* Line 1792 of yacc.c  */
-#line 1178 "parser.yy"
-    { }
+#line 1259 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Half2x3; }
     break;
 
   case 242:
 /* Line 1792 of yacc.c  */
-#line 1179 "parser.yy"
-    { }
+#line 1260 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Half2x4; }
     break;
 
   case 243:
 /* Line 1792 of yacc.c  */
-#line 1180 "parser.yy"
-    { }
+#line 1261 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Half3x2; }
     break;
 
   case 244:
 /* Line 1792 of yacc.c  */
-#line 1181 "parser.yy"
-    { }
+#line 1262 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Half3x3; }
     break;
 
   case 245:
 /* Line 1792 of yacc.c  */
-#line 1182 "parser.yy"
-    { }
+#line 1263 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Half3x4; }
     break;
 
   case 246:
 /* Line 1792 of yacc.c  */
-#line 1183 "parser.yy"
-    { }
+#line 1264 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Half4x2; }
     break;
 
   case 247:
 /* Line 1792 of yacc.c  */
-#line 1184 "parser.yy"
-    { }
+#line 1265 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Half4x3; }
     break;
 
   case 248:
 /* Line 1792 of yacc.c  */
-#line 1185 "parser.yy"
-    { }
+#line 1266 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Half4x4; }
     break;
 
   case 249:
 /* Line 1792 of yacc.c  */
-#line 1186 "parser.yy"
-    {  }
+#line 1267 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Fixed2x2; }
     break;
 
   case 250:
 /* Line 1792 of yacc.c  */
-#line 1187 "parser.yy"
-    {  }
+#line 1268 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Fixed2x3; }
     break;
 
   case 251:
 /* Line 1792 of yacc.c  */
-#line 1188 "parser.yy"
-    {  }
+#line 1269 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Fixed2x4; }
     break;
 
   case 252:
 /* Line 1792 of yacc.c  */
-#line 1189 "parser.yy"
-    {  }
+#line 1270 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Fixed3x2; }
     break;
 
   case 253:
 /* Line 1792 of yacc.c  */
-#line 1190 "parser.yy"
-    {  }
+#line 1271 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Fixed3x3; }
     break;
 
   case 254:
 /* Line 1792 of yacc.c  */
-#line 1191 "parser.yy"
-    {  }
+#line 1272 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Fixed3x4; }
     break;
 
   case 255:
 /* Line 1792 of yacc.c  */
-#line 1192 "parser.yy"
-    {  }
+#line 1273 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Fixed4x2; }
     break;
 
   case 256:
 /* Line 1792 of yacc.c  */
-#line 1193 "parser.yy"
-    {  }
+#line 1274 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Fixed4x3; }
     break;
 
   case 257:
 /* Line 1792 of yacc.c  */
-#line 1194 "parser.yy"
-    {  }
+#line 1275 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::Fixed4x4; }
     break;
 
   case 258:
 /* Line 1792 of yacc.c  */
-#line 1195 "parser.yy"
-    {  }
+#line 1276 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::SamplerState; }
     break;
 
   case 259:
 /* Line 1792 of yacc.c  */
-#line 1196 "parser.yy"
-    { }
+#line 1277 "parser.yy"
+    { (yyval.precisionType) = &AST::CPrecisionType::SamplerComparisonState; }
     break;
 
   case 260:
 /* Line 1792 of yacc.c  */
-#line 1201 "parser.yy"
-    { }
+#line 1282 "parser.yy"
+    { (yyval.identifier) = "Buffer"; }
     break;
 
   case 261:
 /* Line 1792 of yacc.c  */
-#line 1202 "parser.yy"
-    { }
+#line 1283 "parser.yy"
+    { (yyval.identifier) = "Texture1D"; }
     break;
 
   case 262:
 /* Line 1792 of yacc.c  */
-#line 1203 "parser.yy"
-    {  }
+#line 1284 "parser.yy"
+    { (yyval.identifier) = "Texture1DArray"; }
     break;
 
   case 263:
 /* Line 1792 of yacc.c  */
-#line 1204 "parser.yy"
-    { }
+#line 1285 "parser.yy"
+    { (yyval.identifier) = "Texture2D"; }
     break;
 
   case 264:
 /* Line 1792 of yacc.c  */
-#line 1205 "parser.yy"
-    {  }
+#line 1286 "parser.yy"
+    { (yyval.identifier) = "Texture2DArray"; }
     break;
 
   case 265:
 /* Line 1792 of yacc.c  */
-#line 1206 "parser.yy"
-    { }
+#line 1287 "parser.yy"
+    { (yyval.identifier) = "Texture2DMS"; }
     break;
 
   case 266:
 /* Line 1792 of yacc.c  */
-#line 1207 "parser.yy"
-    {  }
+#line 1288 "parser.yy"
+    { (yyval.identifier) = "Texture2DMSArray"; }
     break;
 
   case 267:
 /* Line 1792 of yacc.c  */
-#line 1208 "parser.yy"
-    {  }
+#line 1289 "parser.yy"
+    { (yyval.identifier) = "Texture3D"; }
     break;
 
   case 268:
 /* Line 1792 of yacc.c  */
-#line 1209 "parser.yy"
-    {  }
+#line 1290 "parser.yy"
+    { (yyval.identifier) = "TextureCube"; }
     break;
 
   case 269:
 /* Line 1792 of yacc.c  */
-#line 1210 "parser.yy"
-    { }
+#line 1291 "parser.yy"
+    { (yyval.identifier) = "TextureCubeArray"; }
     break;
 
   case 270:
 /* Line 1792 of yacc.c  */
-#line 1211 "parser.yy"
-    { }
+#line 1292 "parser.yy"
+    { (yyval.identifier) = "RWBuffer"; }
     break;
 
   case 271:
 /* Line 1792 of yacc.c  */
-#line 1212 "parser.yy"
-    { }
+#line 1293 "parser.yy"
+    { (yyval.identifier) = "RWTexture1D"; }
     break;
 
   case 272:
 /* Line 1792 of yacc.c  */
-#line 1213 "parser.yy"
-    { }
+#line 1294 "parser.yy"
+    { (yyval.identifier) = "RWTexture1DArray"; }
     break;
 
   case 273:
 /* Line 1792 of yacc.c  */
-#line 1214 "parser.yy"
-    {  }
+#line 1295 "parser.yy"
+    { (yyval.identifier) = "RWTexture2D"; }
     break;
 
   case 274:
 /* Line 1792 of yacc.c  */
-#line 1215 "parser.yy"
-    { }
+#line 1296 "parser.yy"
+    { (yyval.identifier) = "RWTexture2DArray"; }
     break;
 
   case 275:
 /* Line 1792 of yacc.c  */
-#line 1216 "parser.yy"
-    {  }
+#line 1297 "parser.yy"
+    { (yyval.identifier) = "RWTexture3D"; }
     break;
 
   case 276:
 /* Line 1792 of yacc.c  */
-#line 1220 "parser.yy"
-    {  }
+#line 1301 "parser.yy"
+    { (yyval.identifier) = "PointStream"; }
     break;
 
   case 277:
 /* Line 1792 of yacc.c  */
-#line 1221 "parser.yy"
-    { }
+#line 1302 "parser.yy"
+    { (yyval.identifier) = "LinearStream"; }
     break;
 
   case 278:
 /* Line 1792 of yacc.c  */
-#line 1222 "parser.yy"
-    {  }
+#line 1303 "parser.yy"
+    { (yyval.identifier) = "TriangleStream"; }
     break;
 
   case 279:
 /* Line 1792 of yacc.c  */
-#line 1226 "parser.yy"
-    {  }
+#line 1307 "parser.yy"
+    { (yyval.identifier) = "InputPatch"; }
     break;
 
   case 280:
 /* Line 1792 of yacc.c  */
-#line 1230 "parser.yy"
-    { }
+#line 1311 "parser.yy"
+    { (yyval.identifier) = "OutputPatch"; }
     break;
 
   case 281:
 /* Line 1792 of yacc.c  */
-#line 1234 "parser.yy"
+#line 1315 "parser.yy"
     {
 		    
 		  }
@@ -5556,7 +5637,7 @@ yyreduce:
 
   case 282:
 /* Line 1792 of yacc.c  */
-#line 1237 "parser.yy"
+#line 1318 "parser.yy"
     {
 		    
 		  }
@@ -5564,7 +5645,7 @@ yyreduce:
 
   case 283:
 /* Line 1792 of yacc.c  */
-#line 1240 "parser.yy"
+#line 1321 "parser.yy"
     {
 		    
 		  }
@@ -5572,55 +5653,67 @@ yyreduce:
 
   case 284:
 /* Line 1792 of yacc.c  */
-#line 1247 "parser.yy"
+#line 1328 "parser.yy"
     {
-	 
+		(yyval.structSpecifier) = std::make_shared<AST::CStructSpecifier>((yyvsp[(2) - (5)].identifier), (yyvsp[(4) - (5)].node));
+		(yyval.structSpecifier)->SetSourceLocation(yylloc);
+
+		state->symbols.AddType(std::make_shared<CType>((yyvsp[(2) - (5)].identifier)));
 	}
     break;
 
   case 285:
 /* Line 1792 of yacc.c  */
-#line 1251 "parser.yy"
+#line 1335 "parser.yy"
     {
-	  
+		(yyval.structSpecifier) = std::make_shared<AST::CStructSpecifier>((yyvsp[(2) - (7)].identifier), (yyvsp[(4) - (7)].identifier), (yyvsp[(6) - (7)].node));
+		(yyval.structSpecifier)->SetSourceLocation(yylloc);
 	}
     break;
 
   case 286:
 /* Line 1792 of yacc.c  */
-#line 1255 "parser.yy"
+#line 1340 "parser.yy"
     {
-	 
+		(yyval.structSpecifier) = std::make_shared<AST::CStructSpecifier>("", (yyvsp[(3) - (4)].node));
+		(yyval.structSpecifier)->SetSourceLocation(yylloc);
 	}
     break;
 
   case 287:
 /* Line 1792 of yacc.c  */
-#line 1259 "parser.yy"
+#line 1345 "parser.yy"
     {
-		
+		(yyval.structSpecifier) = std::make_shared<AST::CStructSpecifier>((yyvsp[(2) - (4)].identifier), AST::CNode::TPointer());
+		(yyval.structSpecifier)->SetSourceLocation(yylloc);
+
+		state->symbols.AddType(std::make_shared<CType>((yyvsp[(2) - (4)].identifier)));
 	}
     break;
 
   case 288:
 /* Line 1792 of yacc.c  */
-#line 1263 "parser.yy"
+#line 1352 "parser.yy"
     {
-		
+		(yyval.structSpecifier) = std::make_shared<AST::CStructSpecifier>((yyvsp[(2) - (6)].identifier), (yyvsp[(4) - (6)].identifier), AST::CNode::TPointer());
+		(yyval.structSpecifier)->SetSourceLocation(yylloc);
+
+		state->symbols.AddType(std::make_shared<CType>((yyvsp[(2) - (6)].identifier)));
 	}
     break;
 
   case 289:
 /* Line 1792 of yacc.c  */
-#line 1267 "parser.yy"
+#line 1359 "parser.yy"
     {
-		
+		(yyval.structSpecifier) = std::make_shared<AST::CStructSpecifier>("", AST::CNode::TPointer());
+		(yyval.structSpecifier)->SetSourceLocation(yylloc);
 	}
     break;
 
   case 290:
 /* Line 1792 of yacc.c  */
-#line 1274 "parser.yy"
+#line 1367 "parser.yy"
     {
 		(yyval.node) = std::make_shared<AST::CCBufferSpecifier>((yyvsp[(2) - (5)].identifier), (yyvsp[(4) - (5)].node));
 		(yyval.node)->SetSourceLocation(yyloc);
@@ -5629,7 +5722,7 @@ yyreduce:
 
   case 291:
 /* Line 1792 of yacc.c  */
-#line 1282 "parser.yy"
+#line 1375 "parser.yy"
     {
 		(yyval.node) = (yyvsp[(1) - (1)].decleratorList);
 	}
@@ -5637,7 +5730,7 @@ yyreduce:
 
   case 292:
 /* Line 1792 of yacc.c  */
-#line 1286 "parser.yy"
+#line 1379 "parser.yy"
     {
 		(yyval.node) = (yyvsp[(1) - (2)].node);
 		(yyval.node)->AddLink((yyvsp[(2) - (2)].decleratorList));
@@ -5646,39 +5739,41 @@ yyreduce:
 
   case 293:
 /* Line 1792 of yacc.c  */
-#line 1294 "parser.yy"
+#line 1387 "parser.yy"
     {
-	   
+	   #pragma message("Fix me")
 	}
     break;
 
   case 294:
 /* Line 1792 of yacc.c  */
-#line 1301 "parser.yy"
+#line 1394 "parser.yy"
     {
-		
+		(yyval.fullySpecifiedType) = std::make_shared<AST::CFullySpecifiedType>((yyvsp[(1) - (1)].typeSpecifier));
+		(yyval.fullySpecifiedType)->SetSourceLocation(yyloc);
 	}
     break;
 
   case 295:
 /* Line 1792 of yacc.c  */
-#line 1305 "parser.yy"
+#line 1399 "parser.yy"
     {
-		
+		(yyval.fullySpecifiedType) = std::make_shared<AST::CFullySpecifiedType>((yyvsp[(1) - (2)].typeQualifier), (yyvsp[(2) - (2)].typeSpecifier));
+		(yyval.fullySpecifiedType)->SetSourceLocation(yyloc);
 	}
     break;
 
   case 297:
 /* Line 1792 of yacc.c  */
-#line 1313 "parser.yy"
+#line 1408 "parser.yy"
     {
-		
+		#pragma message("Fix em")
 	}
     break;
 
   case 298:
 /* Line 1792 of yacc.c  */
-#line 1317 "parser.yy"
+#line 1412 "parser.yy"
     {
 		
 	}
@@ -5686,7 +5781,7 @@ yyreduce:
 
   case 299:
 /* Line 1792 of yacc.c  */
-#line 1321 "parser.yy"
+#line 1416 "parser.yy"
     {
 		
 	}
@@ -5694,23 +5789,24 @@ yyreduce:
 
   case 300:
 /* Line 1792 of yacc.c  */
-#line 1328 "parser.yy"
+#line 1423 "parser.yy"
     {
-	  
+		(yyval.declaration) = (yyvsp[(1) - (1)].declaration);
 	}
     break;
 
   case 301:
 /* Line 1792 of yacc.c  */
-#line 1332 "parser.yy"
+#line 1427 "parser.yy"
     {
-	  
+		(yyval.declaration) = (yyvsp[(1) - (3)].declaration);
+		(yyval.declaration)->AddLink((yyvsp[(3) - (3)].declaration));
 	}
     break;
 
   case 302:
 /* Line 1792 of yacc.c  */
-#line 1339 "parser.yy"
+#line 1435 "parser.yy"
     {
 	  
 	}
@@ -5718,7 +5814,7 @@ yyreduce:
 
   case 303:
 /* Line 1792 of yacc.c  */
-#line 1343 "parser.yy"
+#line 1439 "parser.yy"
     {
 	 
 	}
@@ -5726,7 +5822,7 @@ yyreduce:
 
   case 304:
 /* Line 1792 of yacc.c  */
-#line 1347 "parser.yy"
+#line 1443 "parser.yy"
     {
 		
 	}
@@ -5734,7 +5830,7 @@ yyreduce:
 
   case 305:
 /* Line 1792 of yacc.c  */
-#line 1351 "parser.yy"
+#line 1447 "parser.yy"
     {
 	  
 	}
@@ -5742,7 +5838,7 @@ yyreduce:
 
   case 306:
 /* Line 1792 of yacc.c  */
-#line 1358 "parser.yy"
+#line 1454 "parser.yy"
     {
 	  
 	}
@@ -5750,7 +5846,7 @@ yyreduce:
 
   case 307:
 /* Line 1792 of yacc.c  */
-#line 1362 "parser.yy"
+#line 1458 "parser.yy"
     {
 	  
 	}
@@ -5758,7 +5854,7 @@ yyreduce:
 
   case 309:
 /* Line 1792 of yacc.c  */
-#line 1369 "parser.yy"
+#line 1465 "parser.yy"
     {
 		
 	}
@@ -5766,7 +5862,7 @@ yyreduce:
 
   case 310:
 /* Line 1792 of yacc.c  */
-#line 1376 "parser.yy"
+#line 1472 "parser.yy"
     {
 		
 	}
@@ -5774,7 +5870,7 @@ yyreduce:
 
   case 311:
 /* Line 1792 of yacc.c  */
-#line 1380 "parser.yy"
+#line 1476 "parser.yy"
     {
 		
 	}
@@ -5782,7 +5878,7 @@ yyreduce:
 
   case 312:
 /* Line 1792 of yacc.c  */
-#line 1384 "parser.yy"
+#line 1480 "parser.yy"
     {
 	
 	}
@@ -5790,13 +5886,13 @@ yyreduce:
 
   case 314:
 /* Line 1792 of yacc.c  */
-#line 1396 "parser.yy"
+#line 1492 "parser.yy"
     {  }
     break;
 
   case 316:
 /* Line 1792 of yacc.c  */
-#line 1399 "parser.yy"
+#line 1495 "parser.yy"
     {
 		
 	}
@@ -5804,7 +5900,7 @@ yyreduce:
 
   case 317:
 /* Line 1792 of yacc.c  */
-#line 1403 "parser.yy"
+#line 1499 "parser.yy"
     {
 		
 	}
@@ -5812,7 +5908,7 @@ yyreduce:
 
   case 324:
 /* Line 1792 of yacc.c  */
-#line 1419 "parser.yy"
+#line 1515 "parser.yy"
     {
 	  
 	}
@@ -5820,7 +5916,7 @@ yyreduce:
 
   case 325:
 /* Line 1792 of yacc.c  */
-#line 1423 "parser.yy"
+#line 1519 "parser.yy"
     {
 	   
 	}
@@ -5828,7 +5924,7 @@ yyreduce:
 
   case 326:
 /* Line 1792 of yacc.c  */
-#line 1427 "parser.yy"
+#line 1523 "parser.yy"
     {
 	  
 	}
@@ -5836,13 +5932,13 @@ yyreduce:
 
   case 327:
 /* Line 1792 of yacc.c  */
-#line 1433 "parser.yy"
+#line 1529 "parser.yy"
     {  }
     break;
 
   case 329:
 /* Line 1792 of yacc.c  */
-#line 1439 "parser.yy"
+#line 1535 "parser.yy"
     {
 	  
 	}
@@ -5850,7 +5946,7 @@ yyreduce:
 
   case 330:
 /* Line 1792 of yacc.c  */
-#line 1443 "parser.yy"
+#line 1539 "parser.yy"
     {
 	   
 	}
@@ -5858,7 +5954,7 @@ yyreduce:
 
   case 331:
 /* Line 1792 of yacc.c  */
-#line 1450 "parser.yy"
+#line 1546 "parser.yy"
     {
 	  
 	}
@@ -5866,7 +5962,7 @@ yyreduce:
 
   case 332:
 /* Line 1792 of yacc.c  */
-#line 1454 "parser.yy"
+#line 1550 "parser.yy"
     {
 	  
 	}
@@ -5874,7 +5970,7 @@ yyreduce:
 
   case 333:
 /* Line 1792 of yacc.c  */
-#line 1461 "parser.yy"
+#line 1557 "parser.yy"
     {
 	 
 	}
@@ -5882,7 +5978,7 @@ yyreduce:
 
   case 334:
 /* Line 1792 of yacc.c  */
-#line 1465 "parser.yy"
+#line 1561 "parser.yy"
     {
 	 
 	}
@@ -5890,7 +5986,7 @@ yyreduce:
 
   case 335:
 /* Line 1792 of yacc.c  */
-#line 1472 "parser.yy"
+#line 1568 "parser.yy"
     {
 	   
 	}
@@ -5898,7 +5994,7 @@ yyreduce:
 
   case 336:
 /* Line 1792 of yacc.c  */
-#line 1479 "parser.yy"
+#line 1575 "parser.yy"
     {
 	  
 	}
@@ -5906,7 +6002,7 @@ yyreduce:
 
   case 337:
 /* Line 1792 of yacc.c  */
-#line 1483 "parser.yy"
+#line 1579 "parser.yy"
     {
 	  
 	}
@@ -5914,7 +6010,7 @@ yyreduce:
 
   case 338:
 /* Line 1792 of yacc.c  */
-#line 1490 "parser.yy"
+#line 1586 "parser.yy"
     {
 	  
 	}
@@ -5922,7 +6018,7 @@ yyreduce:
 
   case 339:
 /* Line 1792 of yacc.c  */
-#line 1494 "parser.yy"
+#line 1590 "parser.yy"
     {
 	  
 	}
@@ -5930,7 +6026,7 @@ yyreduce:
 
   case 340:
 /* Line 1792 of yacc.c  */
-#line 1505 "parser.yy"
+#line 1601 "parser.yy"
     {
 	  
 	}
@@ -5938,7 +6034,7 @@ yyreduce:
 
   case 341:
 /* Line 1792 of yacc.c  */
-#line 1512 "parser.yy"
+#line 1608 "parser.yy"
     {
 	  
 	}
@@ -5946,7 +6042,7 @@ yyreduce:
 
   case 342:
 /* Line 1792 of yacc.c  */
-#line 1516 "parser.yy"
+#line 1612 "parser.yy"
     {
 	 
 	}
@@ -5954,7 +6050,7 @@ yyreduce:
 
   case 343:
 /* Line 1792 of yacc.c  */
-#line 1523 "parser.yy"
+#line 1619 "parser.yy"
     {
 	  
 	}
@@ -5962,7 +6058,7 @@ yyreduce:
 
   case 344:
 /* Line 1792 of yacc.c  */
-#line 1527 "parser.yy"
+#line 1623 "parser.yy"
     {
 	  
 	}
@@ -5970,7 +6066,7 @@ yyreduce:
 
   case 345:
 /* Line 1792 of yacc.c  */
-#line 1534 "parser.yy"
+#line 1630 "parser.yy"
     {
 	  
 	}
@@ -5978,7 +6074,7 @@ yyreduce:
 
   case 346:
 /* Line 1792 of yacc.c  */
-#line 1538 "parser.yy"
+#line 1634 "parser.yy"
     {
 	   
 	}
@@ -5986,7 +6082,7 @@ yyreduce:
 
   case 347:
 /* Line 1792 of yacc.c  */
-#line 1545 "parser.yy"
+#line 1641 "parser.yy"
     {
 	  
 	}
@@ -5994,7 +6090,7 @@ yyreduce:
 
   case 348:
 /* Line 1792 of yacc.c  */
-#line 1549 "parser.yy"
+#line 1645 "parser.yy"
     {
 	  
 	}
@@ -6002,7 +6098,7 @@ yyreduce:
 
   case 349:
 /* Line 1792 of yacc.c  */
-#line 1556 "parser.yy"
+#line 1652 "parser.yy"
     {
 	   
 	}
@@ -6010,7 +6106,7 @@ yyreduce:
 
   case 350:
 /* Line 1792 of yacc.c  */
-#line 1560 "parser.yy"
+#line 1656 "parser.yy"
     {
 	  
 	}
@@ -6018,7 +6114,7 @@ yyreduce:
 
   case 351:
 /* Line 1792 of yacc.c  */
-#line 1567 "parser.yy"
+#line 1663 "parser.yy"
     {
 	  
 	}
@@ -6026,7 +6122,7 @@ yyreduce:
 
   case 352:
 /* Line 1792 of yacc.c  */
-#line 1571 "parser.yy"
+#line 1667 "parser.yy"
     {
 	  
 	}
@@ -6034,7 +6130,7 @@ yyreduce:
 
   case 353:
 /* Line 1792 of yacc.c  */
-#line 1575 "parser.yy"
+#line 1671 "parser.yy"
     {
 	 
 	}
@@ -6042,7 +6138,7 @@ yyreduce:
 
   case 357:
 /* Line 1792 of yacc.c  */
-#line 1588 "parser.yy"
+#line 1684 "parser.yy"
     {
 	  
 	}
@@ -6050,7 +6146,7 @@ yyreduce:
 
   case 358:
 /* Line 1792 of yacc.c  */
-#line 1595 "parser.yy"
+#line 1691 "parser.yy"
     {
 	 
 	}
@@ -6058,7 +6154,7 @@ yyreduce:
 
   case 359:
 /* Line 1792 of yacc.c  */
-#line 1599 "parser.yy"
+#line 1695 "parser.yy"
     {
 	 
 	}
@@ -6066,7 +6162,7 @@ yyreduce:
 
   case 360:
 /* Line 1792 of yacc.c  */
-#line 1607 "parser.yy"
+#line 1703 "parser.yy"
     {
 	 
 	}
@@ -6074,7 +6170,7 @@ yyreduce:
 
   case 361:
 /* Line 1792 of yacc.c  */
-#line 1611 "parser.yy"
+#line 1707 "parser.yy"
     {
 	  
 	}
@@ -6082,7 +6178,7 @@ yyreduce:
 
   case 362:
 /* Line 1792 of yacc.c  */
-#line 1615 "parser.yy"
+#line 1711 "parser.yy"
     {
 	
 	}
@@ -6090,7 +6186,7 @@ yyreduce:
 
   case 363:
 /* Line 1792 of yacc.c  */
-#line 1619 "parser.yy"
+#line 1715 "parser.yy"
     {
 	 
 	}
@@ -6098,7 +6194,7 @@ yyreduce:
 
   case 364:
 /* Line 1792 of yacc.c  */
-#line 1623 "parser.yy"
+#line 1719 "parser.yy"
     {
 	  
 	}
@@ -6106,19 +6202,19 @@ yyreduce:
 
   case 365:
 /* Line 1792 of yacc.c  */
-#line 1629 "parser.yy"
+#line 1725 "parser.yy"
     { (yyval.node) = (yyvsp[(1) - (1)].functionDefinition); }
     break;
 
   case 366:
 /* Line 1792 of yacc.c  */
-#line 1630 "parser.yy"
+#line 1726 "parser.yy"
     { (yyval.node) = (yyvsp[(1) - (1)].node); }
     break;
 
   case 367:
 /* Line 1792 of yacc.c  */
-#line 1635 "parser.yy"
+#line 1731 "parser.yy"
     {
 		
 	}
@@ -6126,7 +6222,7 @@ yyreduce:
 
   case 368:
 /* Line 1792 of yacc.c  */
-#line 1639 "parser.yy"
+#line 1735 "parser.yy"
     {
 		
 	}
@@ -6134,7 +6230,7 @@ yyreduce:
 
   case 369:
 /* Line 1792 of yacc.c  */
-#line 1646 "parser.yy"
+#line 1742 "parser.yy"
     {
 	
 	}
@@ -6142,7 +6238,7 @@ yyreduce:
 
   case 370:
 /* Line 1792 of yacc.c  */
-#line 1650 "parser.yy"
+#line 1746 "parser.yy"
     {
 
 	}
@@ -6150,7 +6246,7 @@ yyreduce:
 
   case 371:
 /* Line 1792 of yacc.c  */
-#line 1657 "parser.yy"
+#line 1753 "parser.yy"
     {
 		
 	}
@@ -6158,7 +6254,7 @@ yyreduce:
 
   case 372:
 /* Line 1792 of yacc.c  */
-#line 1661 "parser.yy"
+#line 1757 "parser.yy"
     {
 		
 	}
@@ -6166,7 +6262,7 @@ yyreduce:
 
   case 373:
 /* Line 1792 of yacc.c  */
-#line 1665 "parser.yy"
+#line 1761 "parser.yy"
     {
 		
 	}
@@ -6174,7 +6270,7 @@ yyreduce:
 
   case 374:
 /* Line 1792 of yacc.c  */
-#line 1669 "parser.yy"
+#line 1765 "parser.yy"
     {
 		
 	}
@@ -6182,7 +6278,7 @@ yyreduce:
 
   case 375:
 /* Line 1792 of yacc.c  */
-#line 1676 "parser.yy"
+#line 1772 "parser.yy"
     {
 		
 	}
@@ -6190,7 +6286,7 @@ yyreduce:
 
   case 376:
 /* Line 1792 of yacc.c  */
-#line 1680 "parser.yy"
+#line 1776 "parser.yy"
     {
 		
 	}
@@ -6198,7 +6294,7 @@ yyreduce:
 
   case 377:
 /* Line 1792 of yacc.c  */
-#line 1687 "parser.yy"
+#line 1783 "parser.yy"
     {
 	  
 	}
@@ -6206,7 +6302,7 @@ yyreduce:
 
   case 378:
 /* Line 1792 of yacc.c  */
-#line 1691 "parser.yy"
+#line 1787 "parser.yy"
     {
 	  
 	}
@@ -6214,7 +6310,7 @@ yyreduce:
 
   case 379:
 /* Line 1792 of yacc.c  */
-#line 1698 "parser.yy"
+#line 1794 "parser.yy"
     {
 		(yyval.node) = (yyvsp[(1) - (1)].function);
 	}
@@ -6222,7 +6318,7 @@ yyreduce:
 
   case 380:
 /* Line 1792 of yacc.c  */
-#line 1702 "parser.yy"
+#line 1798 "parser.yy"
     {
 		
 	}
@@ -6230,7 +6326,7 @@ yyreduce:
 
   case 381:
 /* Line 1792 of yacc.c  */
-#line 1706 "parser.yy"
+#line 1802 "parser.yy"
     {
 		(yyval.node) = (yyvsp[(1) - (1)].typeSpecifier);
 	}
@@ -6238,7 +6334,7 @@ yyreduce:
 
   case 382:
 /* Line 1792 of yacc.c  */
-#line 1710 "parser.yy"
+#line 1806 "parser.yy"
     {
 	   (yyval.node) = (yyvsp[(1) - (1)].node);
 	}
@@ -6246,7 +6342,7 @@ yyreduce:
 
 
 /* Line 1792 of yacc.c  */
-#line 6250 "parser.cpp"
+#line 6346 "parser.cpp"
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -6485,4 +6581,4 @@ yyreturn:
 
 
 /* Line 2055 of yacc.c  */
-#line 1716 "parser.yy"
+#line 1812 "parser.yy"

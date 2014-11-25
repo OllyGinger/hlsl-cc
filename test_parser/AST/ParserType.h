@@ -11,6 +11,7 @@
 #include "AST/Nodes/StructSpecifier.h"
 #include "AST/Nodes/SwitchStatement.h"
 #include "AST/Nodes/TypeSpecifier.h"
+#include "AST/Nodes/PrecisionType.h"
 
 struct YYSTYPE
 {
@@ -38,6 +39,7 @@ struct YYSTYPE
 	AST::CCaseStatementList::TPointer caseStatementList;
 	AST::CAttribute::TPointer attribute;
 	AST::CAttributeArgument::TPointer attributeArg;
+	const AST::CPrecisionType* precisionType;
 };
 
 struct THLSLParserState

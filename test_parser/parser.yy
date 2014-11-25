@@ -98,7 +98,7 @@
 %type <typeSpecifier> type_specifier_nonarray
 %type <typeSpecifier> type_specifier_array
 %type <typeSpecifier> precision_decl
-%type <PrecisionType> basic_type_specifier_nonarray
+%type <precisionType> basic_type_specifier_nonarray
 %type <identifier> texture_type_specifier_nonarray
 %type <identifier> outputstream_type_specifier_nonarray
 %type <identifier> inputpatch_type_specifier_nonarray
@@ -842,27 +842,61 @@ init_declarator_list:
 	single_declaration
 	| init_declarator_list ',' any_identifier
 	{
-	  
+		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>($3, false, AST::CExpression::TPointer(), AST::CExpression::TPointer());
+		decleration->SetSourceLocation(yylloc);
+
+		$$ = $1;
+		$$->AddDecleration(decleration);
+
+		state->symbols.AddVariable(std::make_shared<CVariable>($3));
 	}
 	| init_declarator_list ',' any_identifier '[' ']'
 	{
-	  
+		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>($3, true, AST::CExpression::TPointer(), AST::CExpression::TPointer());
+		decleration->SetSourceLocation(yylloc);
+
+		$$ = $1;
+		$$->AddDecleration(decleration);
+
+		state->symbols.AddVariable(std::make_shared<CVariable>($3));
 	}
 	| init_declarator_list ',' array_identifier
 	{
-	  
+		AST::CDecleration::TPointer decleration = $3;
+
+		$$ = $1;
+		$$->AddDecleration(decleration);
+
+		state->symbols.AddVariable(std::make_shared<CVariable>($3->GetIdentifier()));
 	}
 	| init_declarator_list ',' any_identifier '[' ']' '=' initializer
 	{
-	   
+		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>($3, true, AST::CExpression::TPointer(), $7);
+		decleration->SetSourceLocation(yylloc);
+
+		$$ = $1;
+		$$->AddDecleration(decleration);
+
+		state->symbols.AddVariable(std::make_shared<CVariable>($3));
 	}
 	| init_declarator_list ',' array_identifier '=' initializer
 	{
-	  
+		AST::CDecleration::TPointer decleration = $3;
+
+		$$ = $1;
+		$$->AddDecleration(decleration);
+
+		state->symbols.AddVariable(std::make_shared<CVariable>($3->GetIdentifier()));
 	}
 	| init_declarator_list ',' any_identifier '=' initializer
 	{
-	  
+		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>($3, false, AST::CExpression::TPointer(), $5);
+		decleration->SetSourceLocation(yylloc);
+
+		$$ = $1;
+		$$->AddDecleration(decleration);
+
+		state->symbols.AddVariable(std::make_shared<CVariable>($3));
 	}
 	;
 
@@ -870,35 +904,66 @@ init_declarator_list:
 single_declaration:
 	fully_specified_type
 	{
-	  
+		$$ = std::make_shared<AST::CDecleratorList>($1);
+		$$->SetSourceLocation(yylloc);
 	}
 	| fully_specified_type any_identifier
 	{
-	  
+		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>($2, false, AST::CExpression::TPointer(), AST::CExpression::TPointer());
+
+		$$ = std::make_shared<AST::CDecleratorList>($1);
+		$$->SetSourceLocation(yylloc);
+		$$->AddDecleration(decleration);
 	}
 	| fully_specified_type any_identifier '[' ']'
 	{
-	  
+		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>($2, true, AST::CExpression::TPointer(), AST::CExpression::TPointer());
+
+		$$ = std::make_shared<AST::CDecleratorList>($1);
+		$$->SetSourceLocation(yylloc);
+		$$->AddDecleration(decleration);
 	}
 	| fully_specified_type array_identifier
 	{
-	 
+		AST::CDecleration::TPointer decleration = $2;
+
+		$$ = std::make_shared<AST::CDecleratorList>($1);
+		$$->SetSourceLocation(yylloc);
+		$$->AddDecleration(decleration);
 	}
 	| fully_specified_type any_identifier '[' ']' '=' initializer
 	{
-	  
+		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>($2, true, AST::CExpression::TPointer(), $6);
+
+		$$ = std::make_shared<AST::CDecleratorList>($1);
+		$$->SetSourceLocation(yylloc);
+		$$->AddDecleration(decleration);
 	}
 	| fully_specified_type array_identifier '=' initializer
 	{
-	 
+		AST::CDecleration::TPointer decleration = $2;
+		decleration->SetInitialiser($4);
+
+		$$ = std::make_shared<AST::CDecleratorList>($1);
+		$$->SetSourceLocation(yylloc);
+		$$->AddDecleration(decleration);
 	}
 	| fully_specified_type any_identifier '=' initializer
 	{
-	  
+		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>($2, false, AST::CExpression::TPointer(), $4);
+
+		$$ = std::make_shared<AST::CDecleratorList>($1);
+		$$->SetSourceLocation(yylloc);
+		$$->AddDecleration(decleration);
 	}
 	| TOK_INVARIANT variable_identifier // Vertex only.
 	{
-	   
+		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>($2, false, AST::CExpression::TPointer(), AST::CExpression::TPointer());
+
+		$$ = std::make_shared<AST::CDecleratorList>(AST::CFullySpecifiedType::TPointer());
+		$$->SetSourceLocation(yylloc);
+		$$->SetInvariant(true);
+		$$->AddDecleration(decleration);
 	}
 	;
 
@@ -918,7 +983,7 @@ fully_specified_type:
 layout_qualifier:
 	TOK_LAYOUT '(' layout_qualifier_id_list ')'
 	{
-	
+		$$ = $3;
 	}
 	;
 
@@ -1072,7 +1137,7 @@ type_specifier:
 	}
 	| precision_qualifier type_specifier_no_prec
 	{
-	 
+		$$ = $2;
 	}
 	;
 
@@ -1084,150 +1149,166 @@ type_specifier_no_prec:
 type_specifier_array:
 	type_specifier_nonarray '[' ']'
 	{
-	  
+		$$ = $1;
+		$$->SetIsArray(true);
+		$$->SetIsUnSizedArray(true);
 	}
 	| type_specifier_array '[' ']'
 	{
-	  
+		$$ = $1;
+		$$->SetIsUnSizedArray(true);
 	}
 	| type_specifier_nonarray '[' constant_expression ']'
 	{
-	  
+		$$ = $1;
+		$$->SetIsArray(true);
+		$$->SetArraySize($3.get());
 	}
 	| type_specifier_array '[' constant_expression ']'
 	{
-	  
+	  #pragma message("fix me")
 	}
 	;
 
 type_specifier_nonarray:
 	basic_type_specifier_nonarray
 	{
-	 
+		$$ = std::make_shared<AST::CTypeSpecifier>($1);
+		$$->SetSourceLocation(yylloc);
 	}
 	| texture_type_specifier_nonarray
 	{
-		
+		$$ = std::make_shared<AST::CTypeSpecifier>("float4");
+		$$->SetSourceLocation(yylloc);
 	}
 	| texture_type_specifier_nonarray '<' basic_type_specifier_nonarray ',' TOK_INT_CONSTANT '>'
 	{
-		
+		$$ = std::make_shared<AST::CTypeSpecifier>($1, $3);
+		$$->SetSourceLocation(yylloc);
+		$$->SetTextureMSNumSamples($5);
 	}
 	| texture_type_specifier_nonarray '<' basic_type_specifier_nonarray '>'
 	{
-		
+		$$ = std::make_shared<AST::CTypeSpecifier>($1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	| outputstream_type_specifier_nonarray '<' TOK_TYPE_IDENTIFIER '>'
 	{
-		
+		$$ = std::make_shared<AST::CTypeSpecifier>($1, $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	| inputpatch_type_specifier_nonarray '<' TOK_TYPE_IDENTIFIER ',' TOK_INT_CONSTANT '>'
 	{
-		
+		$$ = std::make_shared<AST::CTypeSpecifier>($1, $3);
+		$$->SetSourceLocation(yylloc);
+		$$->SetPatchSize($5);
 	}
 	| outputpatch_type_specifier_nonarray '<' TOK_TYPE_IDENTIFIER ',' TOK_INT_CONSTANT '>'
 	{
-		
+		$$ = std::make_shared<AST::CTypeSpecifier>($1, $1);
+		$$->SetSourceLocation(yylloc);
 	}
 	| struct_specifier
 	{
-	  
+		$$ = std::make_shared<AST::CTypeSpecifier>($1);
+		$$->SetSourceLocation(yylloc);
 	}
 	| TOK_TYPE_IDENTIFIER
 	{
-	  
+		$$ = std::make_shared<AST::CTypeSpecifier>($1);
+		$$->SetSourceLocation(yylloc);
 	}
 	;
 
 basic_type_specifier_nonarray:
-	TOK_VOID		{  }
-	| TOK_FLOAT		{  }
-	| TOK_HALF		{ }
-	| TOK_FIXED		{  }
-	| TOK_INT		{  }
-	| TOK_UINT		{  }
-	| TOK_BOOL		{  }
-	| TOK_FLOAT_VEC2	{  }
-	| TOK_FLOAT_VEC3	{  }
-	| TOK_FLOAT_VEC4	{  }
-	| TOK_HALF_VEC2			{  }
-	| TOK_HALF_VEC3			{  }
-	| TOK_HALF_VEC4			{  }
-	| TOK_FIXED_VEC2			{  }
-	| TOK_FIXED_VEC3			{ }
-	| TOK_FIXED_VEC4			{ }
-	| TOK_BOOL_VEC2			{  }
-	| TOK_BOOL_VEC3			{  }
-	| TOK_BOOL_VEC4			{  }
-	| TOK_INT_VEC2			{ }
-	| TOK_INT_VEC3			{ }
-	| TOK_INT_VEC4			{ }
-	| TOK_UINT_VEC2			{ }
-	| TOK_UINT_VEC3			{ }
-	| TOK_UINT_VEC4			{ }
-	| TOK_FLOAT_VEC2X2		{ }
-	| TOK_FLOAT_VEC2X3		{  }
-	| TOK_FLOAT_VEC2X4		{  }
-	| TOK_FLOAT_VEC3X2		{  }
-	| TOK_FLOAT_VEC3X3		{  }
-	| TOK_FLOAT_VEC3X4		{  }
-	| TOK_FLOAT_VEC4X2		{  }
-	| TOK_FLOAT_VEC4X3		{  }
-	| TOK_FLOAT_VEC4X4		{  }
-	| TOK_HALF_VEC2X2		{ }
-	| TOK_HALF_VEC2X3		{ }
-	| TOK_HALF_VEC2X4		{ }
-	| TOK_HALF_VEC3X2		{ }
-	| TOK_HALF_VEC3X3		{ }
-	| TOK_HALF_VEC3X4		{ }
-	| TOK_HALF_VEC4X2		{ }
-	| TOK_HALF_VEC4X3		{ }
-	| TOK_HALF_VEC4X4		{ }
-	| TOK_FIXED_VEC2X2		{  }
-	| TOK_FIXED_VEC2X3		{  }
-	| TOK_FIXED_VEC2X4		{  }
-	| TOK_FIXED_VEC3X2		{  }
-	| TOK_FIXED_VEC3X3		{  }
-	| TOK_FIXED_VEC3X4		{  }
-	| TOK_FIXED_VEC4X2		{  }
-	| TOK_FIXED_VEC4X3		{  }
-	| TOK_FIXED_VEC4X4		{  }
-	| TOK_SAMPLERSTATE	{  }
-	| TOK_SAMPLER_CMP_STATE { }
+	TOK_VOID					{ $$ = &AST::CPrecisionType::Void; }
+	| TOK_FLOAT					{ $$ = &AST::CPrecisionType::Float; }
+	| TOK_HALF					{ $$ = &AST::CPrecisionType::Half; }
+	| TOK_FIXED					{ $$ = &AST::CPrecisionType::Fixed; }
+	| TOK_INT					{ $$ = &AST::CPrecisionType::Int; }
+	| TOK_UINT					{ $$ = &AST::CPrecisionType::UInt; }
+	| TOK_BOOL					{ $$ = &AST::CPrecisionType::Bool; }
+	| TOK_FLOAT_VEC2			{ $$ = &AST::CPrecisionType::Float2; }
+	| TOK_FLOAT_VEC3			{ $$ = &AST::CPrecisionType::Float3; }
+	| TOK_FLOAT_VEC4			{ $$ = &AST::CPrecisionType::Float4; }
+	| TOK_HALF_VEC2				{ $$ = &AST::CPrecisionType::Half2; }
+	| TOK_HALF_VEC3				{ $$ = &AST::CPrecisionType::Half3; }
+	| TOK_HALF_VEC4				{ $$ = &AST::CPrecisionType::Half4; }
+	| TOK_FIXED_VEC2			{ $$ = &AST::CPrecisionType::Fixed2; }
+	| TOK_FIXED_VEC3			{ $$ = &AST::CPrecisionType::Fixed3; }
+	| TOK_FIXED_VEC4			{ $$ = &AST::CPrecisionType::Fixed4; }
+	| TOK_BOOL_VEC2				{ $$ = &AST::CPrecisionType::Bool2; }
+	| TOK_BOOL_VEC3				{ $$ = &AST::CPrecisionType::Bool3; }
+	| TOK_BOOL_VEC4				{ $$ = &AST::CPrecisionType::Bool4; }
+	| TOK_INT_VEC2				{ $$ = &AST::CPrecisionType::Int2; }
+	| TOK_INT_VEC3				{ $$ = &AST::CPrecisionType::Int3; }
+	| TOK_INT_VEC4				{ $$ = &AST::CPrecisionType::Int4; }
+	| TOK_UINT_VEC2				{ $$ = &AST::CPrecisionType::UInt2; }
+	| TOK_UINT_VEC3				{ $$ = &AST::CPrecisionType::UInt3; }
+	| TOK_UINT_VEC4				{ $$ = &AST::CPrecisionType::UInt4; }
+	| TOK_FLOAT_VEC2X2			{ $$ = &AST::CPrecisionType::Float2x2; }
+	| TOK_FLOAT_VEC2X3			{ $$ = &AST::CPrecisionType::Float2x3; }
+	| TOK_FLOAT_VEC2X4			{ $$ = &AST::CPrecisionType::Float2x4; }
+	| TOK_FLOAT_VEC3X2			{ $$ = &AST::CPrecisionType::Float3x2; }
+	| TOK_FLOAT_VEC3X3			{ $$ = &AST::CPrecisionType::Float3x3; }
+	| TOK_FLOAT_VEC3X4			{ $$ = &AST::CPrecisionType::Float3x4; }
+	| TOK_FLOAT_VEC4X2			{ $$ = &AST::CPrecisionType::Float4x2; }
+	| TOK_FLOAT_VEC4X3			{ $$ = &AST::CPrecisionType::Float4x3; }
+	| TOK_FLOAT_VEC4X4			{ $$ = &AST::CPrecisionType::Float4x4; }
+	| TOK_HALF_VEC2X2			{ $$ = &AST::CPrecisionType::Half2x2; }
+	| TOK_HALF_VEC2X3			{ $$ = &AST::CPrecisionType::Half2x3; }
+	| TOK_HALF_VEC2X4			{ $$ = &AST::CPrecisionType::Half2x4; }
+	| TOK_HALF_VEC3X2			{ $$ = &AST::CPrecisionType::Half3x2; }
+	| TOK_HALF_VEC3X3			{ $$ = &AST::CPrecisionType::Half3x3; }
+	| TOK_HALF_VEC3X4			{ $$ = &AST::CPrecisionType::Half3x4; }
+	| TOK_HALF_VEC4X2			{ $$ = &AST::CPrecisionType::Half4x2; }
+	| TOK_HALF_VEC4X3			{ $$ = &AST::CPrecisionType::Half4x3; }
+	| TOK_HALF_VEC4X4			{ $$ = &AST::CPrecisionType::Half4x4; }
+	| TOK_FIXED_VEC2X2			{ $$ = &AST::CPrecisionType::Fixed2x2; }
+	| TOK_FIXED_VEC2X3			{ $$ = &AST::CPrecisionType::Fixed2x3; }
+	| TOK_FIXED_VEC2X4			{ $$ = &AST::CPrecisionType::Fixed2x4; }
+	| TOK_FIXED_VEC3X2			{ $$ = &AST::CPrecisionType::Fixed3x2; }
+	| TOK_FIXED_VEC3X3			{ $$ = &AST::CPrecisionType::Fixed3x3; }
+	| TOK_FIXED_VEC3X4			{ $$ = &AST::CPrecisionType::Fixed3x4; }
+	| TOK_FIXED_VEC4X2			{ $$ = &AST::CPrecisionType::Fixed4x2; }
+	| TOK_FIXED_VEC4X3			{ $$ = &AST::CPrecisionType::Fixed4x3; }
+	| TOK_FIXED_VEC4X4			{ $$ = &AST::CPrecisionType::Fixed4x4; }
+	| TOK_SAMPLERSTATE			{ $$ = &AST::CPrecisionType::SamplerState; }
+	| TOK_SAMPLER_CMP_STATE		{ $$ = &AST::CPrecisionType::SamplerComparisonState; }
 	;
 
 
 texture_type_specifier_nonarray:
-	TOK_BUFFER					{ }
-	| TOK_TEXTURE1D				{ }
-	| TOK_TEXTURE1D_ARRAY		{  }
-	| TOK_TEXTURE2D				{ }
-	| TOK_TEXTURE2D_ARRAY		{  }
-	| TOK_TEXTURE2DMS			{ }
-	| TOK_TEXTURE2DMS_ARRAY		{  }
-	| TOK_TEXTURE3D				{  }
-	| TOK_TEXTURECUBE			{  }
-	| TOK_TEXTURECUBE_ARRAY		{ }
-	| TOK_RWBUFFER				{ }
-	| TOK_RWTEXTURE1D			{ }
-	| TOK_RWTEXTURE1D_ARRAY		{ }
-	| TOK_RWTEXTURE2D			{  }
-	| TOK_RWTEXTURE2D_ARRAY		{ }
-	| TOK_RWTEXTURE3D			{  }
+	TOK_BUFFER					{ $$ = "Buffer"; }
+	| TOK_TEXTURE1D				{ $$ = "Texture1D"; }
+	| TOK_TEXTURE1D_ARRAY		{ $$ = "Texture1DArray"; }
+	| TOK_TEXTURE2D				{ $$ = "Texture2D"; }
+	| TOK_TEXTURE2D_ARRAY		{ $$ = "Texture2DArray"; }
+	| TOK_TEXTURE2DMS			{ $$ = "Texture2DMS"; }
+	| TOK_TEXTURE2DMS_ARRAY		{ $$ = "Texture2DMSArray"; }
+	| TOK_TEXTURE3D				{ $$ = "Texture3D"; }
+	| TOK_TEXTURECUBE			{ $$ = "TextureCube"; }
+	| TOK_TEXTURECUBE_ARRAY		{ $$ = "TextureCubeArray"; }
+	| TOK_RWBUFFER				{ $$ = "RWBuffer"; }
+	| TOK_RWTEXTURE1D			{ $$ = "RWTexture1D"; }
+	| TOK_RWTEXTURE1D_ARRAY		{ $$ = "RWTexture1DArray"; }
+	| TOK_RWTEXTURE2D			{ $$ = "RWTexture2D"; }
+	| TOK_RWTEXTURE2D_ARRAY		{ $$ = "RWTexture2DArray"; }
+	| TOK_RWTEXTURE3D			{ $$ = "RWTexture3D"; }
 	;
 
 outputstream_type_specifier_nonarray:
-	TOK_POINTSTREAM				{  }
-	| TOK_LINESTREAM			{ }
-	| TOK_TRIANGLESTREAM		{  }
+	TOK_POINTSTREAM				{ $$ = "PointStream"; }
+	| TOK_LINESTREAM			{ $$ = "LinearStream"; }
+	| TOK_TRIANGLESTREAM		{ $$ = "TriangleStream"; }
 	;
 
 inputpatch_type_specifier_nonarray:
-	TOK_INPUTPATCH				{  }
+	TOK_INPUTPATCH				{ $$ = "InputPatch"; }
 	;
 
 outputpatch_type_specifier_nonarray:
-	TOK_OUTPUTPATCH				{ }
+	TOK_OUTPUTPATCH				{ $$ = "OutputPatch"; }
 	;
 
 precision_qualifier:
@@ -1245,27 +1326,39 @@ precision_qualifier:
 struct_specifier:
 	TOK_STRUCT any_identifier '{' struct_declaration_list '}'
 	{
-	 
+		$$ = std::make_shared<AST::CStructSpecifier>($2, $4);
+		$$->SetSourceLocation(yylloc);
+
+		state->symbols.AddType(std::make_shared<CType>($2));
 	}
 	| TOK_STRUCT any_identifier ':' TOK_TYPE_IDENTIFIER '{' struct_declaration_list '}'
 	{
-	  
+		$$ = std::make_shared<AST::CStructSpecifier>($2, $4, $6);
+		$$->SetSourceLocation(yylloc);
 	}
 	| TOK_STRUCT '{' struct_declaration_list '}'
 	{
-	 
+		$$ = std::make_shared<AST::CStructSpecifier>("", $3);
+		$$->SetSourceLocation(yylloc);
 	}
 	| TOK_STRUCT any_identifier '{' '}'
 	{
-		
+		$$ = std::make_shared<AST::CStructSpecifier>($2, AST::CNode::TPointer());
+		$$->SetSourceLocation(yylloc);
+
+		state->symbols.AddType(std::make_shared<CType>($2));
 	}
 	| TOK_STRUCT any_identifier ':' TOK_TYPE_IDENTIFIER '{' '}'
 	{
-		
+		$$ = std::make_shared<AST::CStructSpecifier>($2, $4, AST::CNode::TPointer());
+		$$->SetSourceLocation(yylloc);
+
+		state->symbols.AddType(std::make_shared<CType>($2));
 	}
 	| TOK_STRUCT '{' '}'
 	{
-		
+		$$ = std::make_shared<AST::CStructSpecifier>("", AST::CNode::TPointer());
+		$$->SetSourceLocation(yylloc);
 	}
 	;
 
@@ -1292,18 +1385,20 @@ struct_declaration_list:
 struct_declaration:
 	struct_type_specifier struct_declarator_list ';'
 	{
-	   
+	   #pragma message("Fix me")
 	}
 	;
 
 struct_type_specifier:
 	type_specifier
 	{
-		
+		$$ = std::make_shared<AST::CFullySpecifiedType>($1);
+		$$->SetSourceLocation(yyloc);
 	}
 	| struct_type_qualifier type_specifier
 	{
-		
+		$$ = std::make_shared<AST::CFullySpecifiedType>($1, $2);
+		$$->SetSourceLocation(yyloc);
 	}
 	;
 
@@ -1311,7 +1406,7 @@ struct_type_qualifier:
 	interpolation_qualifier
 	| TOK_CENTROID interpolation_qualifier
 	{
-		
+		#pragma message("Fix em")
 	}
 	| interpolation_qualifier TOK_CENTROID
 	{
@@ -1326,11 +1421,12 @@ struct_type_qualifier:
 struct_declarator_list:
 	struct_declarator
 	{
-	  
+		$$ = $1;
 	}
 	| struct_declarator_list ',' struct_declarator
 	{
-	  
+		$$ = $1;
+		$$->AddLink($3);
 	}
 	;
 

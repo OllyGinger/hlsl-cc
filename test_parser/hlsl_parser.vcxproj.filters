@@ -22,6 +22,12 @@
     <Filter Include="Header Files\AST\Nodes">
       <UniqueIdentifier>{0cfeedd4-e281-4f5e-b44a-64d80e28b4e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\AST">
+      <UniqueIdentifier>{509333bb-daaa-4b1d-a20e-9448929248f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AST\Nodes">
+      <UniqueIdentifier>{b2b0f094-e50e-4605-845f-225bd15ab1fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -87,6 +93,12 @@
     <ClInclude Include="Symbol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AST\Nodes\PrecisionType.h">
+      <Filter>Header Files\AST\Nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="AST\Nodes\Precision.h">
+      <Filter>Header Files\AST\Nodes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hlsl_parser.cpp">
@@ -106,6 +118,12 @@
     </ClCompile>
     <ClCompile Include="SymbolTable.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AST\Nodes\PrecisionType.cpp">
+      <Filter>Source Files\AST\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="AST\Nodes\TypeSpecifier.cpp">
+      <Filter>Source Files\AST\Nodes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

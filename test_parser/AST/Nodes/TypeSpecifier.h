@@ -1,42 +1,37 @@
 #pragma once
 #include "AST/Nodes/Node.h"
 #include "AST/Nodes/StructSpecifier.h"
-#include "AST/Nodes/Expression.h"
+#include "AST/Nodes/Precision.h"
 
 namespace AST
 {
 	class CExpression;
+	class CPrecisionType;
 
 	class CTypeSpecifier : public CNode
 	{
 	public:
-		
 		typedef std::shared_ptr<CTypeSpecifier> TPointer;
-		CTypeSpecifier(TString name)
-			: m_TypeName(name)
-			, m_TextureMSNumSamples(1)
-			, m_PatchSize(0)
-			, m_IsArray(false)
-			, m_IsUnSizedArray(false)
-		{}
+		CTypeSpecifier::CTypeSpecifier(TString name);
+		CTypeSpecifier::CTypeSpecifier(TString name, TString innerTypeName);
+		CTypeSpecifier::CTypeSpecifier(TString name, const CPrecisionType* innerTypeName);
+		CTypeSpecifier::CTypeSpecifier(const CPrecisionType* innerTypeName);
+		CTypeSpecifier::CTypeSpecifier(CStructSpecifier::TPointer structure);
 
-		CTypeSpecifier(TString name, TString innerTypeName)
-			: m_TypeName(name)
-			, m_InnerTypeName(innerTypeName)
-			, m_TextureMSNumSamples(1)
-			, m_PatchSize(0)
-			, m_IsArray(false)
-			, m_IsUnSizedArray(false)
-		{}
+		bool GetIsArray() const { return m_IsArray; }
+		void SetIsArray(bool val) { m_IsArray = val; }
 
-		CTypeSpecifier(CStructSpecifier::TPointer structure)
-			: m_TypeName(structure->GetName())
-			, m_TextureMSNumSamples(1)
-			, m_PatchSize(0)
-			, m_IsArray(false)
-			, m_IsUnSizedArray(false)
-			, m_Structure(structure)
-		{}
+		bool GetIsUnSizedArray() const { return m_IsUnSizedArray; }
+		void SetIsUnSizedArray(bool val) { m_IsUnSizedArray = val; }
+
+		CExpression* GetArraySize() const { return m_ArraySize; }
+		void SetArraySize(CExpression* val) { m_ArraySize = val; }
+
+		int32_t GetTextureMSNumSamples() const { return m_TextureMSNumSamples; }
+		void SetTextureMSNumSamples(int32_t val) { m_TextureMSNumSamples = val; }
+
+		int32_t GetPatchSize() const { return m_PatchSize; }
+		void SetPatchSize(int32_t val) { m_PatchSize = val; }
 
 	private:
 		TString m_TypeName;
@@ -44,10 +39,14 @@ namespace AST
 		CStructSpecifier::TPointer m_Structure;
 
 		int32_t m_TextureMSNumSamples;
+		
 		int32_t m_PatchSize;
+		
 		bool m_IsArray;
 		bool m_IsUnSizedArray;
+		
 		CExpression* m_ArraySize;
+		EPrecision::Enum m_Precision;
 	};
 
 

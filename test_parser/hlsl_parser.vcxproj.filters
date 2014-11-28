@@ -111,6 +111,9 @@
     <ClInclude Include="AST\Visitor\PrintASTVisitor.h">
       <Filter>Header Files\AST\Visitor</Filter>
     </ClInclude>
+    <ClInclude Include="AST\Visitor\IRGenASTVisitor.h">
+      <Filter>Header Files\AST\Visitor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hlsl_parser.cpp">
@@ -172,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="AST\Nodes\SwitchStatement.cpp">
       <Filter>Source Files\AST\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="AST\Visitor\IRGenASTVisitor.cpp">
+      <Filter>Source Files\AST\Visitor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -851,12 +851,12 @@ static const yytype_uint16 yyrline[] =
     1423,  1428,  1436,  1442,  1446,  1453,  1462,  1467,  1475,  1476,
     1484,  1489,  1494,  1501,  1507,  1508,  1509,  1513,  1521,  1522,
     1523,  1524,  1525,  1526,  1530,  1537,  1536,  1549,  1550,  1554,
-    1559,  1567,  1573,  1581,  1586,  1594,  1602,  1607,  1615,  1619,
-    1636,  1643,  1647,  1654,  1658,  1665,  1669,  1676,  1680,  1687,
-    1691,  1698,  1702,  1706,  1713,  1714,  1718,  1720,  1726,  1730,
-    1738,  1743,  1748,  1753,  1758,  1766,  1767,  1771,  1775,  1782,
-    1786,  1793,  1797,  1801,  1805,  1812,  1817,  1824,  1830,  1842,
-    1846,  1850,  1854
+    1559,  1567,  1572,  1580,  1585,  1593,  1601,  1606,  1614,  1618,
+    1635,  1642,  1646,  1653,  1657,  1664,  1668,  1675,  1679,  1686,
+    1690,  1697,  1701,  1705,  1712,  1713,  1717,  1719,  1725,  1729,
+    1737,  1742,  1747,  1752,  1757,  1765,  1766,  1770,  1774,  1781,
+    1785,  1792,  1796,  1800,  1804,  1811,  1816,  1823,  1829,  1841,
+    1845,  1849,  1853
 };
 #endif
 
@@ -5637,7 +5637,7 @@ yyreduce:
   case 316:
 
     {
-		
+		#pragma message("Fix")
 	}
     break;
 
@@ -5652,7 +5652,7 @@ yyreduce:
   case 324:
 
     {
-		(yyval.compoundStatement) = std::make_shared<AST::CCompoundStatement>(true, AST::CNode::TPointer());
+		(yyval.compoundStatement) = std::make_shared<AST::CCompoundStatement>(true);
 		(yyval.compoundStatement)->SetSourceLocation(yyloc);
 		state->symbols.PopScope();
 	}
@@ -5668,7 +5668,7 @@ yyreduce:
   case 326:
 
     {
-		(yyval.compoundStatement) = std::make_shared<AST::CCompoundStatement>(true, (yyvsp[(3) - (4)].node));
+		(yyval.compoundStatement) = std::make_shared<AST::CCompoundStatement>(true, std::move((yyvsp[(3) - (4)].nodeList)));
 		(yyval.compoundStatement)->SetSourceLocation(yyloc);
 		state->symbols.PopScope();
 	}
@@ -5682,7 +5682,7 @@ yyreduce:
   case 329:
 
     {
-		(yyval.compoundStatement) = std::make_shared<AST::CCompoundStatement>(false, AST::CNode::TPointer());
+		(yyval.compoundStatement) = std::make_shared<AST::CCompoundStatement>(false);
 		(yyval.compoundStatement)->SetSourceLocation(yyloc);
 	}
     break;
@@ -5690,7 +5690,7 @@ yyreduce:
   case 330:
 
     {
-		(yyval.compoundStatement) = std::make_shared<AST::CCompoundStatement>(false, (yyvsp[(2) - (3)].node));
+		(yyval.compoundStatement) = std::make_shared<AST::CCompoundStatement>(false, std::move((yyvsp[(2) - (3)].nodeList)));
 		(yyval.compoundStatement)->SetSourceLocation(yyloc);
 	}
     break;
@@ -5698,9 +5698,8 @@ yyreduce:
   case 331:
 
     {
-		#pragma message("Fix me")
-		(yyval.node) = (yyvsp[(1) - (1)].node);
-		(yyval.node)->AddSelfLink();
+		//#pragma message("Fix me2")
+		(yyval.nodeList).push_back((yyvsp[(1) - (1)].node));
 	}
     break;
 
@@ -5708,7 +5707,7 @@ yyreduce:
 
     {
 		#pragma message("Fix me")
-		(yyval.node)->AddLink((yyvsp[(2) - (2)].node));
+		(yyval.nodeList).push_back((yyvsp[(2) - (2)].node));
 	}
     break;
 

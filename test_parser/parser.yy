@@ -83,7 +83,7 @@
 
 %type <identifier> variable_identifier
 %type <node> statement
-%type <node> statement_list
+%type <nodeList> statement_list
 %type <node> simple_statement
 %type <number> precision_qualifier
 %type <typeQualifier> type_qualifier
@@ -1508,7 +1508,7 @@ statement:
 	| simple_statement
 	| attribute_list compound_statement
 	{
-		
+		#pragma message("Fix")
 	}
 	| attribute_list simple_statement
 	{
@@ -1529,7 +1529,7 @@ simple_statement:
 compound_statement:
 	'{' '}'
 	{
-		$$ = std::make_shared<AST::CCompoundStatement>(true, AST::CNode::TPointer());
+		$$ = std::make_shared<AST::CCompoundStatement>(true);
 		$$->SetSourceLocation(yyloc);
 		state->symbols.PopScope();
 	}
@@ -1539,7 +1539,7 @@ compound_statement:
 	}
 	statement_list '}'
 	{
-		$$ = std::make_shared<AST::CCompoundStatement>(true, $3);
+		$$ = std::make_shared<AST::CCompoundStatement>(true, std::move($3));
 		$$->SetSourceLocation(yyloc);
 		state->symbols.PopScope();
 	}
@@ -1553,12 +1553,12 @@ statement_no_new_scope:
 compound_statement_no_new_scope:
 	'{' '}'
 	{
-		$$ = std::make_shared<AST::CCompoundStatement>(false, AST::CNode::TPointer());
+		$$ = std::make_shared<AST::CCompoundStatement>(false);
 		$$->SetSourceLocation(yyloc);
 	}
 	| '{' statement_list '}'
 	{
-		$$ = std::make_shared<AST::CCompoundStatement>(false, $2);
+		$$ = std::make_shared<AST::CCompoundStatement>(false, std::move($2));
 		$$->SetSourceLocation(yyloc);
 	}
 	;
@@ -1566,14 +1566,13 @@ compound_statement_no_new_scope:
 statement_list:
 	statement
 	{
-		#pragma message("Fix me")
-		$$ = $1;
-		$$->AddSelfLink();
+		//#pragma message("Fix me2")
+		$$.push_back($1);
 	}
 	| statement_list statement
 	{
 		#pragma message("Fix me")
-		$$->AddLink($2);
+		$$.push_back($2);
 	}
 	;
 

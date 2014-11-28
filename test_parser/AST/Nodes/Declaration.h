@@ -49,8 +49,11 @@ namespace AST
 		{}
 
 		inline void AddDecleration(CNode::TPointer param)	{ m_Declerations.push_back(param); }
-		bool GetInvariant() const { return m_Invariant; }
-		void SetInvariant(bool val) { m_Invariant = val; }
+		inline bool GetInvariant() const { return m_Invariant; }
+		inline void SetInvariant(bool val) { m_Invariant = val; }
+
+		inline CFullySpecifiedType::TPointer GetType() const { return m_Type; }
+		inline TSubNodeList& GetDeclerations() { return m_Declerations; }
 
 		virtual bool VisitNodes(class IVisitor* visitor) override;
 

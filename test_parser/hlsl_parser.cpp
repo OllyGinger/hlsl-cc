@@ -6,6 +6,7 @@
 #include "node.h"
 #include "AST/ParserType.h"
 #include "AST/Visitor/PrintASTVisitor.h"
+#include "AST/Visitor/IRGenASTVisitor.h"
 
 using namespace std;
 
@@ -34,16 +35,20 @@ int main(int argc, char **argv)
 	THLSLParserState state;
 	yylex_init_extra(&state, &state.scanner);
 	yyset_in(myfile, state.scanner);
-	yyset_debug(1, state.scanner);
+	yyset_debug(0, state.scanner);
 	yyparse(&state);
 //	yylex_destroy(state.scanner);
 	fclose(myfile);
 
 	AST::CNode::TPointer buffer = state.globalNodes.back();
 
+	// Print out the AST to stdout
 	AST::CPrintASTVisitor visitor(std::cout);
 	buffer->VisitNodes(&visitor);
 
+	// Generate LLVM-IR code
+	AST::CIRGenASTVisitor irGenVisitor;
+	buffer->VisitNodes(&irGenVisitor);
 
 	//std::cout << programBlock << std::endl;
 

@@ -44,6 +44,9 @@ namespace AST
 			, m_Body(body)
 		{}
 
+		inline CFunction::TPointer GetPrototype() const { return m_Prototype; }
+		inline CCompoundStatement::TPointer GetBody() const { return m_Body; }
+
 		virtual bool VisitNodes(class IVisitor* visitor) override;
 
 	private:

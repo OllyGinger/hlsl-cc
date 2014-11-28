@@ -46,6 +46,8 @@ struct YYSTYPE
 		AST::CNode::TPointer thenStatement;
 		AST::CNode::TPointer elseStatement;
 	} selectionRestStatement;
+
+	std::list<AST::CNode::TPointer> nodeList;
 };
 
 struct THLSLParserState

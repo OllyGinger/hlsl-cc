@@ -17,7 +17,16 @@ namespace AST
 		Indent();
 		m_OutputStream << "CompoundStatement ";
 		OutputSourceLocation(compoundStatement);
-		m_OutputStream << "\n";
+		m_OutputStream << " ";
+
+		m_OutputStream << std::endl;
+		PushScope();
+		for (auto statement : compoundStatement->GetStatementList())
+		{
+			statement->VisitNodes(this);
+		}
+		PopScope();
+		m_OutputStream << std::endl;
 		return true;
 	}
 
@@ -34,16 +43,44 @@ namespace AST
 			m_OutputStream << "[]";
 		}
 
-		m_OutputStream << "\n";
+		m_OutputStream << std::endl;
+		PushScope();
+		decleration->GetInitialiser()->VisitNodes(this);
+		PopScope();
+		m_OutputStream << std::endl;
 		return true;
 	}
 
 	bool CPrintASTVisitor::VisitDeclerationList(CDecleratorList::TPointer declerationList)
 	{
 		Indent();
-		m_OutputStream << "DecleratorList ";
+		m_OutputStream << "DeclarationList ";
 		OutputSourceLocation(declerationList);
-		m_OutputStream << "\n";
+		m_OutputStream << " ";
+
+		// Output the type info
+		CFullySpecifiedType::TPointer type = declerationList->GetType();
+		if (!type)
+		{
+			m_OutputStream << "<invariant type>";
+		}
+
+		m_OutputStream << std::endl;
+		PushScope();
+		if (type)
+		{
+			VisitFullySpecifiedType(type);
+		}
+		PopScope();
+
+		PushScope();
+		// Output the declarations
+		for (auto declaration : declerationList->GetDeclerations())
+		{
+			declaration->VisitNodes(this);
+		}
+		PopScope();
+		m_OutputStream << std::endl;
 		return true;
 	}
 
@@ -56,33 +93,87 @@ namespace AST
 		EOperator::Enum op = expression->GetOperator();
 		m_OutputStream << " " << EOperator::ToString(op) << " ";
 
+		bool bPopScope = false;
 		switch (op)
 		{
 		case EOperator::IntConstant:
 			m_OutputStream << expression->GetExpression().u.IntConstant;
+			bPopScope = true;
 			break;
 		case EOperator::UIntConstant:
 			m_OutputStream << expression->GetExpression().u.UIntConstant;
+			bPopScope = true;
 			break;
 		case EOperator::FloatConstant:
 			m_OutputStream << expression->GetExpression().u.FloatConstant;
+			bPopScope = true;
 			break;
 		case EOperator::BoolConstant:
 			m_OutputStream << expression->GetExpression().u.BoolConstant;
+			bPopScope = true;
 			break;
 
 		case EOperator::Identifier:
 			m_OutputStream << expression->GetIdentifier();
+			bPopScope = true;
+			break;
+
+			// LHS and RHS (and conditional) expressions
+		case EOperator::Assign:
+		case EOperator::Plus:
+		case EOperator::Negative:
+		case EOperator::Add:
+		case EOperator::Subtract:
+		case EOperator::Multiply:
+		case EOperator::Divide:
+		case EOperator::Modulo:
+		case EOperator::LeftShift:
+		case EOperator::RightShift:
+		case EOperator::LessThan:
+		case EOperator::GreaterThan:
+		case EOperator::LessOrEqual:
+		case EOperator::GreaterOrEqual:
+		case EOperator::Equal:
+		case EOperator::NotEqual:
+		case EOperator::BitwiseAnd:
+		case EOperator::BitwiseXOr:
+		case EOperator::BitwiseOr:
+		case EOperator::BitwiseNot:
+		case EOperator::LogicalAnd:
+		case EOperator::LogicalXOr:
+		case EOperator::LogicalOr:
+		case EOperator::LogicalNot:
+		case EOperator::MultiplyAssign:
+		case EOperator::DivideAssign:
+		case EOperator::ModuloAssign:
+		case EOperator::AddAssign:
+		case EOperator::SubtractAssign:
+		case EOperator::LeftShiftAssign:
+		case EOperator::RightShiftAssign:
+		case EOperator::AndAssign:
+		case EOperator::XOrAssign:
+		case EOperator::OrAssign:
+		case EOperator::Conditional:
+			
+			for (auto subExpression : expression->GetSubExpressionList())
+			{	
+				m_OutputStream << std::endl;
+				PushScope();
+				if (subExpression)
+				{
+					subExpression->VisitNodes(this);
+				}
+				PopScope();
+			}
+		
 			break;
 		}
-		m_OutputStream << "\n";
 		return true;
 	}
 
 	bool CPrintASTVisitor::VisitExpressionStatement(CExpressionStatement::TPointer expressionStatement)
 	{
-		// Pass
-		return true;
+		throw std::logic_error("The method or operation is not implemented.");
 	}
 
 	bool CPrintASTVisitor::VisitBinaryExpression(CBinaryExpression::TPointer binaryExpression)
@@ -90,7 +181,12 @@ namespace AST
 		Indent();
 		m_OutputStream << "BinaryExpression ";
 		OutputSourceLocation(binaryExpression);
-		m_OutputStream << "\n";
+		m_OutputStream << " ";
+
+		m_OutputStream << std::endl;
+		PushScope();
+		VisitExpression(binaryExpression);
+		PopScope();
 		return true;
 	}
 
@@ -111,7 +207,11 @@ namespace AST
 		OutputSourceLocation(flowControlStatement);
 
 		m_OutputStream << " " << CFlowControlStatement::EType::ToString(flowControlStatement->GetType());
-		m_OutputStream << "\n";
+
+		m_OutputStream << std::endl;
+		PushScope();
+		flowControlStatement->GetExpression()->VisitNodes(this);
+		PopScope();
 		return true;
 	}
 
@@ -149,7 +249,15 @@ namespace AST
 			
 			paramIt++;
 		}
-		m_OutputStream << ")\n";
+		m_OutputStream << ")";
+
+		m_OutputStream << std::endl;
+		PushScope();
+		for (auto param : funcParams)
+		{
+			VisitParameterDeclerator(param);
+		}
+		PopScope();
 		return true;
 	}
 
@@ -158,7 +266,13 @@ namespace AST
 		Indent();
 		m_OutputStream << "FunctionDefinition ";
 		OutputSourceLocation(functionDefinition);
-		m_OutputStream << "\n";
+
+		m_OutputStream << std::endl;
+		PushScope();
+		VisitFunction(functionDefinition->GetPrototype());
+		VisitCompoundStatement(functionDefinition->GetBody());
+		PopScope();		
+
 		return true;
 	}
 
@@ -178,7 +292,7 @@ namespace AST
 
 		m_OutputStream << " " << paramTypeSpecifier->GetTypeName() << " ";
 		m_OutputStream << parameterDeclerator->GetIdentifier();
-		m_OutputStream << "\n";
+		m_OutputStream << std::endl;
 		return true;
 	}
 
@@ -235,12 +349,10 @@ namespace AST
 	bool CPrintASTVisitor::VisitTypeSpecifier(CTypeSpecifier::TPointer typeSpecifier)
 	{
 		Indent();
-		m_OutputStream << "FullySpecifiedType ";
+		m_OutputStream << "TypeSpecifier ";
 		OutputSourceLocation(typeSpecifier);
-
 		m_OutputStream << " " << typeSpecifier->GetTypeName();
-
-		m_OutputStream << "\n";
+		m_OutputStream << std::endl;
 		return true;
 	}
 
@@ -249,7 +361,12 @@ namespace AST
 		Indent();
 		m_OutputStream << "FullySpecifiedType ";
 		OutputSourceLocation(fullySpecifiedType);
-		m_OutputStream << "\n";
+		m_OutputStream << " ";
+
+		m_OutputStream << std::endl;
+		PushScope();
+		fullySpecifiedType->GetTypeSpecifier()->VisitNodes(this);
+		PopScope();
 		return true;
 	}
 

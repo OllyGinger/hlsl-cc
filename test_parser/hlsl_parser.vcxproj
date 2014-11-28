@@ -169,6 +169,7 @@
     <ClInclude Include="AST\Nodes\SwitchStatement.h" />
     <ClInclude Include="AST\Nodes\TypeSpecifier.h" />
     <ClInclude Include="AST\ParserType.h" />
+    <ClInclude Include="AST\Visitor\IRGenASTVisitor.h" />
     <ClInclude Include="AST\Visitor\PrintASTVisitor.h" />
     <ClInclude Include="AST\Visitor\Visitor.h" />
     <ClInclude Include="codegen.h" />
@@ -192,6 +193,7 @@
     <ClCompile Include="AST\Nodes\StructSpecifier.cpp" />
     <ClCompile Include="AST\Nodes\SwitchStatement.cpp" />
     <ClCompile Include="AST\Nodes\TypeSpecifier.cpp" />
+    <ClCompile Include="AST\Visitor\IRGenASTVisitor.cpp" />
     <ClCompile Include="AST\Visitor\PrintASTVisitor.cpp" />
     <ClCompile Include="codegen.cpp" />
     <ClCompile Include="hlsl_parser.cpp" />

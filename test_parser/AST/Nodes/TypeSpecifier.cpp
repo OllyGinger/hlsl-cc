@@ -58,30 +58,11 @@ namespace AST
 
 	bool CTypeSpecifier::VisitNodes(IVisitor* visitor)
 	{
-		visitor->VisitTypeSpecifier(std::static_pointer_cast<CTypeSpecifier>(shared_from_this()));
-
-		visitor->PushScope();
-		if (m_Structure)
-		{
-			m_Structure->VisitNodes(visitor);
-		}
-		
-		if (m_IsArray && m_ArraySize)
-		{
-			m_ArraySize->VisitNodes(visitor);
-		}
-		visitor->PopScope();
-
-		return true;
+		return visitor->VisitTypeSpecifier(std::static_pointer_cast<CTypeSpecifier>(shared_from_this()));
 	}
 
 	bool CFullySpecifiedType::VisitNodes(IVisitor* visitor)
 	{
-		visitor->VisitFullySpecifiedType(std::static_pointer_cast<CFullySpecifiedType>(shared_from_this()));
-		
-		visitor->PushScope();
-		m_Specifier->VisitNodes(visitor);
-		visitor->PopScope();
-		return true;
+		return visitor->VisitFullySpecifiedType(std::static_pointer_cast<CFullySpecifiedType>(shared_from_this()));
 	}
 }

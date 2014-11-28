@@ -40,14 +40,19 @@ struct YYSTYPE
 	AST::CAttribute::TPointer attribute;
 	AST::CAttributeArgument::TPointer attributeArg;
 	const AST::CPrecisionType* precisionType;
+
+	struct  
+	{
+		AST::CNode::TPointer thenStatement;
+		AST::CNode::TPointer elseStatement;
+	} selectionRestStatement;
 };
 
 struct THLSLParserState
 {
-	typedef std::list<AST::CNode::TPointer> TTranslationUnitList;
+	typedef std::list<AST::CNode::TPointer> TGlobalNodeList;
 
 	void *scanner;
-
 	CSymbolTable symbols;
-	TTranslationUnitList translationUnits;
+	TGlobalNodeList globalNodes;
 };

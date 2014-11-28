@@ -16,8 +16,25 @@ namespace AST
 				Continue,
 				Break,
 				Return,
-				Discard
+				Discard,
+
+				Noof,
 			};
+
+			static const char* const ToString(Enum op)
+			{
+				static const char* const types[] =
+				{
+					"continue",
+					"break",
+					"return",
+					"discard",
+				};
+
+				static_assert(sizeof(types) / sizeof(types[0]) == Enum::Noof,
+					"Number of strings doesn't match number of enumerations");
+				return types[op];
+			}
 		};
 
 		CFlowControlStatement(EType::Enum type)
@@ -28,6 +45,9 @@ namespace AST
 			: m_Type(EType::Return)
 			, m_ReturnExpression(returnExpression)
 		{}
+
+		inline EType::Enum GetType() const { return m_Type; }
+		virtual bool VisitNodes(class IVisitor* visitor) override;
 
 	private:
 		EType::Enum m_Type;

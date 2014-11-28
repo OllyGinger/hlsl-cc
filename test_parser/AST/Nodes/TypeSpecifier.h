@@ -33,8 +33,14 @@ namespace AST
 		int32_t GetPatchSize() const { return m_PatchSize; }
 		void SetPatchSize(int32_t val) { m_PatchSize = val; }
 
+		TString GetTypeName() const { return m_TypeName; }
+		void SetTypeName(TString val) { m_TypeName = val; }
+
+		virtual bool VisitNodes(class IVisitor* visitor) override;
+
 	private:
 		TString m_TypeName;
+		
 		TString m_InnerTypeName;
 		CStructSpecifier::TPointer m_Structure;
 
@@ -115,6 +121,10 @@ namespace AST
 			: m_Specifier(specifier)
 			, m_Qualifier(qualifier)
 		{}
+
+		inline CTypeSpecifier::TPointer GetTypeSpecifier() const { return m_Specifier; }
+
+		virtual bool VisitNodes(class IVisitor* visitor) override;
 
 	private:
 		CTypeSpecifier::TPointer m_Specifier;

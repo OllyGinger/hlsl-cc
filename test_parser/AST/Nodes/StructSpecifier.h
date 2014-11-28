@@ -21,6 +21,8 @@ namespace AST
 		TString GetName() const { return m_Name; }
 		TString GetParentName() const  { return m_ParentName; }
 
+		virtual bool VisitNodes(class IVisitor* visitor) override;
+
 	private:
 		TString m_Name;
 		TString m_ParentName;
@@ -37,6 +39,9 @@ namespace AST
 		{}
 
 		TString GetName() const { return m_Name; }
+
+		virtual bool VisitNodes(class IVisitor* visitor) override;
+
 	private:
 		TString m_Name;
 		CNode::TPointer m_DecleratorList;

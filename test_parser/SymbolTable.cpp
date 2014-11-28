@@ -79,3 +79,42 @@ bool CSymbolTable::AddType(CType::TPointer type)
 	return currentScope->AddSymbol(type);
 }
 
+CSymbol::TPointer CSymbolTable::FindSymbol(CSymbol::TString name)
+{
+	CSymbolTableScope *currentScope = m_ScopeStack.top().get();
+	return currentScope->FindSymbol(name);
+}
+
+CSymbol::TPointer CSymbolTable::FindVariable(CSymbol::TString name)
+{
+	CSymbol::TPointer var = FindSymbol(name);
+	if (var && var->GetType() == CSymbol::Variable)
+	{
+		return var;
+	}
+
+	return nullptr;
+}
+
+CSymbol::TPointer CSymbolTable::FindFunction(CSymbol::TString name)
+{
+	CSymbol::TPointer var = FindSymbol(name);
+	if (var && var->GetType() == CSymbol::Function)
+	{
+		return var;
+	}
+
+	return nullptr;
+}
+
+CSymbol::TPointer CSymbolTable::FindType(CSymbol::TString name)
+{
+	CSymbol::TPointer var = FindSymbol(name);
+	if (var && var->GetType() == CSymbol::Type)
+	{
+		return var;
+	}
+
+	return nullptr;
+}
+

@@ -164,7 +164,7 @@
 %type <declaration> struct_declarator
 %type <declaration> struct_declarator_list
 %type <node> selection_statement
-/*%type <selection_rest_statement> selection_rest_statement*/
+%type <selectionRestStatement> selection_rest_statement
 %type <node> switch_statement
 %type <switchBody> switch_body
 %type <caseLabelList> case_label_list
@@ -209,17 +209,17 @@ any_identifier:
 external_declaration_list:
 	external_declaration
 	{
-	   if($1 != NULL)
-	   {
-			state->translationUnits.push_back($1);
-	   }
+		if($1 != NULL)
+		{
+			state->globalNodes.push_back($1);
+		}
 	}
 	| external_declaration_list external_declaration
 	{
-	   if($2 != NULL)
-	   {
-			state->translationUnits.push_back($2);
-	   }
+		if($2 != NULL)
+		{
+			state->globalNodes.push_back($2);
+		}
 	}
 	;
 
@@ -1374,6 +1374,7 @@ struct_declaration_list:
 	struct_declaration
 	{
 		$$ = $1;
+		$1->AddSelfLink();
 	}
 	| struct_declaration_list struct_declaration
 	{
@@ -1422,6 +1423,7 @@ struct_declarator_list:
 	struct_declarator
 	{
 		$$ = $1;
+		$1->AddSelfLink();
 	}
 	| struct_declarator_list ',' struct_declarator
 	{
@@ -1433,52 +1435,65 @@ struct_declarator_list:
 struct_declarator:
 	any_identifier
 	{
-	  
+		$$ = std::make_shared<AST::CDecleration>($1, false, AST::CExpression::TPointer(), AST::CExpression::TPointer());
+		$$->SetSourceLocation(yyloc);
+		state->symbols.AddVariable(std::make_shared<CVariable>($1));
 	}
 	| array_identifier
 	{
-	 
+		$$ = $1;
 	}
 	| any_identifier ':' any_identifier
 	{
-		
+		$$ = std::make_shared<AST::CDecleration>($1, false, AST::CExpression::TPointer(), AST::CExpression::TPointer());
+		$$->SetSourceLocation(yyloc);
+		$$->SetSemantec($3);
+		state->symbols.AddVariable(std::make_shared<CVariable>($1));
 	}
 	| any_identifier '[' constant_expression ']' ':' any_identifier
 	{
-	  
+		$$ = std::make_shared<AST::CDecleration>($1, true, $3, AST::CExpression::TPointer());
+		$$->SetSourceLocation(yyloc);
+		$$->SetSemantec($6);
 	}
 	;
 
 array_identifier:
 	any_identifier '[' constant_expression ']'
 	{
-	  
+		$$ = std::make_shared<AST::CDecleration>($1, true, $3, AST::CExpression::TPointer());
+		$$->SetSourceLocation(yyloc);
 	}
 	| array_identifier '[' constant_expression ']'
 	{
-	  
+		$$ = $1;
+		$3->AddLink($$->GetArraySize());
+		$$->SetArraySize($3);
 	}
 
 initializer:
 	assignment_expression
 	| '{' initializer_list '}'
 	{
-		
+		$$ = std::make_shared<AST::CInitialiserListExpression>();
+		$$->AddChildExpression($2);
 	}
 	;
 
 initializer_list:
 	initializer
 	{
-		
+		$$ = $1;
+		$$->AddSelfLink();
 	}
 	| initializer_list ',' initializer
 	{
-		
+		$$ = $1;
+		$$->AddLink($3);
 	}
 	| initializer_list ','
 	{
-	
+		$$ = $1;
 	}
 	;
 
@@ -1497,7 +1512,8 @@ statement:
 	}
 	| attribute_list simple_statement
 	{
-		
+		$$ = $2;
+		$$->AddAttribute($1);
 	}
 	;
 
@@ -1513,82 +1529,102 @@ simple_statement:
 compound_statement:
 	'{' '}'
 	{
-	  
+		$$ = std::make_shared<AST::CCompoundStatement>(true, AST::CNode::TPointer());
+		$$->SetSourceLocation(yyloc);
+		state->symbols.PopScope();
 	}
 	| '{'
 	{
-	   
+		state->symbols.PushScope();
 	}
 	statement_list '}'
 	{
-	  
+		$$ = std::make_shared<AST::CCompoundStatement>(true, $3);
+		$$->SetSourceLocation(yyloc);
+		state->symbols.PopScope();
 	}
 	;
 
 statement_no_new_scope:
-	compound_statement_no_new_scope {  }
+	compound_statement_no_new_scope { $$ = $1; }
 	| simple_statement
 	;
 
 compound_statement_no_new_scope:
 	'{' '}'
 	{
-	  
+		$$ = std::make_shared<AST::CCompoundStatement>(false, AST::CNode::TPointer());
+		$$->SetSourceLocation(yyloc);
 	}
 	| '{' statement_list '}'
 	{
-	   
+		$$ = std::make_shared<AST::CCompoundStatement>(false, $2);
+		$$->SetSourceLocation(yyloc);
 	}
 	;
 
 statement_list:
 	statement
 	{
-	  
+		#pragma message("Fix me")
+		$$ = $1;
+		$$->AddSelfLink();
 	}
 	| statement_list statement
 	{
-	  
+		#pragma message("Fix me")
+		$$->AddLink($2);
 	}
 	;
 
 expression_statement:
 	';'
 	{
-	 
+		$$ = std::make_shared<AST::CExpressionStatement>(AST::CExpression::TPointer());
+		$$->SetSourceLocation(yyloc);
 	}
 	| expression ';'
 	{
-	 
+		$$ = std::make_shared<AST::CExpressionStatement>($1);
+		$$->SetSourceLocation(yyloc);
 	}
 	;
 
 selection_statement:
 	TOK_IF '(' expression ')' selection_rest_statement
 	{
-	   
+		$$ = std::make_shared<AST::CSelectionStatement>($3, $5.thenStatement, $5.elseStatement);
+		$$->SetSourceLocation(yyloc);
 	}
 	;
 
 selection_rest_statement:
 	statement TOK_ELSE statement
 	{
-	  
+		$$.thenStatement = $1;
+		$$.elseStatement = $3;
 	}
 	| statement
 	{
-	  
+		$$.thenStatement = $1;
+		$$.elseStatement = AST::CNode::TPointer();
 	}
 	;
 
 condition:
 	expression
 	{
-	  
+		$$ = $1;
 	}
 	| fully_specified_type any_identifier '=' initializer
 	{
-	  
+		AST::CDecleration::TPointer decl = std::make_shared<AST::CDecleration>($2, false, AST::CExpression::TPointer(), $4);
+		decl->SetSourceLocation(yyloc);
+		AST::CDecleratorList::TPointer declerator = std::make_shared<AST::CDecleratorList>($1);
+		declerator->SetSourceLocation(yyloc);
+
+		declerator->AddDecleration(decl);
+		$$ = declerator;
 	}
 	;
 
@@ -1599,77 +1635,77 @@ condition:
 switch_statement:
 	TOK_SWITCH '(' expression ')' switch_body
 	{
-	  
+	  #pragma message("Fix me");
 	}
 	;
 
 switch_body:
 	'{' '}'
 	{
-	  
+	  #pragma message("Fix me");
 	}
 	| '{' case_statement_list '}'
 	{
-	 
+	 #pragma message("Fix me");
 	}
 	;
 
 case_label:
 	TOK_CASE expression ':'
 	{
-	  
+	  #pragma message("Fix me");
 	}
 	| TOK_DEFAULT ':'
 	{
-	  
+	  #pragma message("Fix me");
 	}
 	;
 
 case_label_list:
 	case_label
 	{
-	  
+	  #pragma message("Fix me");
 	}
 	| case_label_list case_label
 	{
-	   
+	   #pragma message("Fix me");
 	}
 	;
 
 case_statement:
 	case_label_list statement
 	{
-	  
+	  #pragma message("Fix me");
 	}
 	| case_statement statement
 	{
-	  
+	  #pragma message("Fix me");
 	}
 	;
 
 case_statement_list:
 	case_statement
 	{
-	   
+	   #pragma message("Fix me");
 	}
 	| case_statement_list case_statement
 	{
-	  
+	  #pragma message("Fix me");
 	}
 	;
 
 iteration_statement:
 	TOK_WHILE '(' condition ')' statement_no_new_scope
 	{
-	  
+	  #pragma message("Fix me");
 	}
 	| TOK_DO statement TOK_WHILE '(' expression ')' ';'
 	{
-	  
+	  #pragma message("Fix me");
 	}
 	| TOK_FOR '(' for_init_statement for_rest_statement ')' statement_no_new_scope
 	{
-	 
+	 #pragma message("Fix me");
 	}
 	;
 
@@ -1682,18 +1718,18 @@ conditionopt:
 	condition
 	| /* empty */
 	{
-	  
+	  #pragma message("Fix me");
 	}
 	;
 
 for_rest_statement:
 	conditionopt ';'
 	{
-	 
+	 #pragma message("Fix me");
 	}
 	| conditionopt ';' expression
 	{
-	 
+	 #pragma message("Fix me");
 	}
 	;
 
@@ -1701,23 +1737,28 @@ for_rest_statement:
 jump_statement:
 	TOK_CONTINUE ';' 
 	{
-	 
+		$$ = std::make_shared<AST::CFlowControlStatement>(AST::CFlowControlStatement::EType::Continue);
+		$$->SetSourceLocation(yyloc);
 	}
 	| TOK_BREAK ';'
 	{
-	  
+		$$ = std::make_shared<AST::CFlowControlStatement>(AST::CFlowControlStatement::EType::Break);
+		$$->SetSourceLocation(yyloc);
 	}
 	| TOK_RETURN ';'
 	{
-	
+		$$ = std::make_shared<AST::CFlowControlStatement>(AST::CFlowControlStatement::EType::Return);
+		$$->SetSourceLocation(yyloc);
 	}
 	| TOK_RETURN expression ';'
 	{
-	 
+		$$ = std::make_shared<AST::CFlowControlStatement>(AST::CFlowControlStatement::EType::Return, $2);
+		$$->SetSourceLocation(yyloc);
 	}
 	| TOK_DISCARD ';' // Fragment shader only.
 	{
-	  
+		$$ = std::make_shared<AST::CFlowControlStatement>(AST::CFlowControlStatement::EType::Discard);
+		$$->SetSourceLocation(yyloc);
 	}
 	;
 
@@ -1729,63 +1770,71 @@ external_declaration:
 attribute_arg:
 	constant_expression
 	{
-		
+		#pragma message("Fix me");
 	}
 	| TOK_STRING_CONSTANT
 	{
-		
+		#pragma message("Fix me");
 	}
 	;
 
 attribute_arg_list:
 	attribute_arg
 	{
-	
+		#pragma message("Fix me");
 	}
 	| attribute_arg_list ',' attribute_arg
 	{
-
+	#pragma message("Fix me");
 	}
 	;
 
 attribute:
 	'[' any_identifier ']'
 	{
-		
+		#pragma message("Fix me");
 	}
 	| '[' basic_type_specifier_nonarray ']'
 	{
-		
+		#pragma message("Fix me");
 	}
 	| '[' any_identifier '(' attribute_arg_list ')' ']'
 	{
-		
+		#pragma message("Fix me");
 	}
 	| '[' basic_type_specifier_nonarray '(' attribute_arg_list ')' ']'
 	{
-		
+		#pragma message("Fix me");
 	}
 	;
 
 attribute_list:
 	attribute_list attribute
 	{
-		
+		$$ = $1;
+		$$->AddLink($2);
 	}
 	| attribute
 	{
-		
+		$$ = $1;
 	}
 	;
 
 function_definition:
 	function_prototype compound_statement_no_new_scope
 	{
-	  
+		$$ = std::make_shared<AST::CFunctionDefinition>($1, $2);
+		$$->SetSourceLocation(yyloc);
+		state->symbols.PopScope();
 	}
 	| attribute_list function_prototype compound_statement_no_new_scope
 	{
-	  
+		$$ = std::make_shared<AST::CFunctionDefinition>($2, $3);
+		$$->SetSourceLocation(yyloc);
+		$$->AddAttribute($1);
+		state->symbols.PopScope();
+
+		$$->AddAttribute($1);
 	}
 	;
 

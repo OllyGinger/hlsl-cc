@@ -62,8 +62,7 @@
 
 
 /* Copy the first part of user declarations.  */
-/* Line 371 of yacc.c  */
-#line 1 "parser.yy"
+
 
 	#include "AST/AST.h"
 	#include "AST/ParserType.h"
@@ -77,8 +76,7 @@
 	void yyerror(YYLTYPE *loc, void *st, const char *s) { std::printf("Error: %s\n", s); }
 	extern int yylex(YYSTYPE * lvalp, YYLTYPE*,  void*);
 
-/* Line 371 of yacc.c  */
-#line 82 "parser.cpp"
+
 
 # ifndef YY_NULL
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -363,8 +361,7 @@ int yyparse ();
 
 /* Copy the second part of user declarations.  */
 
-/* Line 390 of yacc.c  */
-#line 368 "parser.cpp"
+
 
 #ifdef short
 # undef short
@@ -850,16 +847,16 @@ static const yytype_uint16 yyrline[] =
     1282,  1283,  1284,  1285,  1286,  1287,  1288,  1289,  1290,  1291,
     1292,  1293,  1294,  1295,  1296,  1297,  1301,  1302,  1303,  1307,
     1311,  1315,  1318,  1321,  1327,  1334,  1339,  1344,  1351,  1358,
-    1366,  1374,  1378,  1386,  1393,  1398,  1406,  1407,  1411,  1415,
-    1422,  1426,  1434,  1438,  1442,  1446,  1453,  1457,  1463,  1464,
-    1471,  1475,  1479,  1486,  1492,  1493,  1494,  1498,  1505,  1506,
-    1507,  1508,  1509,  1510,  1514,  1519,  1518,  1529,  1530,  1534,
-    1538,  1545,  1549,  1556,  1560,  1567,  1574,  1578,  1585,  1589,
-    1600,  1607,  1611,  1618,  1622,  1629,  1633,  1640,  1644,  1651,
-    1655,  1662,  1666,  1670,  1677,  1678,  1682,  1684,  1690,  1694,
-    1702,  1706,  1710,  1714,  1718,  1725,  1726,  1730,  1734,  1741,
-    1745,  1752,  1756,  1760,  1764,  1771,  1775,  1782,  1786,  1793,
-    1797,  1801,  1805
+    1366,  1374,  1379,  1387,  1394,  1399,  1407,  1408,  1412,  1416,
+    1423,  1428,  1436,  1442,  1446,  1453,  1462,  1467,  1475,  1476,
+    1484,  1489,  1494,  1501,  1507,  1508,  1509,  1513,  1521,  1522,
+    1523,  1524,  1525,  1526,  1530,  1537,  1536,  1549,  1550,  1554,
+    1559,  1567,  1573,  1581,  1586,  1594,  1602,  1607,  1615,  1619,
+    1636,  1643,  1647,  1654,  1658,  1665,  1669,  1676,  1680,  1687,
+    1691,  1698,  1702,  1706,  1713,  1714,  1718,  1720,  1726,  1730,
+    1738,  1743,  1748,  1753,  1758,  1766,  1767,  1771,  1775,  1782,
+    1786,  1793,  1797,  1801,  1805,  1812,  1817,  1824,  1830,  1842,
+    1846,  1850,  1854
 };
 #endif
 
@@ -3529,16 +3526,14 @@ YYLTYPE yylloc = yyloc_default;
   yychar = YYEMPTY; /* Cause a token to be read.  */
 
 /* User initialization code.  */
-/* Line 1575 of yacc.c  */
-#line 20 "parser.yy"
+
 {
    yylloc.first_line = 1;
    yylloc.first_column = 1;
    yylloc.last_line = 1;
    yylloc.last_column = 1;
 }
-/* Line 1575 of yacc.c  */
-#line 3542 "parser.cpp"
+
   yylsp[0] = yylloc;
   goto yysetstate;
 
@@ -3725,46 +3720,41 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-/* Line 1792 of yacc.c  */
-#line 193 "parser.yy"
+
     {
 	   
 	}
     break;
 
   case 3:
-/* Line 1792 of yacc.c  */
-#line 197 "parser.yy"
+
     {
 	   
 	}
     break;
 
   case 7:
-/* Line 1792 of yacc.c  */
-#line 211 "parser.yy"
+
     {
-	   if((yyvsp[(1) - (1)].node) != NULL)
-	   {
-			state->translationUnits.push_back((yyvsp[(1) - (1)].node));
-	   }
+		if((yyvsp[(1) - (1)].node) != NULL)
+		{
+			state->globalNodes.push_back((yyvsp[(1) - (1)].node));
+		}
 	}
     break;
 
   case 8:
-/* Line 1792 of yacc.c  */
-#line 218 "parser.yy"
+
     {
-	   if((yyvsp[(2) - (2)].node) != NULL)
-	   {
-			state->translationUnits.push_back((yyvsp[(2) - (2)].node));
-	   }
+		if((yyvsp[(2) - (2)].node) != NULL)
+		{
+			state->globalNodes.push_back((yyvsp[(2) - (2)].node));
+		}
 	}
     break;
 
   case 11:
-/* Line 1792 of yacc.c  */
-#line 233 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CExpression>((yyvsp[(1) - (1)].identifier));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -3772,8 +3762,7 @@ yyreduce:
     break;
 
   case 12:
-/* Line 1792 of yacc.c  */
-#line 238 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CExpression>();
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -3782,8 +3771,7 @@ yyreduce:
     break;
 
   case 13:
-/* Line 1792 of yacc.c  */
-#line 244 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CExpression>();
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -3792,8 +3780,7 @@ yyreduce:
     break;
 
   case 14:
-/* Line 1792 of yacc.c  */
-#line 250 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CExpression>();
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -3802,8 +3789,7 @@ yyreduce:
     break;
 
   case 15:
-/* Line 1792 of yacc.c  */
-#line 256 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CExpression>();
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -3812,16 +3798,14 @@ yyreduce:
     break;
 
   case 16:
-/* Line 1792 of yacc.c  */
-#line 262 "parser.yy"
+
     {
 		(yyval.expression) = (yyvsp[(2) - (3)].expression);
 	}
     break;
 
   case 18:
-/* Line 1792 of yacc.c  */
-#line 270 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CExpression>(AST::EOperator::ArrayIndex, (yyvsp[(1) - (4)].expression), (yyvsp[(3) - (4)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -3829,16 +3813,14 @@ yyreduce:
     break;
 
   case 19:
-/* Line 1792 of yacc.c  */
-#line 275 "parser.yy"
+
     {
 		(yyval.expression) = (yyvsp[(1) - (1)].expression);
 	}
     break;
 
   case 20:
-/* Line 1792 of yacc.c  */
-#line 279 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CExpression>(AST::EOperator::FieldSelection, (yyvsp[(1) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -3847,8 +3829,7 @@ yyreduce:
     break;
 
   case 21:
-/* Line 1792 of yacc.c  */
-#line 285 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CExpression>(AST::EOperator::PostIncrement, (yyvsp[(1) - (2)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -3856,8 +3837,7 @@ yyreduce:
     break;
 
   case 22:
-/* Line 1792 of yacc.c  */
-#line 290 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CExpression>(AST::EOperator::PostDecrement, (yyvsp[(1) - (2)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -3865,8 +3845,7 @@ yyreduce:
     break;
 
   case 26:
-/* Line 1792 of yacc.c  */
-#line 307 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CExpression>(AST::EOperator::FieldSelection, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -3874,8 +3853,7 @@ yyreduce:
     break;
 
   case 31:
-/* Line 1792 of yacc.c  */
-#line 325 "parser.yy"
+
     {
 		(yyval.expression) = (yyvsp[(1) - (2)].expression);
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -3884,8 +3862,7 @@ yyreduce:
     break;
 
   case 32:
-/* Line 1792 of yacc.c  */
-#line 331 "parser.yy"
+
     {
 		(yyval.expression) = (yyvsp[(1) - (3)].expression);
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -3894,8 +3871,7 @@ yyreduce:
     break;
 
   case 34:
-/* Line 1792 of yacc.c  */
-#line 347 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CFunctionExpression>((yyvsp[(1) - (1)].typeSpecifier));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -3903,8 +3879,7 @@ yyreduce:
     break;
 
   case 35:
-/* Line 1792 of yacc.c  */
-#line 352 "parser.yy"
+
     {
 		AST::CExpression::TPointer callee = std::make_shared<AST::CExpression>((yyvsp[(1) - (1)].identifier));
 		(yyval.expression) = std::make_shared<AST::CFunctionExpression>(callee);
@@ -3913,8 +3888,7 @@ yyreduce:
     break;
 
   case 36:
-/* Line 1792 of yacc.c  */
-#line 358 "parser.yy"
+
     {
 		AST::CExpression::TPointer callee = std::make_shared<AST::CExpression>((yyvsp[(1) - (1)].identifier));
 		(yyval.expression) = std::make_shared<AST::CFunctionExpression>(callee);
@@ -3923,8 +3897,7 @@ yyreduce:
     break;
 
   case 41:
-/* Line 1792 of yacc.c  */
-#line 377 "parser.yy"
+
     {
 		(yyval.expression) = (yyvsp[(1) - (2)].expression);
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -3933,8 +3906,7 @@ yyreduce:
     break;
 
   case 42:
-/* Line 1792 of yacc.c  */
-#line 383 "parser.yy"
+
     {
 		(yyval.expression) = (yyvsp[(1) - (3)].expression);
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -3943,8 +3915,7 @@ yyreduce:
     break;
 
   case 43:
-/* Line 1792 of yacc.c  */
-#line 395 "parser.yy"
+
     {
 		AST::CExpression::TPointer callee = std::make_shared<AST::CExpression>((yyvsp[(1) - (2)].identifier));
 		(yyval.expression) = std::make_shared<AST::CFunctionExpression>(callee);
@@ -3953,8 +3924,7 @@ yyreduce:
     break;
 
   case 45:
-/* Line 1792 of yacc.c  */
-#line 406 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CExpression>(AST::EOperator::PreIncrement, (yyvsp[(2) - (2)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -3962,8 +3932,7 @@ yyreduce:
     break;
 
   case 46:
-/* Line 1792 of yacc.c  */
-#line 411 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CExpression>(AST::EOperator::PreDecrement, (yyvsp[(2) - (2)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -3971,8 +3940,7 @@ yyreduce:
     break;
 
   case 47:
-/* Line 1792 of yacc.c  */
-#line 416 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CExpression>((AST::EOperator::Enum)(yyvsp[(1) - (2)].number), (yyvsp[(2) - (2)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -3980,8 +3948,7 @@ yyreduce:
     break;
 
   case 48:
-/* Line 1792 of yacc.c  */
-#line 421 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CExpression>(AST::EOperator::TypeCast, (yyvsp[(4) - (4)].expression));
 		(yyval.expression)->SetTypeSpecifier((yyvsp[(2) - (4)].typeSpecifier));
@@ -3990,32 +3957,27 @@ yyreduce:
     break;
 
   case 49:
-/* Line 1792 of yacc.c  */
-#line 430 "parser.yy"
+
     { (yyval.number) = AST::EOperator::Plus; }
     break;
 
   case 50:
-/* Line 1792 of yacc.c  */
-#line 431 "parser.yy"
+
     { (yyval.number) = AST::EOperator::Negative; }
     break;
 
   case 51:
-/* Line 1792 of yacc.c  */
-#line 432 "parser.yy"
+
     { (yyval.number) = AST::EOperator::LogicalNot; }
     break;
 
   case 52:
-/* Line 1792 of yacc.c  */
-#line 433 "parser.yy"
+
     { (yyval.number) = AST::EOperator::BitwiseNot; }
     break;
 
   case 54:
-/* Line 1792 of yacc.c  */
-#line 439 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CBinaryExpression>(AST::EOperator::Multiply, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4023,8 +3985,7 @@ yyreduce:
     break;
 
   case 55:
-/* Line 1792 of yacc.c  */
-#line 444 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CBinaryExpression>(AST::EOperator::Divide, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4032,8 +3993,7 @@ yyreduce:
     break;
 
   case 56:
-/* Line 1792 of yacc.c  */
-#line 449 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CBinaryExpression>(AST::EOperator::Modulo, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4041,8 +4001,7 @@ yyreduce:
     break;
 
   case 58:
-/* Line 1792 of yacc.c  */
-#line 458 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CBinaryExpression>(AST::EOperator::Add, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4050,8 +4009,7 @@ yyreduce:
     break;
 
   case 59:
-/* Line 1792 of yacc.c  */
-#line 463 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CBinaryExpression>(AST::EOperator::Subtract, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4059,8 +4017,7 @@ yyreduce:
     break;
 
   case 61:
-/* Line 1792 of yacc.c  */
-#line 472 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CBinaryExpression>(AST::EOperator::LeftShift, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4068,8 +4025,7 @@ yyreduce:
     break;
 
   case 62:
-/* Line 1792 of yacc.c  */
-#line 477 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CBinaryExpression>(AST::EOperator::RightShift, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4077,8 +4033,7 @@ yyreduce:
     break;
 
   case 64:
-/* Line 1792 of yacc.c  */
-#line 486 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CBinaryExpression>(AST::EOperator::LessThan, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4086,8 +4041,7 @@ yyreduce:
     break;
 
   case 65:
-/* Line 1792 of yacc.c  */
-#line 491 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CBinaryExpression>(AST::EOperator::GreaterThan, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4095,8 +4049,7 @@ yyreduce:
     break;
 
   case 66:
-/* Line 1792 of yacc.c  */
-#line 496 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CBinaryExpression>(AST::EOperator::LessOrEqual, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4104,8 +4057,7 @@ yyreduce:
     break;
 
   case 67:
-/* Line 1792 of yacc.c  */
-#line 501 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CBinaryExpression>(AST::EOperator::GreaterOrEqual, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4113,8 +4065,7 @@ yyreduce:
     break;
 
   case 69:
-/* Line 1792 of yacc.c  */
-#line 510 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CBinaryExpression>(AST::EOperator::Equal, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4122,8 +4073,7 @@ yyreduce:
     break;
 
   case 70:
-/* Line 1792 of yacc.c  */
-#line 515 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CBinaryExpression>(AST::EOperator::NotEqual, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4131,8 +4081,7 @@ yyreduce:
     break;
 
   case 72:
-/* Line 1792 of yacc.c  */
-#line 524 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CBinaryExpression>(AST::EOperator::BitwiseAnd, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4140,8 +4089,7 @@ yyreduce:
     break;
 
   case 74:
-/* Line 1792 of yacc.c  */
-#line 533 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CBinaryExpression>(AST::EOperator::BitwiseXOr, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4149,8 +4097,7 @@ yyreduce:
     break;
 
   case 76:
-/* Line 1792 of yacc.c  */
-#line 542 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CBinaryExpression>(AST::EOperator::BitwiseOr, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4158,8 +4105,7 @@ yyreduce:
     break;
 
   case 78:
-/* Line 1792 of yacc.c  */
-#line 551 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CBinaryExpression>(AST::EOperator::LogicalAnd, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4167,8 +4113,7 @@ yyreduce:
     break;
 
   case 80:
-/* Line 1792 of yacc.c  */
-#line 560 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CBinaryExpression>(AST::EOperator::LogicalOr, (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4176,8 +4121,7 @@ yyreduce:
     break;
 
   case 82:
-/* Line 1792 of yacc.c  */
-#line 569 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CExpression>(AST::EOperator::Conditional, (yyvsp[(1) - (5)].expression), (yyvsp[(3) - (5)].expression), (yyvsp[(5) - (5)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4185,8 +4129,7 @@ yyreduce:
     break;
 
   case 84:
-/* Line 1792 of yacc.c  */
-#line 578 "parser.yy"
+
     {
 		(yyval.expression) = std::make_shared<AST::CExpression>((AST::EOperator::Enum)(yyvsp[(2) - (3)].number), (yyvsp[(1) - (3)].expression), (yyvsp[(3) - (3)].expression));
 		(yyval.expression)->SetSourceLocation(yylloc);
@@ -4194,82 +4137,69 @@ yyreduce:
     break;
 
   case 85:
-/* Line 1792 of yacc.c  */
-#line 585 "parser.yy"
+
     { (yyval.number) = AST::EOperator::Assign; }
     break;
 
   case 86:
-/* Line 1792 of yacc.c  */
-#line 586 "parser.yy"
+
     { (yyval.number) = AST::EOperator::MultiplyAssign; }
     break;
 
   case 87:
-/* Line 1792 of yacc.c  */
-#line 587 "parser.yy"
+
     { (yyval.number) = AST::EOperator::DivideAssign; }
     break;
 
   case 88:
-/* Line 1792 of yacc.c  */
-#line 588 "parser.yy"
+
     { (yyval.number) = AST::EOperator::ModuloAssign; }
     break;
 
   case 89:
-/* Line 1792 of yacc.c  */
-#line 589 "parser.yy"
+
     { (yyval.number) = AST::EOperator::AddAssign; }
     break;
 
   case 90:
-/* Line 1792 of yacc.c  */
-#line 590 "parser.yy"
+
     { (yyval.number) = AST::EOperator::SubtractAssign; }
     break;
 
   case 91:
-/* Line 1792 of yacc.c  */
-#line 591 "parser.yy"
+
     { (yyval.number) = AST::EOperator::LeftShiftAssign; }
     break;
 
   case 92:
-/* Line 1792 of yacc.c  */
-#line 592 "parser.yy"
+
     { (yyval.number) = AST::EOperator::RightShiftAssign; }
     break;
 
   case 93:
-/* Line 1792 of yacc.c  */
-#line 593 "parser.yy"
+
     { (yyval.number) = AST::EOperator::AndAssign; }
     break;
 
   case 94:
-/* Line 1792 of yacc.c  */
-#line 594 "parser.yy"
+
     { (yyval.number) = AST::EOperator::XOrAssign; }
     break;
 
   case 95:
-/* Line 1792 of yacc.c  */
-#line 595 "parser.yy"
+
     { (yyval.number) = AST::EOperator::OrAssign; }
     break;
 
   case 96:
-/* Line 1792 of yacc.c  */
-#line 600 "parser.yy"
+
     {
 		(yyval.expression) = (yyvsp[(1) - (1)].expression);
 	}
     break;
 
   case 97:
-/* Line 1792 of yacc.c  */
-#line 604 "parser.yy"
+
     {
 		if((yyvsp[(1) - (3)].expression)->GetOperator() != AST::EOperator::Sequence)
 		{
@@ -4287,8 +4217,7 @@ yyreduce:
     break;
 
   case 99:
-/* Line 1792 of yacc.c  */
-#line 626 "parser.yy"
+
     {
 		state->symbols.PopScope();
 		(yyval.function) = (yyvsp[(1) - (2)].function);
@@ -4296,47 +4225,41 @@ yyreduce:
     break;
 
   case 100:
-/* Line 1792 of yacc.c  */
-#line 634 "parser.yy"
+
     {
 	  
 	}
     break;
 
   case 101:
-/* Line 1792 of yacc.c  */
-#line 641 "parser.yy"
+
     {
 		(yyval.node) = (yyvsp[(1) - (1)].function);
 	}
     break;
 
   case 102:
-/* Line 1792 of yacc.c  */
-#line 645 "parser.yy"
+
     {
 		(yyval.node) = (yyvsp[(1) - (2)].decleratorList);
 	}
     break;
 
   case 103:
-/* Line 1792 of yacc.c  */
-#line 649 "parser.yy"
+
     {
 		(yyval.node) = (yyvsp[(1) - (1)].typeSpecifier);
 	}
     break;
 
   case 104:
-/* Line 1792 of yacc.c  */
-#line 656 "parser.yy"
+
     {
 	}
     break;
 
   case 105:
-/* Line 1792 of yacc.c  */
-#line 659 "parser.yy"
+
     {
 		(yyval.function) = (yyvsp[(1) - (4)].function);
 		(yyval.function)->SetReturnSemantic((yyvsp[(4) - (4)].identifier));
@@ -4344,8 +4267,7 @@ yyreduce:
     break;
 
   case 108:
-/* Line 1792 of yacc.c  */
-#line 672 "parser.yy"
+
     {
 		(yyval.function) = (yyvsp[(1) - (2)].function);
 		(yyval.function)->AddParameter((yyvsp[(2) - (2)].parameterDeclerator));
@@ -4353,8 +4275,7 @@ yyreduce:
     break;
 
   case 109:
-/* Line 1792 of yacc.c  */
-#line 677 "parser.yy"
+
     {
 		(yyval.function) = (yyvsp[(1) - (3)].function);
 		(yyval.function)->AddParameter((yyvsp[(3) - (3)].parameterDeclerator));
@@ -4362,8 +4283,7 @@ yyreduce:
     break;
 
   case 110:
-/* Line 1792 of yacc.c  */
-#line 685 "parser.yy"
+
     {
 		(yyval.function) = std::make_shared<AST::CFunction>((yyvsp[(2) - (3)].identifier), (yyvsp[(1) - (3)].fullySpecifiedType));
 		(yyval.function)->SetSourceLocation(yylloc);
@@ -4374,8 +4294,7 @@ yyreduce:
     break;
 
   case 111:
-/* Line 1792 of yacc.c  */
-#line 693 "parser.yy"
+
     {
 		(yyval.function) = std::make_shared<AST::CFunction>((yyvsp[(3) - (4)].identifier), (yyvsp[(2) - (4)].fullySpecifiedType));
 		(yyval.function)->SetSourceLocation(yylloc);
@@ -4386,8 +4305,7 @@ yyreduce:
     break;
 
   case 112:
-/* Line 1792 of yacc.c  */
-#line 704 "parser.yy"
+
     {
 		AST::CFullySpecifiedType::TPointer type = std::make_shared<AST::CFullySpecifiedType>((yyvsp[(1) - (2)].typeSpecifier));
 		type->SetSourceLocation(yylloc);
@@ -4400,8 +4318,7 @@ yyreduce:
     break;
 
   case 113:
-/* Line 1792 of yacc.c  */
-#line 714 "parser.yy"
+
     {
 		AST::CFullySpecifiedType::TPointer type = std::make_shared<AST::CFullySpecifiedType>((yyvsp[(1) - (4)].typeSpecifier));
 		type->SetSourceLocation(yylloc);
@@ -4415,8 +4332,7 @@ yyreduce:
     break;
 
   case 114:
-/* Line 1792 of yacc.c  */
-#line 725 "parser.yy"
+
     {
 		AST::CFullySpecifiedType::TPointer type = std::make_shared<AST::CFullySpecifiedType>((yyvsp[(1) - (4)].typeSpecifier));
 		type->SetSourceLocation(yylloc);
@@ -4430,8 +4346,7 @@ yyreduce:
     break;
 
   case 115:
-/* Line 1792 of yacc.c  */
-#line 736 "parser.yy"
+
     {
 		AST::CFullySpecifiedType::TPointer type = std::make_shared<AST::CFullySpecifiedType>((yyvsp[(1) - (2)].typeSpecifier));
 		type->SetSourceLocation(yylloc);
@@ -4446,8 +4361,7 @@ yyreduce:
     break;
 
   case 116:
-/* Line 1792 of yacc.c  */
-#line 748 "parser.yy"
+
     {
 		AST::CFullySpecifiedType::TPointer type = std::make_shared<AST::CFullySpecifiedType>((yyvsp[(1) - (7)].typeSpecifier));
 		type->SetSourceLocation(yylloc);
@@ -4463,144 +4377,126 @@ yyreduce:
     break;
 
   case 117:
-/* Line 1792 of yacc.c  */
-#line 764 "parser.yy"
+
     {
 		#pragma message("FIXME")
 	}
     break;
 
   case 118:
-/* Line 1792 of yacc.c  */
-#line 768 "parser.yy"
+
     {
 	   
 	}
     break;
 
   case 119:
-/* Line 1792 of yacc.c  */
-#line 772 "parser.yy"
+
     {
 	  
 	}
     break;
 
   case 120:
-/* Line 1792 of yacc.c  */
-#line 776 "parser.yy"
+
     {
 	  
 	}
     break;
 
   case 121:
-/* Line 1792 of yacc.c  */
-#line 780 "parser.yy"
+
     {
 	 
 	}
     break;
 
   case 123:
-/* Line 1792 of yacc.c  */
-#line 785 "parser.yy"
+
     {
 	  
 	}
     break;
 
   case 124:
-/* Line 1792 of yacc.c  */
-#line 789 "parser.yy"
+
     {
 	  
 	}
     break;
 
   case 125:
-/* Line 1792 of yacc.c  */
-#line 796 "parser.yy"
+
     {
 		#pragma message("FIXME")
 	}
     break;
 
   case 126:
-/* Line 1792 of yacc.c  */
-#line 800 "parser.yy"
+
     {
 	  
 	}
     break;
 
   case 127:
-/* Line 1792 of yacc.c  */
-#line 804 "parser.yy"
+
     {
 	  
 	}
     break;
 
   case 128:
-/* Line 1792 of yacc.c  */
-#line 808 "parser.yy"
+
     {
 	
 	}
     break;
 
   case 129:
-/* Line 1792 of yacc.c  */
-#line 812 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 130:
-/* Line 1792 of yacc.c  */
-#line 816 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 131:
-/* Line 1792 of yacc.c  */
-#line 820 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 132:
-/* Line 1792 of yacc.c  */
-#line 824 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 133:
-/* Line 1792 of yacc.c  */
-#line 828 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 134:
-/* Line 1792 of yacc.c  */
-#line 832 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 137:
-/* Line 1792 of yacc.c  */
-#line 844 "parser.yy"
+
     {
 		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>((yyvsp[(3) - (3)].identifier), false, AST::CExpression::TPointer(), AST::CExpression::TPointer());
 		decleration->SetSourceLocation(yylloc);
@@ -4613,8 +4509,7 @@ yyreduce:
     break;
 
   case 138:
-/* Line 1792 of yacc.c  */
-#line 854 "parser.yy"
+
     {
 		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>((yyvsp[(3) - (5)].identifier), true, AST::CExpression::TPointer(), AST::CExpression::TPointer());
 		decleration->SetSourceLocation(yylloc);
@@ -4627,8 +4522,7 @@ yyreduce:
     break;
 
   case 139:
-/* Line 1792 of yacc.c  */
-#line 864 "parser.yy"
+
     {
 		AST::CDecleration::TPointer decleration = (yyvsp[(3) - (3)].declaration);
 
@@ -4640,8 +4534,7 @@ yyreduce:
     break;
 
   case 140:
-/* Line 1792 of yacc.c  */
-#line 873 "parser.yy"
+
     {
 		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>((yyvsp[(3) - (7)].identifier), true, AST::CExpression::TPointer(), (yyvsp[(7) - (7)].expression));
 		decleration->SetSourceLocation(yylloc);
@@ -4654,8 +4547,7 @@ yyreduce:
     break;
 
   case 141:
-/* Line 1792 of yacc.c  */
-#line 883 "parser.yy"
+
     {
 		AST::CDecleration::TPointer decleration = (yyvsp[(3) - (5)].declaration);
 
@@ -4667,8 +4559,7 @@ yyreduce:
     break;
 
   case 142:
-/* Line 1792 of yacc.c  */
-#line 892 "parser.yy"
+
     {
 		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>((yyvsp[(3) - (5)].identifier), false, AST::CExpression::TPointer(), (yyvsp[(5) - (5)].expression));
 		decleration->SetSourceLocation(yylloc);
@@ -4681,8 +4572,7 @@ yyreduce:
     break;
 
   case 143:
-/* Line 1792 of yacc.c  */
-#line 906 "parser.yy"
+
     {
 		(yyval.decleratorList) = std::make_shared<AST::CDecleratorList>((yyvsp[(1) - (1)].fullySpecifiedType));
 		(yyval.decleratorList)->SetSourceLocation(yylloc);
@@ -4690,8 +4580,7 @@ yyreduce:
     break;
 
   case 144:
-/* Line 1792 of yacc.c  */
-#line 911 "parser.yy"
+
     {
 		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>((yyvsp[(2) - (2)].identifier), false, AST::CExpression::TPointer(), AST::CExpression::TPointer());
 
@@ -4702,8 +4591,7 @@ yyreduce:
     break;
 
   case 145:
-/* Line 1792 of yacc.c  */
-#line 919 "parser.yy"
+
     {
 		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>((yyvsp[(2) - (4)].identifier), true, AST::CExpression::TPointer(), AST::CExpression::TPointer());
 
@@ -4714,8 +4602,7 @@ yyreduce:
     break;
 
   case 146:
-/* Line 1792 of yacc.c  */
-#line 927 "parser.yy"
+
     {
 		AST::CDecleration::TPointer decleration = (yyvsp[(2) - (2)].declaration);
 
@@ -4726,8 +4613,7 @@ yyreduce:
     break;
 
   case 147:
-/* Line 1792 of yacc.c  */
-#line 935 "parser.yy"
+
     {
 		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>((yyvsp[(2) - (6)].identifier), true, AST::CExpression::TPointer(), (yyvsp[(6) - (6)].expression));
 
@@ -4738,8 +4624,7 @@ yyreduce:
     break;
 
   case 148:
-/* Line 1792 of yacc.c  */
-#line 943 "parser.yy"
+
     {
 		AST::CDecleration::TPointer decleration = (yyvsp[(2) - (4)].declaration);
 		decleration->SetInitialiser((yyvsp[(4) - (4)].expression));
@@ -4751,8 +4636,7 @@ yyreduce:
     break;
 
   case 149:
-/* Line 1792 of yacc.c  */
-#line 952 "parser.yy"
+
     {
 		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>((yyvsp[(2) - (4)].identifier), false, AST::CExpression::TPointer(), (yyvsp[(4) - (4)].expression));
 
@@ -4763,8 +4647,7 @@ yyreduce:
     break;
 
   case 150:
-/* Line 1792 of yacc.c  */
-#line 960 "parser.yy"
+
     {
 		AST::CDecleration::TPointer decleration = std::make_shared<AST::CDecleration>((yyvsp[(2) - (2)].identifier), false, AST::CExpression::TPointer(), AST::CExpression::TPointer());
 
@@ -4776,8 +4659,7 @@ yyreduce:
     break;
 
   case 151:
-/* Line 1792 of yacc.c  */
-#line 972 "parser.yy"
+
     {
 		(yyval.fullySpecifiedType) = std::make_shared<AST::CFullySpecifiedType>((yyvsp[(1) - (1)].typeSpecifier));
 		(yyval.fullySpecifiedType)->SetSourceLocation(yylloc);
@@ -4785,8 +4667,7 @@ yyreduce:
     break;
 
   case 152:
-/* Line 1792 of yacc.c  */
-#line 977 "parser.yy"
+
     {
 		(yyval.fullySpecifiedType) = std::make_shared<AST::CFullySpecifiedType>((yyvsp[(1) - (2)].typeQualifier), (yyvsp[(2) - (2)].typeSpecifier));
 		(yyval.fullySpecifiedType)->SetSourceLocation(yylloc);
@@ -4794,272 +4675,238 @@ yyreduce:
     break;
 
   case 153:
-/* Line 1792 of yacc.c  */
-#line 985 "parser.yy"
+
     {
 		(yyval.typeQualifier) = (yyvsp[(3) - (4)].typeQualifier);
 	}
     break;
 
   case 155:
-/* Line 1792 of yacc.c  */
-#line 993 "parser.yy"
+
     {
 	   
 	}
     break;
 
   case 156:
-/* Line 1792 of yacc.c  */
-#line 1000 "parser.yy"
+
     {
 	 
 	}
     break;
 
   case 157:
-/* Line 1792 of yacc.c  */
-#line 1004 "parser.yy"
+
     {
 	   
 	}
     break;
 
   case 158:
-/* Line 1792 of yacc.c  */
-#line 1011 "parser.yy"
+
     {
 	  
 	}
     break;
 
   case 159:
-/* Line 1792 of yacc.c  */
-#line 1015 "parser.yy"
+
     {
 	 
 	}
     break;
 
   case 160:
-/* Line 1792 of yacc.c  */
-#line 1019 "parser.yy"
+
     {
 	  
 	}
     break;
 
   case 162:
-/* Line 1792 of yacc.c  */
-#line 1027 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 163:
-/* Line 1792 of yacc.c  */
-#line 1031 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 164:
-/* Line 1792 of yacc.c  */
-#line 1035 "parser.yy"
+
     {
 	
 	}
     break;
 
   case 165:
-/* Line 1792 of yacc.c  */
-#line 1039 "parser.yy"
+
     {
 	  
 	}
     break;
 
   case 168:
-/* Line 1792 of yacc.c  */
-#line 1048 "parser.yy"
+
     {
 	  
 	}
     break;
 
   case 170:
-/* Line 1792 of yacc.c  */
-#line 1053 "parser.yy"
+
     {
 	  
 	}
     break;
 
   case 171:
-/* Line 1792 of yacc.c  */
-#line 1057 "parser.yy"
+
     {
 	  
 	}
     break;
 
   case 172:
-/* Line 1792 of yacc.c  */
-#line 1061 "parser.yy"
+
     {
 	
 	}
     break;
 
   case 173:
-/* Line 1792 of yacc.c  */
-#line 1065 "parser.yy"
+
     {
 	   
 	}
     break;
 
   case 174:
-/* Line 1792 of yacc.c  */
-#line 1072 "parser.yy"
+
     {
 	  
 	}
     break;
 
   case 175:
-/* Line 1792 of yacc.c  */
-#line 1076 "parser.yy"
+
     {
 	 
 	}
     break;
 
   case 176:
-/* Line 1792 of yacc.c  */
-#line 1080 "parser.yy"
+
     {
 	 
 	}
     break;
 
   case 177:
-/* Line 1792 of yacc.c  */
-#line 1084 "parser.yy"
+
     {
 	 
 	}
     break;
 
   case 178:
-/* Line 1792 of yacc.c  */
-#line 1088 "parser.yy"
+
     {
 	  
 	}
     break;
 
   case 179:
-/* Line 1792 of yacc.c  */
-#line 1092 "parser.yy"
+
     {
 	  
 	}
     break;
 
   case 180:
-/* Line 1792 of yacc.c  */
-#line 1096 "parser.yy"
+
     {
 	  
 	}
     break;
 
   case 181:
-/* Line 1792 of yacc.c  */
-#line 1100 "parser.yy"
+
     {
 	  
 	}
     break;
 
   case 182:
-/* Line 1792 of yacc.c  */
-#line 1104 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 183:
-/* Line 1792 of yacc.c  */
-#line 1108 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 184:
-/* Line 1792 of yacc.c  */
-#line 1112 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 185:
-/* Line 1792 of yacc.c  */
-#line 1116 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 186:
-/* Line 1792 of yacc.c  */
-#line 1120 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 187:
-/* Line 1792 of yacc.c  */
-#line 1124 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 188:
-/* Line 1792 of yacc.c  */
-#line 1128 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 189:
-/* Line 1792 of yacc.c  */
-#line 1135 "parser.yy"
+
     {
 		(yyval.typeSpecifier) = (yyvsp[(1) - (1)].typeSpecifier);
 	}
     break;
 
   case 190:
-/* Line 1792 of yacc.c  */
-#line 1139 "parser.yy"
+
     {
 		(yyval.typeSpecifier) = (yyvsp[(2) - (2)].typeSpecifier);
 	}
     break;
 
   case 193:
-/* Line 1792 of yacc.c  */
-#line 1151 "parser.yy"
+
     {
 		(yyval.typeSpecifier) = (yyvsp[(1) - (3)].typeSpecifier);
 		(yyval.typeSpecifier)->SetIsArray(true);
@@ -5068,8 +4915,7 @@ yyreduce:
     break;
 
   case 194:
-/* Line 1792 of yacc.c  */
-#line 1157 "parser.yy"
+
     {
 		(yyval.typeSpecifier) = (yyvsp[(1) - (3)].typeSpecifier);
 		(yyval.typeSpecifier)->SetIsUnSizedArray(true);
@@ -5077,8 +4923,7 @@ yyreduce:
     break;
 
   case 195:
-/* Line 1792 of yacc.c  */
-#line 1162 "parser.yy"
+
     {
 		(yyval.typeSpecifier) = (yyvsp[(1) - (4)].typeSpecifier);
 		(yyval.typeSpecifier)->SetIsArray(true);
@@ -5087,16 +4932,14 @@ yyreduce:
     break;
 
   case 196:
-/* Line 1792 of yacc.c  */
-#line 1168 "parser.yy"
+
     {
 	  #pragma message("fix me")
 	}
     break;
 
   case 197:
-/* Line 1792 of yacc.c  */
-#line 1175 "parser.yy"
+
     {
 		(yyval.typeSpecifier) = std::make_shared<AST::CTypeSpecifier>((yyvsp[(1) - (1)].precisionType));
 		(yyval.typeSpecifier)->SetSourceLocation(yylloc);
@@ -5104,8 +4947,7 @@ yyreduce:
     break;
 
   case 198:
-/* Line 1792 of yacc.c  */
-#line 1180 "parser.yy"
+
     {
 		(yyval.typeSpecifier) = std::make_shared<AST::CTypeSpecifier>("float4");
 		(yyval.typeSpecifier)->SetSourceLocation(yylloc);
@@ -5113,8 +4955,7 @@ yyreduce:
     break;
 
   case 199:
-/* Line 1792 of yacc.c  */
-#line 1185 "parser.yy"
+
     {
 		(yyval.typeSpecifier) = std::make_shared<AST::CTypeSpecifier>((yyvsp[(1) - (6)].identifier), (yyvsp[(3) - (6)].precisionType));
 		(yyval.typeSpecifier)->SetSourceLocation(yylloc);
@@ -5123,8 +4964,7 @@ yyreduce:
     break;
 
   case 200:
-/* Line 1792 of yacc.c  */
-#line 1191 "parser.yy"
+
     {
 		(yyval.typeSpecifier) = std::make_shared<AST::CTypeSpecifier>((yyvsp[(1) - (4)].identifier), (yyvsp[(3) - (4)].precisionType));
 		(yyval.typeSpecifier)->SetSourceLocation(yylloc);
@@ -5132,8 +4972,7 @@ yyreduce:
     break;
 
   case 201:
-/* Line 1792 of yacc.c  */
-#line 1196 "parser.yy"
+
     {
 		(yyval.typeSpecifier) = std::make_shared<AST::CTypeSpecifier>((yyvsp[(1) - (4)].identifier), (yyvsp[(3) - (4)].identifier));
 		(yyval.typeSpecifier)->SetSourceLocation(yylloc);
@@ -5141,8 +4980,7 @@ yyreduce:
     break;
 
   case 202:
-/* Line 1792 of yacc.c  */
-#line 1201 "parser.yy"
+
     {
 		(yyval.typeSpecifier) = std::make_shared<AST::CTypeSpecifier>((yyvsp[(1) - (6)].identifier), (yyvsp[(3) - (6)].identifier));
 		(yyval.typeSpecifier)->SetSourceLocation(yylloc);
@@ -5151,8 +4989,7 @@ yyreduce:
     break;
 
   case 203:
-/* Line 1792 of yacc.c  */
-#line 1207 "parser.yy"
+
     {
 		(yyval.typeSpecifier) = std::make_shared<AST::CTypeSpecifier>((yyvsp[(1) - (6)].identifier), (yyvsp[(1) - (6)].identifier));
 		(yyval.typeSpecifier)->SetSourceLocation(yylloc);
@@ -5160,8 +4997,7 @@ yyreduce:
     break;
 
   case 204:
-/* Line 1792 of yacc.c  */
-#line 1212 "parser.yy"
+
     {
 		(yyval.typeSpecifier) = std::make_shared<AST::CTypeSpecifier>((yyvsp[(1) - (1)].structSpecifier));
 		(yyval.typeSpecifier)->SetSourceLocation(yylloc);
@@ -5169,8 +5005,7 @@ yyreduce:
     break;
 
   case 205:
-/* Line 1792 of yacc.c  */
-#line 1217 "parser.yy"
+
     {
 		(yyval.typeSpecifier) = std::make_shared<AST::CTypeSpecifier>((yyvsp[(1) - (1)].identifier));
 		(yyval.typeSpecifier)->SetSourceLocation(yylloc);
@@ -5178,482 +5013,403 @@ yyreduce:
     break;
 
   case 206:
-/* Line 1792 of yacc.c  */
-#line 1224 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Void; }
     break;
 
   case 207:
-/* Line 1792 of yacc.c  */
-#line 1225 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Float; }
     break;
 
   case 208:
-/* Line 1792 of yacc.c  */
-#line 1226 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Half; }
     break;
 
   case 209:
-/* Line 1792 of yacc.c  */
-#line 1227 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Fixed; }
     break;
 
   case 210:
-/* Line 1792 of yacc.c  */
-#line 1228 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Int; }
     break;
 
   case 211:
-/* Line 1792 of yacc.c  */
-#line 1229 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::UInt; }
     break;
 
   case 212:
-/* Line 1792 of yacc.c  */
-#line 1230 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Bool; }
     break;
 
   case 213:
-/* Line 1792 of yacc.c  */
-#line 1231 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Float2; }
     break;
 
   case 214:
-/* Line 1792 of yacc.c  */
-#line 1232 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Float3; }
     break;
 
   case 215:
-/* Line 1792 of yacc.c  */
-#line 1233 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Float4; }
     break;
 
   case 216:
-/* Line 1792 of yacc.c  */
-#line 1234 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Half2; }
     break;
 
   case 217:
-/* Line 1792 of yacc.c  */
-#line 1235 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Half3; }
     break;
 
   case 218:
-/* Line 1792 of yacc.c  */
-#line 1236 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Half4; }
     break;
 
   case 219:
-/* Line 1792 of yacc.c  */
-#line 1237 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Fixed2; }
     break;
 
   case 220:
-/* Line 1792 of yacc.c  */
-#line 1238 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Fixed3; }
     break;
 
   case 221:
-/* Line 1792 of yacc.c  */
-#line 1239 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Fixed4; }
     break;
 
   case 222:
-/* Line 1792 of yacc.c  */
-#line 1240 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Bool2; }
     break;
 
   case 223:
-/* Line 1792 of yacc.c  */
-#line 1241 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Bool3; }
     break;
 
   case 224:
-/* Line 1792 of yacc.c  */
-#line 1242 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Bool4; }
     break;
 
   case 225:
-/* Line 1792 of yacc.c  */
-#line 1243 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Int2; }
     break;
 
   case 226:
-/* Line 1792 of yacc.c  */
-#line 1244 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Int3; }
     break;
 
   case 227:
-/* Line 1792 of yacc.c  */
-#line 1245 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Int4; }
     break;
 
   case 228:
-/* Line 1792 of yacc.c  */
-#line 1246 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::UInt2; }
     break;
 
   case 229:
-/* Line 1792 of yacc.c  */
-#line 1247 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::UInt3; }
     break;
 
   case 230:
-/* Line 1792 of yacc.c  */
-#line 1248 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::UInt4; }
     break;
 
   case 231:
-/* Line 1792 of yacc.c  */
-#line 1249 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Float2x2; }
     break;
 
   case 232:
-/* Line 1792 of yacc.c  */
-#line 1250 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Float2x3; }
     break;
 
   case 233:
-/* Line 1792 of yacc.c  */
-#line 1251 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Float2x4; }
     break;
 
   case 234:
-/* Line 1792 of yacc.c  */
-#line 1252 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Float3x2; }
     break;
 
   case 235:
-/* Line 1792 of yacc.c  */
-#line 1253 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Float3x3; }
     break;
 
   case 236:
-/* Line 1792 of yacc.c  */
-#line 1254 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Float3x4; }
     break;
 
   case 237:
-/* Line 1792 of yacc.c  */
-#line 1255 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Float4x2; }
     break;
 
   case 238:
-/* Line 1792 of yacc.c  */
-#line 1256 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Float4x3; }
     break;
 
   case 239:
-/* Line 1792 of yacc.c  */
-#line 1257 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Float4x4; }
     break;
 
   case 240:
-/* Line 1792 of yacc.c  */
-#line 1258 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Half2x2; }
     break;
 
   case 241:
-/* Line 1792 of yacc.c  */
-#line 1259 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Half2x3; }
     break;
 
   case 242:
-/* Line 1792 of yacc.c  */
-#line 1260 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Half2x4; }
     break;
 
   case 243:
-/* Line 1792 of yacc.c  */
-#line 1261 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Half3x2; }
     break;
 
   case 244:
-/* Line 1792 of yacc.c  */
-#line 1262 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Half3x3; }
     break;
 
   case 245:
-/* Line 1792 of yacc.c  */
-#line 1263 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Half3x4; }
     break;
 
   case 246:
-/* Line 1792 of yacc.c  */
-#line 1264 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Half4x2; }
     break;
 
   case 247:
-/* Line 1792 of yacc.c  */
-#line 1265 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Half4x3; }
     break;
 
   case 248:
-/* Line 1792 of yacc.c  */
-#line 1266 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Half4x4; }
     break;
 
   case 249:
-/* Line 1792 of yacc.c  */
-#line 1267 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Fixed2x2; }
     break;
 
   case 250:
-/* Line 1792 of yacc.c  */
-#line 1268 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Fixed2x3; }
     break;
 
   case 251:
-/* Line 1792 of yacc.c  */
-#line 1269 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Fixed2x4; }
     break;
 
   case 252:
-/* Line 1792 of yacc.c  */
-#line 1270 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Fixed3x2; }
     break;
 
   case 253:
-/* Line 1792 of yacc.c  */
-#line 1271 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Fixed3x3; }
     break;
 
   case 254:
-/* Line 1792 of yacc.c  */
-#line 1272 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Fixed3x4; }
     break;
 
   case 255:
-/* Line 1792 of yacc.c  */
-#line 1273 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Fixed4x2; }
     break;
 
   case 256:
-/* Line 1792 of yacc.c  */
-#line 1274 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Fixed4x3; }
     break;
 
   case 257:
-/* Line 1792 of yacc.c  */
-#line 1275 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::Fixed4x4; }
     break;
 
   case 258:
-/* Line 1792 of yacc.c  */
-#line 1276 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::SamplerState; }
     break;
 
   case 259:
-/* Line 1792 of yacc.c  */
-#line 1277 "parser.yy"
+
     { (yyval.precisionType) = &AST::CPrecisionType::SamplerComparisonState; }
     break;
 
   case 260:
-/* Line 1792 of yacc.c  */
-#line 1282 "parser.yy"
+
     { (yyval.identifier) = "Buffer"; }
     break;
 
   case 261:
-/* Line 1792 of yacc.c  */
-#line 1283 "parser.yy"
+
     { (yyval.identifier) = "Texture1D"; }
     break;
 
   case 262:
-/* Line 1792 of yacc.c  */
-#line 1284 "parser.yy"
+
     { (yyval.identifier) = "Texture1DArray"; }
     break;
 
   case 263:
-/* Line 1792 of yacc.c  */
-#line 1285 "parser.yy"
+
     { (yyval.identifier) = "Texture2D"; }
     break;
 
   case 264:
-/* Line 1792 of yacc.c  */
-#line 1286 "parser.yy"
+
     { (yyval.identifier) = "Texture2DArray"; }
     break;
 
   case 265:
-/* Line 1792 of yacc.c  */
-#line 1287 "parser.yy"
+
     { (yyval.identifier) = "Texture2DMS"; }
     break;
 
   case 266:
-/* Line 1792 of yacc.c  */
-#line 1288 "parser.yy"
+
     { (yyval.identifier) = "Texture2DMSArray"; }
     break;
 
   case 267:
-/* Line 1792 of yacc.c  */
-#line 1289 "parser.yy"
+
     { (yyval.identifier) = "Texture3D"; }
     break;
 
   case 268:
-/* Line 1792 of yacc.c  */
-#line 1290 "parser.yy"
+
     { (yyval.identifier) = "TextureCube"; }
     break;
 
   case 269:
-/* Line 1792 of yacc.c  */
-#line 1291 "parser.yy"
+
     { (yyval.identifier) = "TextureCubeArray"; }
     break;
 
   case 270:
-/* Line 1792 of yacc.c  */
-#line 1292 "parser.yy"
+
     { (yyval.identifier) = "RWBuffer"; }
     break;
 
   case 271:
-/* Line 1792 of yacc.c  */
-#line 1293 "parser.yy"
+
     { (yyval.identifier) = "RWTexture1D"; }
     break;
 
   case 272:
-/* Line 1792 of yacc.c  */
-#line 1294 "parser.yy"
+
     { (yyval.identifier) = "RWTexture1DArray"; }
     break;
 
   case 273:
-/* Line 1792 of yacc.c  */
-#line 1295 "parser.yy"
+
     { (yyval.identifier) = "RWTexture2D"; }
     break;
 
   case 274:
-/* Line 1792 of yacc.c  */
-#line 1296 "parser.yy"
+
     { (yyval.identifier) = "RWTexture2DArray"; }
     break;
 
   case 275:
-/* Line 1792 of yacc.c  */
-#line 1297 "parser.yy"
+
     { (yyval.identifier) = "RWTexture3D"; }
     break;
 
   case 276:
-/* Line 1792 of yacc.c  */
-#line 1301 "parser.yy"
+
     { (yyval.identifier) = "PointStream"; }
     break;
 
   case 277:
-/* Line 1792 of yacc.c  */
-#line 1302 "parser.yy"
+
     { (yyval.identifier) = "LinearStream"; }
     break;
 
   case 278:
-/* Line 1792 of yacc.c  */
-#line 1303 "parser.yy"
+
     { (yyval.identifier) = "TriangleStream"; }
     break;
 
   case 279:
-/* Line 1792 of yacc.c  */
-#line 1307 "parser.yy"
+
     { (yyval.identifier) = "InputPatch"; }
     break;
 
   case 280:
-/* Line 1792 of yacc.c  */
-#line 1311 "parser.yy"
+
     { (yyval.identifier) = "OutputPatch"; }
     break;
 
   case 281:
-/* Line 1792 of yacc.c  */
-#line 1315 "parser.yy"
+
     {
 		    
 		  }
     break;
 
   case 282:
-/* Line 1792 of yacc.c  */
-#line 1318 "parser.yy"
+
     {
 		    
 		  }
     break;
 
   case 283:
-/* Line 1792 of yacc.c  */
-#line 1321 "parser.yy"
+
     {
 		    
 		  }
     break;
 
   case 284:
-/* Line 1792 of yacc.c  */
-#line 1328 "parser.yy"
+
     {
 		(yyval.structSpecifier) = std::make_shared<AST::CStructSpecifier>((yyvsp[(2) - (5)].identifier), (yyvsp[(4) - (5)].node));
 		(yyval.structSpecifier)->SetSourceLocation(yylloc);
@@ -5663,8 +5419,7 @@ yyreduce:
     break;
 
   case 285:
-/* Line 1792 of yacc.c  */
-#line 1335 "parser.yy"
+
     {
 		(yyval.structSpecifier) = std::make_shared<AST::CStructSpecifier>((yyvsp[(2) - (7)].identifier), (yyvsp[(4) - (7)].identifier), (yyvsp[(6) - (7)].node));
 		(yyval.structSpecifier)->SetSourceLocation(yylloc);
@@ -5672,8 +5427,7 @@ yyreduce:
     break;
 
   case 286:
-/* Line 1792 of yacc.c  */
-#line 1340 "parser.yy"
+
     {
 		(yyval.structSpecifier) = std::make_shared<AST::CStructSpecifier>("", (yyvsp[(3) - (4)].node));
 		(yyval.structSpecifier)->SetSourceLocation(yylloc);
@@ -5681,8 +5435,7 @@ yyreduce:
     break;
 
   case 287:
-/* Line 1792 of yacc.c  */
-#line 1345 "parser.yy"
+
     {
 		(yyval.structSpecifier) = std::make_shared<AST::CStructSpecifier>((yyvsp[(2) - (4)].identifier), AST::CNode::TPointer());
 		(yyval.structSpecifier)->SetSourceLocation(yylloc);
@@ -5692,8 +5445,7 @@ yyreduce:
     break;
 
   case 288:
-/* Line 1792 of yacc.c  */
-#line 1352 "parser.yy"
+
     {
 		(yyval.structSpecifier) = std::make_shared<AST::CStructSpecifier>((yyvsp[(2) - (6)].identifier), (yyvsp[(4) - (6)].identifier), AST::CNode::TPointer());
 		(yyval.structSpecifier)->SetSourceLocation(yylloc);
@@ -5703,8 +5455,7 @@ yyreduce:
     break;
 
   case 289:
-/* Line 1792 of yacc.c  */
-#line 1359 "parser.yy"
+
     {
 		(yyval.structSpecifier) = std::make_shared<AST::CStructSpecifier>("", AST::CNode::TPointer());
 		(yyval.structSpecifier)->SetSourceLocation(yylloc);
@@ -5712,8 +5463,7 @@ yyreduce:
     break;
 
   case 290:
-/* Line 1792 of yacc.c  */
-#line 1367 "parser.yy"
+
     {
 		(yyval.node) = std::make_shared<AST::CCBufferSpecifier>((yyvsp[(2) - (5)].identifier), (yyvsp[(4) - (5)].node));
 		(yyval.node)->SetSourceLocation(yyloc);
@@ -5721,16 +5471,15 @@ yyreduce:
     break;
 
   case 291:
-/* Line 1792 of yacc.c  */
-#line 1375 "parser.yy"
+
     {
 		(yyval.node) = (yyvsp[(1) - (1)].decleratorList);
+		(yyvsp[(1) - (1)].decleratorList)->AddSelfLink();
 	}
     break;
 
   case 292:
-/* Line 1792 of yacc.c  */
-#line 1379 "parser.yy"
+
     {
 		(yyval.node) = (yyvsp[(1) - (2)].node);
 		(yyval.node)->AddLink((yyvsp[(2) - (2)].decleratorList));
@@ -5738,16 +5487,14 @@ yyreduce:
     break;
 
   case 293:
-/* Line 1792 of yacc.c  */
-#line 1387 "parser.yy"
+
     {
 	   #pragma message("Fix me")
 	}
     break;
 
   case 294:
-/* Line 1792 of yacc.c  */
-#line 1394 "parser.yy"
+
     {
 		(yyval.fullySpecifiedType) = std::make_shared<AST::CFullySpecifiedType>((yyvsp[(1) - (1)].typeSpecifier));
 		(yyval.fullySpecifiedType)->SetSourceLocation(yyloc);
@@ -5755,8 +5502,7 @@ yyreduce:
     break;
 
   case 295:
-/* Line 1792 of yacc.c  */
-#line 1399 "parser.yy"
+
     {
 		(yyval.fullySpecifiedType) = std::make_shared<AST::CFullySpecifiedType>((yyvsp[(1) - (2)].typeQualifier), (yyvsp[(2) - (2)].typeSpecifier));
 		(yyval.fullySpecifiedType)->SetSourceLocation(yyloc);
@@ -5764,40 +5510,36 @@ yyreduce:
     break;
 
   case 297:
-/* Line 1792 of yacc.c  */
-#line 1408 "parser.yy"
+
     {
 		#pragma message("Fix em")
 	}
     break;
 
   case 298:
-/* Line 1792 of yacc.c  */
-#line 1412 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 299:
-/* Line 1792 of yacc.c  */
-#line 1416 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 300:
-/* Line 1792 of yacc.c  */
-#line 1423 "parser.yy"
+
     {
 		(yyval.declaration) = (yyvsp[(1) - (1)].declaration);
+		(yyvsp[(1) - (1)].declaration)->AddSelfLink();
 	}
     break;
 
   case 301:
-/* Line 1792 of yacc.c  */
-#line 1427 "parser.yy"
+
     {
 		(yyval.declaration) = (yyvsp[(1) - (3)].declaration);
 		(yyval.declaration)->AddLink((yyvsp[(3) - (3)].declaration));
@@ -5805,544 +5547,522 @@ yyreduce:
     break;
 
   case 302:
-/* Line 1792 of yacc.c  */
-#line 1435 "parser.yy"
+
     {
-	  
+		(yyval.declaration) = std::make_shared<AST::CDecleration>((yyvsp[(1) - (1)].identifier), false, AST::CExpression::TPointer(), AST::CExpression::TPointer());
+		(yyval.declaration)->SetSourceLocation(yyloc);
+		state->symbols.AddVariable(std::make_shared<CVariable>((yyvsp[(1) - (1)].identifier)));
 	}
     break;
 
   case 303:
-/* Line 1792 of yacc.c  */
-#line 1439 "parser.yy"
+
     {
-	 
+		(yyval.declaration) = (yyvsp[(1) - (1)].declaration);
 	}
     break;
 
   case 304:
-/* Line 1792 of yacc.c  */
-#line 1443 "parser.yy"
+
     {
-		
+		(yyval.declaration) = std::make_shared<AST::CDecleration>((yyvsp[(1) - (3)].identifier), false, AST::CExpression::TPointer(), AST::CExpression::TPointer());
+		(yyval.declaration)->SetSourceLocation(yyloc);
+		(yyval.declaration)->SetSemantec((yyvsp[(3) - (3)].identifier));
+		state->symbols.AddVariable(std::make_shared<CVariable>((yyvsp[(1) - (3)].identifier)));
 	}
     break;
 
   case 305:
-/* Line 1792 of yacc.c  */
-#line 1447 "parser.yy"
+
     {
-	  
+		(yyval.declaration) = std::make_shared<AST::CDecleration>((yyvsp[(1) - (6)].identifier), true, (yyvsp[(3) - (6)].expression), AST::CExpression::TPointer());
+		(yyval.declaration)->SetSourceLocation(yyloc);
+		(yyval.declaration)->SetSemantec((yyvsp[(6) - (6)].identifier));
 	}
     break;
 
   case 306:
-/* Line 1792 of yacc.c  */
-#line 1454 "parser.yy"
+
     {
-	  
+		(yyval.declaration) = std::make_shared<AST::CDecleration>((yyvsp[(1) - (4)].identifier), true, (yyvsp[(3) - (4)].expression), AST::CExpression::TPointer());
+		(yyval.declaration)->SetSourceLocation(yyloc);
 	}
     break;
 
   case 307:
-/* Line 1792 of yacc.c  */
-#line 1458 "parser.yy"
+
     {
-	  
+		(yyval.declaration) = (yyvsp[(1) - (4)].declaration);
+		(yyvsp[(3) - (4)].expression)->AddLink((yyval.declaration)->GetArraySize());
+		(yyval.declaration)->SetArraySize((yyvsp[(3) - (4)].expression));
 	}
     break;
 
   case 309:
-/* Line 1792 of yacc.c  */
-#line 1465 "parser.yy"
+
     {
-		
+		(yyval.expression) = std::make_shared<AST::CInitialiserListExpression>();
+		(yyval.expression)->AddChildExpression((yyvsp[(2) - (3)].expression));
 	}
     break;
 
   case 310:
-/* Line 1792 of yacc.c  */
-#line 1472 "parser.yy"
+
     {
-		
+		(yyval.expression) = (yyvsp[(1) - (1)].expression);
+		(yyval.expression)->AddSelfLink();
 	}
     break;
 
   case 311:
-/* Line 1792 of yacc.c  */
-#line 1476 "parser.yy"
+
     {
-		
+		(yyval.expression) = (yyvsp[(1) - (3)].expression);
+		(yyval.expression)->AddLink((yyvsp[(3) - (3)].expression));
 	}
     break;
 
   case 312:
-/* Line 1792 of yacc.c  */
-#line 1480 "parser.yy"
+
     {
-	
+		(yyval.expression) = (yyvsp[(1) - (2)].expression);
 	}
     break;
 
   case 314:
-/* Line 1792 of yacc.c  */
-#line 1492 "parser.yy"
+
     {  }
     break;
 
   case 316:
-/* Line 1792 of yacc.c  */
-#line 1495 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 317:
-/* Line 1792 of yacc.c  */
-#line 1499 "parser.yy"
+
     {
-		
+		(yyval.node) = (yyvsp[(2) - (2)].node);
+		(yyval.node)->AddAttribute((yyvsp[(1) - (2)].attribute));
 	}
     break;
 
   case 324:
-/* Line 1792 of yacc.c  */
-#line 1515 "parser.yy"
+
     {
-	  
+		(yyval.compoundStatement) = std::make_shared<AST::CCompoundStatement>(true, AST::CNode::TPointer());
+		(yyval.compoundStatement)->SetSourceLocation(yyloc);
+		state->symbols.PopScope();
 	}
     break;
 
   case 325:
-/* Line 1792 of yacc.c  */
-#line 1519 "parser.yy"
+
     {
-	   
+		state->symbols.PushScope();
 	}
     break;
 
   case 326:
-/* Line 1792 of yacc.c  */
-#line 1523 "parser.yy"
+
     {
-	  
+		(yyval.compoundStatement) = std::make_shared<AST::CCompoundStatement>(true, (yyvsp[(3) - (4)].node));
+		(yyval.compoundStatement)->SetSourceLocation(yyloc);
+		state->symbols.PopScope();
 	}
     break;
 
   case 327:
-/* Line 1792 of yacc.c  */
-#line 1529 "parser.yy"
-    {  }
+
+    { (yyval.node) = (yyvsp[(1) - (1)].compoundStatement); }
     break;
 
   case 329:
-/* Line 1792 of yacc.c  */
-#line 1535 "parser.yy"
+
     {
-	  
+		(yyval.compoundStatement) = std::make_shared<AST::CCompoundStatement>(false, AST::CNode::TPointer());
+		(yyval.compoundStatement)->SetSourceLocation(yyloc);
 	}
     break;
 
   case 330:
-/* Line 1792 of yacc.c  */
-#line 1539 "parser.yy"
+
     {
-	   
+		(yyval.compoundStatement) = std::make_shared<AST::CCompoundStatement>(false, (yyvsp[(2) - (3)].node));
+		(yyval.compoundStatement)->SetSourceLocation(yyloc);
 	}
     break;
 
   case 331:
-/* Line 1792 of yacc.c  */
-#line 1546 "parser.yy"
+
     {
-	  
+		#pragma message("Fix me")
+		(yyval.node) = (yyvsp[(1) - (1)].node);
+		(yyval.node)->AddSelfLink();
 	}
     break;
 
   case 332:
-/* Line 1792 of yacc.c  */
-#line 1550 "parser.yy"
+
     {
-	  
+		#pragma message("Fix me")
+		(yyval.node)->AddLink((yyvsp[(2) - (2)].node));
 	}
     break;
 
   case 333:
-/* Line 1792 of yacc.c  */
-#line 1557 "parser.yy"
+
     {
-	 
+		(yyval.node) = std::make_shared<AST::CExpressionStatement>(AST::CExpression::TPointer());
+		(yyval.node)->SetSourceLocation(yyloc);
 	}
     break;
 
   case 334:
-/* Line 1792 of yacc.c  */
-#line 1561 "parser.yy"
+
     {
-	 
+		(yyval.node) = std::make_shared<AST::CExpressionStatement>((yyvsp[(1) - (2)].expression));
+		(yyval.node)->SetSourceLocation(yyloc);
 	}
     break;
 
   case 335:
-/* Line 1792 of yacc.c  */
-#line 1568 "parser.yy"
+
     {
-	   
+		(yyval.node) = std::make_shared<AST::CSelectionStatement>((yyvsp[(3) - (5)].expression), (yyvsp[(5) - (5)].selectionRestStatement).thenStatement, (yyvsp[(5) - (5)].selectionRestStatement).elseStatement);
+		(yyval.node)->SetSourceLocation(yyloc);
 	}
     break;
 
   case 336:
-/* Line 1792 of yacc.c  */
-#line 1575 "parser.yy"
+
     {
-	  
+		(yyval.selectionRestStatement).thenStatement = (yyvsp[(1) - (3)].node);
+		(yyval.selectionRestStatement).elseStatement = (yyvsp[(3) - (3)].node);
 	}
     break;
 
   case 337:
-/* Line 1792 of yacc.c  */
-#line 1579 "parser.yy"
+
     {
-	  
+		(yyval.selectionRestStatement).thenStatement = (yyvsp[(1) - (1)].node);
+		(yyval.selectionRestStatement).elseStatement = AST::CNode::TPointer();
 	}
     break;
 
   case 338:
-/* Line 1792 of yacc.c  */
-#line 1586 "parser.yy"
+
     {
-	  
+		(yyval.node) = (yyvsp[(1) - (1)].expression);
 	}
     break;
 
   case 339:
-/* Line 1792 of yacc.c  */
-#line 1590 "parser.yy"
+
     {
-	  
+		AST::CDecleration::TPointer decl = std::make_shared<AST::CDecleration>((yyvsp[(2) - (4)].identifier), false, AST::CExpression::TPointer(), (yyvsp[(4) - (4)].expression));
+		decl->SetSourceLocation(yyloc);
+		AST::CDecleratorList::TPointer declerator = std::make_shared<AST::CDecleratorList>((yyvsp[(1) - (4)].fullySpecifiedType));
+		declerator->SetSourceLocation(yyloc);
+
+		declerator->AddDecleration(decl);
+		(yyval.node) = declerator;
 	}
     break;
 
   case 340:
-/* Line 1792 of yacc.c  */
-#line 1601 "parser.yy"
+
     {
-	  
+	  #pragma message("Fix me");
 	}
     break;
 
   case 341:
-/* Line 1792 of yacc.c  */
-#line 1608 "parser.yy"
+
     {
-	  
+	  #pragma message("Fix me");
 	}
     break;
 
   case 342:
-/* Line 1792 of yacc.c  */
-#line 1612 "parser.yy"
+
     {
-	 
+	 #pragma message("Fix me");
 	}
     break;
 
   case 343:
-/* Line 1792 of yacc.c  */
-#line 1619 "parser.yy"
+
     {
-	  
+	  #pragma message("Fix me");
 	}
     break;
 
   case 344:
-/* Line 1792 of yacc.c  */
-#line 1623 "parser.yy"
+
     {
-	  
+	  #pragma message("Fix me");
 	}
     break;
 
   case 345:
-/* Line 1792 of yacc.c  */
-#line 1630 "parser.yy"
+
     {
-	  
+	  #pragma message("Fix me");
 	}
     break;
 
   case 346:
-/* Line 1792 of yacc.c  */
-#line 1634 "parser.yy"
+
     {
-	   
+	   #pragma message("Fix me");
 	}
     break;
 
   case 347:
-/* Line 1792 of yacc.c  */
-#line 1641 "parser.yy"
+
     {
-	  
+	  #pragma message("Fix me");
 	}
     break;
 
   case 348:
-/* Line 1792 of yacc.c  */
-#line 1645 "parser.yy"
+
     {
-	  
+	  #pragma message("Fix me");
 	}
     break;
 
   case 349:
-/* Line 1792 of yacc.c  */
-#line 1652 "parser.yy"
+
     {
-	   
+	   #pragma message("Fix me");
 	}
     break;
 
   case 350:
-/* Line 1792 of yacc.c  */
-#line 1656 "parser.yy"
+
     {
-	  
+	  #pragma message("Fix me");
 	}
     break;
 
   case 351:
-/* Line 1792 of yacc.c  */
-#line 1663 "parser.yy"
+
     {
-	  
+	  #pragma message("Fix me");
 	}
     break;
 
   case 352:
-/* Line 1792 of yacc.c  */
-#line 1667 "parser.yy"
+
     {
-	  
+	  #pragma message("Fix me");
 	}
     break;
 
   case 353:
-/* Line 1792 of yacc.c  */
-#line 1671 "parser.yy"
+
     {
-	 
+	 #pragma message("Fix me");
 	}
     break;
 
   case 357:
-/* Line 1792 of yacc.c  */
-#line 1684 "parser.yy"
+
     {
-	  
+	  #pragma message("Fix me");
 	}
     break;
 
   case 358:
-/* Line 1792 of yacc.c  */
-#line 1691 "parser.yy"
+
     {
-	 
+	 #pragma message("Fix me");
 	}
     break;
 
   case 359:
-/* Line 1792 of yacc.c  */
-#line 1695 "parser.yy"
+
     {
-	 
+	 #pragma message("Fix me");
 	}
     break;
 
   case 360:
-/* Line 1792 of yacc.c  */
-#line 1703 "parser.yy"
+
     {
-	 
+		(yyval.node) = std::make_shared<AST::CFlowControlStatement>(AST::CFlowControlStatement::EType::Continue);
+		(yyval.node)->SetSourceLocation(yyloc);
 	}
     break;
 
   case 361:
-/* Line 1792 of yacc.c  */
-#line 1707 "parser.yy"
+
     {
-	  
+		(yyval.node) = std::make_shared<AST::CFlowControlStatement>(AST::CFlowControlStatement::EType::Break);
+		(yyval.node)->SetSourceLocation(yyloc);
 	}
     break;
 
   case 362:
-/* Line 1792 of yacc.c  */
-#line 1711 "parser.yy"
+
     {
-	
+		(yyval.node) = std::make_shared<AST::CFlowControlStatement>(AST::CFlowControlStatement::EType::Return);
+		(yyval.node)->SetSourceLocation(yyloc);
 	}
     break;
 
   case 363:
-/* Line 1792 of yacc.c  */
-#line 1715 "parser.yy"
+
     {
-	 
+		(yyval.node) = std::make_shared<AST::CFlowControlStatement>(AST::CFlowControlStatement::EType::Return, (yyvsp[(2) - (3)].expression));
+		(yyval.node)->SetSourceLocation(yyloc);
 	}
     break;
 
   case 364:
-/* Line 1792 of yacc.c  */
-#line 1719 "parser.yy"
+
     {
-	  
+		(yyval.node) = std::make_shared<AST::CFlowControlStatement>(AST::CFlowControlStatement::EType::Discard);
+		(yyval.node)->SetSourceLocation(yyloc);
 	}
     break;
 
   case 365:
-/* Line 1792 of yacc.c  */
-#line 1725 "parser.yy"
+
     { (yyval.node) = (yyvsp[(1) - (1)].functionDefinition); }
     break;
 
   case 366:
-/* Line 1792 of yacc.c  */
-#line 1726 "parser.yy"
+
     { (yyval.node) = (yyvsp[(1) - (1)].node); }
     break;
 
   case 367:
-/* Line 1792 of yacc.c  */
-#line 1731 "parser.yy"
+
     {
-		
+		#pragma message("Fix me");
 	}
     break;
 
   case 368:
-/* Line 1792 of yacc.c  */
-#line 1735 "parser.yy"
+
     {
-		
+		#pragma message("Fix me");
 	}
     break;
 
   case 369:
-/* Line 1792 of yacc.c  */
-#line 1742 "parser.yy"
+
     {
-	
+		#pragma message("Fix me");
 	}
     break;
 
   case 370:
-/* Line 1792 of yacc.c  */
-#line 1746 "parser.yy"
-    {
 
+    {
+	#pragma message("Fix me");
 	}
     break;
 
   case 371:
-/* Line 1792 of yacc.c  */
-#line 1753 "parser.yy"
+
     {
-		
+		#pragma message("Fix me");
 	}
     break;
 
   case 372:
-/* Line 1792 of yacc.c  */
-#line 1757 "parser.yy"
+
     {
-		
+		#pragma message("Fix me");
 	}
     break;
 
   case 373:
-/* Line 1792 of yacc.c  */
-#line 1761 "parser.yy"
+
     {
-		
+		#pragma message("Fix me");
 	}
     break;
 
   case 374:
-/* Line 1792 of yacc.c  */
-#line 1765 "parser.yy"
+
     {
-		
+		#pragma message("Fix me");
 	}
     break;
 
   case 375:
-/* Line 1792 of yacc.c  */
-#line 1772 "parser.yy"
+
     {
-		
+		(yyval.attribute) = (yyvsp[(1) - (2)].attribute);
+		(yyval.attribute)->AddLink((yyvsp[(2) - (2)].attribute));
 	}
     break;
 
   case 376:
-/* Line 1792 of yacc.c  */
-#line 1776 "parser.yy"
+
     {
-		
+		(yyval.attribute) = (yyvsp[(1) - (1)].attribute);
 	}
     break;
 
   case 377:
-/* Line 1792 of yacc.c  */
-#line 1783 "parser.yy"
+
     {
-	  
+		(yyval.functionDefinition) = std::make_shared<AST::CFunctionDefinition>((yyvsp[(1) - (2)].function), (yyvsp[(2) - (2)].compoundStatement));
+		(yyval.functionDefinition)->SetSourceLocation(yyloc);
+		state->symbols.PopScope();
 	}
     break;
 
   case 378:
-/* Line 1792 of yacc.c  */
-#line 1787 "parser.yy"
+
     {
-	  
+		(yyval.functionDefinition) = std::make_shared<AST::CFunctionDefinition>((yyvsp[(2) - (3)].function), (yyvsp[(3) - (3)].compoundStatement));
+		(yyval.functionDefinition)->SetSourceLocation(yyloc);
+		(yyval.functionDefinition)->AddAttribute((yyvsp[(1) - (3)].attribute));
+		state->symbols.PopScope();
+
+		(yyval.functionDefinition)->AddAttribute((yyvsp[(1) - (3)].attribute));
 	}
     break;
 
   case 379:
-/* Line 1792 of yacc.c  */
-#line 1794 "parser.yy"
+
     {
 		(yyval.node) = (yyvsp[(1) - (1)].function);
 	}
     break;
 
   case 380:
-/* Line 1792 of yacc.c  */
-#line 1798 "parser.yy"
+
     {
 		
 	}
     break;
 
   case 381:
-/* Line 1792 of yacc.c  */
-#line 1802 "parser.yy"
+
     {
 		(yyval.node) = (yyvsp[(1) - (1)].typeSpecifier);
 	}
     break;
 
   case 382:
-/* Line 1792 of yacc.c  */
-#line 1806 "parser.yy"
+
     {
 	   (yyval.node) = (yyvsp[(1) - (1)].node);
 	}
     break;
 
 
-/* Line 1792 of yacc.c  */
-#line 6346 "parser.cpp"
+
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -6580,5 +6300,4 @@ yyreturn:
 }
 
 
-/* Line 2055 of yacc.c  */
-#line 1812 "parser.yy"
+

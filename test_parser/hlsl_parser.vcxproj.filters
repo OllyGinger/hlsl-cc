@@ -28,6 +28,12 @@
     <Filter Include="Source Files\AST\Nodes">
       <UniqueIdentifier>{b2b0f094-e50e-4605-845f-225bd15ab1fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\AST\Visitor">
+      <UniqueIdentifier>{238cf937-1afc-4bc8-ac79-89a7edb6c620}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AST\Visitor">
+      <UniqueIdentifier>{421bf3e6-f851-42f4-b48e-29327bbcea44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -99,6 +105,12 @@
     <ClInclude Include="AST\Nodes\Precision.h">
       <Filter>Header Files\AST\Nodes</Filter>
     </ClInclude>
+    <ClInclude Include="AST\Visitor\Visitor.h">
+      <Filter>Header Files\AST\Visitor</Filter>
+    </ClInclude>
+    <ClInclude Include="AST\Visitor\PrintASTVisitor.h">
+      <Filter>Header Files\AST\Visitor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="hlsl_parser.cpp">
@@ -123,6 +135,42 @@
       <Filter>Source Files\AST\Nodes</Filter>
     </ClCompile>
     <ClCompile Include="AST\Nodes\TypeSpecifier.cpp">
+      <Filter>Source Files\AST\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="AST\Nodes\Attribute.cpp">
+      <Filter>Source Files\AST\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="AST\Nodes\CompoundStatement.cpp">
+      <Filter>Source Files\AST\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="AST\Visitor\PrintASTVisitor.cpp">
+      <Filter>Source Files\AST\Visitor</Filter>
+    </ClCompile>
+    <ClCompile Include="AST\Nodes\Declaration.cpp">
+      <Filter>Source Files\AST\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="AST\Nodes\Expression.cpp">
+      <Filter>Source Files\AST\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="AST\Nodes\FlowControlStatement.cpp">
+      <Filter>Source Files\AST\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="AST\Nodes\Function.cpp">
+      <Filter>Source Files\AST\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="AST\Nodes\IterationStatement.cpp">
+      <Filter>Source Files\AST\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="AST\Nodes\ParameterDeclerator.cpp">
+      <Filter>Source Files\AST\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="AST\Nodes\SelectionStatement.cpp">
+      <Filter>Source Files\AST\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="AST\Nodes\StructSpecifier.cpp">
+      <Filter>Source Files\AST\Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="AST\Nodes\SwitchStatement.cpp">
       <Filter>Source Files\AST\Nodes</Filter>
     </ClCompile>
   </ItemGroup>

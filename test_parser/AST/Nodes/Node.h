@@ -17,25 +17,32 @@ namespace AST
 		uint32_t Column;
 	};
 
-	class CNode
+	class IVisitor;
+
+	class CNode : public std::enable_shared_from_this<CNode>
 	{
 	public:
 		typedef std::shared_ptr<CNode> TPointer;
 		typedef std::list<TPointer> TSubNodeList;
 
-		inline CSourceLocation GetSourceLocation() const;
+		virtual bool VisitNodes(class IVisitor* visitor);
+
+		CSourceLocation GetSourceLocation() const;
 		void SetSourceLocation(const char *pSourceFile, uint32_t line, uint32_t column);
 		void SetSourceLocation(const struct YYLTYPE &location);
 
 		void AddLink(CNode::TPointer node);
+		void AddSelfLink();
+		void AddAttribute(CNode::TPointer node);
 
 	protected:
 		// Don't allow instantiations of the base class
 		CNode();
 
-	private:
+	protected:
 		CSourceLocation m_SourceLocation;
 		TSubNodeList m_Links;
+		TSubNodeList m_Attributes;
 	};
 
 }

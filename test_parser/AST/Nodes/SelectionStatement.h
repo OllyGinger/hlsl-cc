@@ -15,6 +15,17 @@ namespace AST
 			, m_Else(els)
 		{}
 
+		CExpression::TPointer GetCondition() const { return m_Condition; }
+		void SetCondition(CExpression::TPointer val) { m_Condition = val; }
+
+		CNode::TPointer GetThen() const { return m_Then; }
+		void SetThen(CNode::TPointer val) { m_Then = val; }
+
+		CNode::TPointer GetElse() const { return m_Else; }
+		void SetElse(CNode::TPointer val) { m_Else = val; }
+
+		virtual bool VisitNodes(class IVisitor* visitor) override;
+
 	private:
 		CExpression::TPointer m_Condition;
 		CNode::TPointer m_Then;

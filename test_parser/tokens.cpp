@@ -1032,7 +1032,7 @@ static yyconst flex_int16_t yy_rule_linenum[212] =
       278,  279,  280,  281,  282,  283,  284,  285,  288,  289,
 
       290,  292,  297,  298,  299,  300,  301,  303,  307,  312,
-      317
+      318
     } ;
 
 /* The intent behind this definition is that it'll catch
@@ -1049,7 +1049,7 @@ static yyconst flex_int16_t yy_rule_linenum[212] =
 #include "AST/ParserType.h"
 #include "parser.hpp"
 
-static int classify_identifier(const char *name);
+static int classify_identifier(struct THLSLParserState *state, const char *name);
 
 #define YY_USER_ACTION            \
    do {               \
@@ -2578,21 +2578,22 @@ case 210:
 YY_RULE_SETUP
 #line 312 "tokens.ll"
 { 
+												struct THLSLParserState *state = yyextra;
                                                 yylval->identifier = std::string(yytext, yyleng);
-                                                return classify_identifier(yytext);
+                                                return classify_identifier(state, yytext);
                                             }
 	YY_BREAK
 case 211:
 YY_RULE_SETUP
-#line 317 "tokens.ll"
+#line 318 "tokens.ll"
 { return yytext[0]; }
 	YY_BREAK
 case 212:
 YY_RULE_SETUP
-#line 319 "tokens.ll"
+#line 320 "tokens.ll"
 ECHO;
 	YY_BREAK
-#line 2596 "tokens.cpp"
+#line 2597 "tokens.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -3859,18 +3860,17 @@ void yyfree (void * ptr , yyscan_t yyscanner)
 
 /* %ok-for-header */
 
-#line 318 "tokens.ll"
+#line 319 "tokens.ll"
 
 
 
-int
-classify_identifier(const char *name)
+int classify_identifier(struct THLSLParserState *state, const char *name)
 {
-   /*if (state->symbols->get_variable(name) || state->symbols->get_function(name))
+   if (state->symbols.FindVariable(name) || state->symbols.FindFunction(name))
       return TOK_IDENTIFIER;
-   else if (state->symbols->get_type(name))
+   else if (state->symbols.FindType(name))
       return TOK_TYPE_IDENTIFIER;
-   else*/
+   else
       return TOK_NEW_IDENTIFIER;
 }
 

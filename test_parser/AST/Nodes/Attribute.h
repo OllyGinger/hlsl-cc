@@ -12,12 +12,12 @@ namespace AST
 			: m_Name(name)
 		{}
 
+		virtual bool VisitNodes(IVisitor* visitor) override;
 		TString GetName() const { return m_Name; }
 
 	private:
 		TString m_Name;
 	};
-
 
 	class CAttributeArgument : public CNode
 	{
@@ -32,6 +32,8 @@ namespace AST
 			: m_IsString(false)
 			, m_ExpressionArgument(argument)
 		{}
+
+		virtual bool VisitNodes(class IVisitor* visitor) override;
 
 	private:
 		TString m_StringArgument;

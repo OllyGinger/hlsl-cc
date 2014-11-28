@@ -23,6 +23,8 @@ namespace AST
 			: m_Type(type), m_InitStatement(init), m_ConditionStatement(cond), m_RestExpression(rest), m_Body(body)
 		{}
 
+		virtual bool VisitNodes(class IVisitor* visitor) override;
+
 	private:
 		EType::Enum m_Type;
 		CNode::TPointer m_InitStatement;

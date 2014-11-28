@@ -8,14 +8,24 @@ public:
 	typedef std::shared_ptr<CSymbol> TPointer;
 	typedef std::string TString;
 
-	CSymbol(const TString &identifier)
+	enum EType
+	{
+		Variable,
+		Function,
+		Type
+	};
+
+	CSymbol(EType type, const TString &identifier)
 		: m_Identifier(identifier)
+		, m_Type(type)
 	{}
 
 	TString GetIdentifier() const { return m_Identifier; }
+	EType GetType() const { return m_Type; }
 
 private:
 	TString m_Identifier;
+	EType m_Type;
 };
 
 
@@ -23,10 +33,8 @@ private:
 class CVariable : public CSymbol
 {
 public:
-	typedef std::shared_ptr<CVariable> TPointer;
-
 	CVariable(const TString &identifier)
-		: CSymbol(identifier)
+		: CSymbol(CSymbol::Variable, identifier)
 	{}
 };
 
@@ -38,7 +46,7 @@ public:
 	typedef std::shared_ptr<CFunction> TPointer;
 
 	CFunction(const TString &identifier)
-		: CSymbol(identifier)
+		: CSymbol(CSymbol::Function, identifier)
 	{}
 };
 
@@ -49,6 +57,6 @@ public:
 	typedef std::shared_ptr<CType> TPointer;
 
 	CType(const TString &identifier)
-		: CSymbol(identifier)
+		: CSymbol(CSymbol::Type, identifier)
 	{}
 };

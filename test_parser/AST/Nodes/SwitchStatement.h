@@ -14,6 +14,8 @@ namespace AST
 			, m_Body(body)
 		{}
 
+		virtual bool VisitNodes(class IVisitor* visitor) override;
+
 	private:
 		CExpression::TPointer m_Test;
 		CNode::TPointer m_Body;
@@ -23,7 +25,9 @@ namespace AST
 	class CSwitchBody : public CNode
 	{
 	public:
-		typedef std::shared_ptr<CSwitchStatement> TPointer;
+		typedef std::shared_ptr<CSwitchBody> TPointer;
+
+		virtual bool VisitNodes(class IVisitor* visitor) override;
 	};
 
 
@@ -31,6 +35,8 @@ namespace AST
 	{
 	public:
 		typedef std::shared_ptr<CCaseLabel> TPointer;
+
+		virtual bool VisitNodes(class IVisitor* visitor) override;
 	};
 
 
@@ -38,6 +44,8 @@ namespace AST
 	{
 	public:
 		typedef std::shared_ptr<CCaseLabelList> TPointer;
+
+		virtual bool VisitNodes(class IVisitor* visitor) override;
 	};
 
 
@@ -45,6 +53,8 @@ namespace AST
 	{
 	public:
 		typedef std::shared_ptr<CCaseStatement> TPointer;
+
+		virtual bool VisitNodes(class IVisitor* visitor) override;
 	};
 
 
@@ -52,5 +62,7 @@ namespace AST
 	{
 	public:
 		typedef std::shared_ptr<CCaseStatementList> TPointer;
+
+		virtual bool VisitNodes(class IVisitor* visitor) override;
 	};
 }

@@ -1,4 +1,4 @@
-cbuffer constants
-{
-	float4x4 g_matWorldViewProj_VSC;
+int f(int x) {
+  int result = (x / 42);
+  return result;
 }

@@ -8,13 +8,15 @@ namespace AST
 	public:
 		typedef std::shared_ptr<CCompoundStatement> TPointer;
 
-		CCompoundStatement(int32_t scope, CNode::TPointer statements)
+		CCompoundStatement(bool newScope, CNode::TPointer statements)
 			: m_Statements(statements)
-			, m_Scope(scope)
+			, m_Scope(newScope)
 		{}
+
+		virtual bool VisitNodes(class IVisitor* visitor) override;
 
 	private:
 		CNode::TPointer m_Statements;
-		int32_t m_Scope;
+		bool m_Scope;
 	};
 }

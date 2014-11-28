@@ -4,7 +4,7 @@
 #include "AST/ParserType.h"
 #include "parser.hpp"
 
-static int classify_identifier(const char *name);
+static int classify_identifier(struct THLSLParserState *state, const char *name);
 
 #define YY_USER_ACTION            \
    do {               \
@@ -310,21 +310,21 @@ false                                       {
                                             }
 
 [_a-zA-Z][_a-zA-Z0-9]*                      { 
+												struct THLSLParserState *state = yyextra;
                                                 yylval->identifier = std::string(yytext, yyleng);
-                                                return classify_identifier(yytext);
+                                                return classify_identifier(state, yytext);
                                             }
 
 .                                           { return yytext[0]; }
 
 %%
 
-int
-classify_identifier(const char *name)
+int classify_identifier(struct THLSLParserState *state, const char *name)
 {
-   /*if (state->symbols->get_variable(name) || state->symbols->get_function(name))
+   if (state->symbols.FindVariable(name) || state->symbols.FindFunction(name))
       return TOK_IDENTIFIER;
-   else if (state->symbols->get_type(name))
+   else if (state->symbols.FindType(name))
       return TOK_TYPE_IDENTIFIER;
-   else*/
+   else
       return TOK_NEW_IDENTIFIER;
 }

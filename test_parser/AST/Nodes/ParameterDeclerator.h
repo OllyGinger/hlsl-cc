@@ -40,6 +40,8 @@ namespace AST
 		bool GetIsFormal() const { return m_IsFormal; }
 		void SetIsFormal(bool val) { m_IsFormal = val; }
 
+		virtual bool VisitNodes(class IVisitor* visitor) override;
+
 	private:
 		CFullySpecifiedType::TPointer m_Type;
 		TString m_Identifier;

@@ -1,5 +1,6 @@
 #include "AST/Nodes/TypeSpecifier.h"
 #include "AST/Nodes/PrecisionType.h"
+#include "AST/Visitor/Visitor.h"
 
 namespace AST
 {
@@ -19,6 +20,7 @@ namespace AST
 		, m_PatchSize(0)
 		, m_IsArray(false)
 		, m_IsUnSizedArray(false)
+		, m_ArraySize(nullptr)
 	{}
 
 	CTypeSpecifier::CTypeSpecifier(TString name, const CPrecisionType* innerTypeName)
@@ -29,6 +31,7 @@ namespace AST
 		, m_IsArray(false)
 		, m_IsUnSizedArray(false)
 		, m_Precision(innerTypeName->GetPrecision())
+		, m_ArraySize(nullptr)
 	{}
 
 	CTypeSpecifier::CTypeSpecifier(const CPrecisionType* innerTypeName)
@@ -39,6 +42,7 @@ namespace AST
 		, m_IsArray(false)
 		, m_IsUnSizedArray(false)
 		, m_Precision(innerTypeName->GetPrecision())
+		, m_ArraySize(nullptr)
 	{}
 
 	CTypeSpecifier::CTypeSpecifier(CStructSpecifier::TPointer structure)
@@ -49,6 +53,35 @@ namespace AST
 		, m_IsUnSizedArray(false)
 		, m_Structure(structure)
 		, m_Precision(EPrecision::None)
+		, m_ArraySize(nullptr)
 	{}
 
+	bool CTypeSpecifier::VisitNodes(IVisitor* visitor)
+	{
+		visitor->VisitTypeSpecifier(std::static_pointer_cast<CTypeSpecifier>(shared_from_this()));
+
+		visitor->PushScope();
+		if (m_Structure)
+		{
+			m_Structure->VisitNodes(visitor);
+		}
+		
+		if (m_IsArray && m_ArraySize)
+		{
+			m_ArraySize->VisitNodes(visitor);
+		}
+		visitor->PopScope();
+
+		return true;
+	}
+
+	bool CFullySpecifiedType::VisitNodes(IVisitor* visitor)
+	{
+		visitor->VisitFullySpecifiedType(std::static_pointer_cast<CFullySpecifiedType>(shared_from_this()));
+		
+		visitor->PushScope();
+		m_Specifier->VisitNodes(visitor);
+		visitor->PopScope();
+		return true;
+	}
 }

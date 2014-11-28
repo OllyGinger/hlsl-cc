@@ -35,6 +35,11 @@ public:
 	bool AddFunction(CFunction::TPointer func);
 	bool AddType(CType::TPointer type);
 
+	CSymbol::TPointer FindSymbol(CSymbol::TString name);
+	CSymbol::TPointer FindVariable(CSymbol::TString name);
+	CSymbol::TPointer FindFunction(CSymbol::TString name);
+	CSymbol::TPointer FindType(CSymbol::TString name);
+
 	uint32_t GetDepth() const;
 
 private:

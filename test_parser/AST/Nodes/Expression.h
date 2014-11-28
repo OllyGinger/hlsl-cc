@@ -69,7 +69,7 @@ namespace AST
 			Noof,
 		};
 
-		const char* const ToString(Enum op) const
+		static const char* const ToString(Enum op)
 		{
 			static const char* const operators[] =
 			{
@@ -122,10 +122,10 @@ namespace AST
 				"{}",
 
 				"ident",
-				"int",
-				"uint",
-				"float",
-				"bool",
+				"IntConstant",
+				"UIntConstant",
+				"FloatConstant",
+				"BoolConstant",
 
 				"seq",
 
@@ -142,6 +142,19 @@ namespace AST
 	{
 	public:
 		typedef std::shared_ptr<CExpression> TPointer;
+		typedef std::array<CNode::TPointer, 3> TSubExpressionList;
+
+		struct TExpression
+		{
+			union
+			{
+				int32_t IntConstant;
+				uint32_t UIntConstant;
+				float FloatConstant;
+				bool BoolConstant;
+			} u;
+		};
+		
 		CExpression()
 		{}
 
@@ -186,30 +199,35 @@ namespace AST
 		inline void MakeIntConstant(int32_t constant)
 		{
 			m_Operator = EOperator::IntConstant;
-			m_Expression.IntConstant = constant;
+			m_Expression.u.IntConstant = constant;
 		}
 
 		inline void MakeUIntConstant(int32_t constant)
 		{
 			m_Operator = EOperator::UIntConstant;
-			m_Expression.UIntConstant = constant;
+			m_Expression.u.UIntConstant = constant;
 		}
 
 		inline void MakeFloatConstant(float constant)
 		{
 			m_Operator = EOperator::FloatConstant;
-			m_Expression.FloatConstant = constant;
+			m_Expression.u.FloatConstant = constant;
 		}
 
 		inline void MakeBoolConstant(bool constant)
 		{
 			m_Operator = EOperator::BoolConstant;
-			m_Expression.BoolConstant = constant;
+			m_Expression.u.BoolConstant = constant;
 		}
 
 		inline void SetIdentifier(TString identifier)
 		{
 			m_Identifier = identifier;
+		}
+
+		inline TString GetIdentifier() const
+		{
+			return m_Identifier;
 		}
 
 		inline void SetTypeSpecifier(CTypeSpecifier::TPointer typeSpecifier)
@@ -223,9 +241,12 @@ namespace AST
 		}
 
 		inline EOperator::Enum GetOperator() const { return m_Operator; }
+		inline TExpression GetExpression() const { return m_Expression; }
+		inline TSubExpressionList& GetSubExpressionList() { return m_SubExpressions; }
+
+		virtual bool VisitNodes(class IVisitor* visitor) override;
 
 	private:
-		typedef std::array<CNode::TPointer, 3> TSubExpressionList;
 
 		TSubExpressionList m_SubExpressions;
 		TString m_Identifier;
@@ -233,15 +254,23 @@ namespace AST
 		EOperator::Enum m_Operator;
 		TSubNodeList m_ChildExpressions;
 
-		union
-		{
-			int32_t IntConstant;
-			uint32_t UIntConstant;
-			float FloatConstant;
-			bool BoolConstant;
-		} m_Expression;
+		TExpression m_Expression;
 	};
 
+	class CExpressionStatement : public CNode
+	{
+	public:
+		typedef std::shared_ptr<CExpressionStatement> TPointer;
+		CExpressionStatement(CExpression::TPointer expression)
+			: m_Expression(expression)
+		{}
+
+		virtual bool VisitNodes(class IVisitor* visitor) override;
+		CExpression::TPointer GetExpression() const { return m_Expression; }
+
+	private:
+		CExpression::TPointer m_Expression;
+	};
 
 	class CBinaryExpression : public CExpression
 	{
@@ -250,13 +279,15 @@ namespace AST
 		CBinaryExpression(EOperator::Enum op, CExpression::TPointer exprA, CExpression::TPointer exprB)
 			: CExpression(op, exprA, exprB)
 		{}
+
+		virtual bool VisitNodes(class IVisitor* visitor) override;
 	};
 
 	
 	class CFunctionExpression : public CExpression
 	{
 	public:
-		typedef std::shared_ptr<CBinaryExpression> TPointer;
+		typedef std::shared_ptr<CFunctionExpression> TPointer;
 		CFunctionExpression(CExpression::TPointer callee)
 			: CExpression(EOperator::FunctionCall, callee)
 			, m_IsConstructor(false)
@@ -268,6 +299,7 @@ namespace AST
 		{}
 
 		bool IsConstructor() const { return m_IsConstructor; }
+		virtual bool VisitNodes(class IVisitor* visitor) override;
 
 	private:
 		bool m_IsConstructor;
@@ -277,9 +309,11 @@ namespace AST
 	class CInitialiserListExpression : public CExpression
 	{
 	public:
-		typedef std::shared_ptr<CBinaryExpression> TPointer;
+		typedef std::shared_ptr<CInitialiserListExpression> TPointer;
 		CInitialiserListExpression()
 			: CExpression(EOperator::InitializerList, CExpression::TPointer(), CExpression::TPointer(), CExpression::TPointer())
 		{}
+
+		virtual bool VisitNodes(class IVisitor* visitor) override;
 	};
 }

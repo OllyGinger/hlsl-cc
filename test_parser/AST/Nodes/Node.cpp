@@ -30,5 +30,24 @@ namespace AST
 	}
 
 
+	void CNode::AddSelfLink()
+	{
+		AddLink(shared_from_this());
+	}
+
+	void CNode::AddAttribute(CNode::TPointer node)
+	{
+		m_Attributes.push_back(node);
+	}
+
+	bool CNode::VisitNodes(class IVisitor* visitor)
+	{
+		for (auto link : m_Links)
+		{
+			link->VisitNodes(visitor);
+		}
+
+		return true;
+	}
 }
 

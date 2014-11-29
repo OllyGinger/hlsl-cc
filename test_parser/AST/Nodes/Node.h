@@ -2,6 +2,13 @@
 #include "AST/AST.h"
 #include <list>
 
+inline void OutputError() {}
+template <typename H, typename... T>
+inline void OutputError(H p, T... t) {
+	std::cerr << p;
+	OutputError(t...);
+}
+
 namespace AST
 {
 	struct CSourceLocation

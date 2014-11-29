@@ -7,9 +7,6 @@ namespace AST
 	class IVisitor
 	{
 	public:
-		virtual void PushScope() = 0;
-		virtual void PopScope() = 0;
-
 		virtual bool VisitAttribute(CAttribute::TPointer attribute) = 0;
 		virtual bool VisitAttributeArgument(CAttributeArgument::TPointer attributeArgument) = 0;
 		virtual bool VisitCompoundStatement(CCompoundStatement::TPointer compoundStatement) = 0;

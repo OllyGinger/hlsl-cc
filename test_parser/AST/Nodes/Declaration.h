@@ -43,23 +43,24 @@ namespace AST
 	{
 	public:
 		typedef std::shared_ptr<CDecleratorList> TPointer;
+		typedef std::list<CDecleration::TPointer> TDeclerationList;
 
 		CDecleratorList(CFullySpecifiedType::TPointer type)
 			: m_Type(type)
 		{}
 
-		inline void AddDecleration(CNode::TPointer param)	{ m_Declerations.push_back(param); }
+		inline void AddDecleration(CDecleration::TPointer param)	{ m_Declerations.push_back(param); }
 		inline bool GetInvariant() const { return m_Invariant; }
 		inline void SetInvariant(bool val) { m_Invariant = val; }
 
 		inline CFullySpecifiedType::TPointer GetType() const { return m_Type; }
-		inline TSubNodeList& GetDeclerations() { return m_Declerations; }
+		inline TDeclerationList& GetDeclerations() { return m_Declerations; }
 
 		virtual bool VisitNodes(class IVisitor* visitor) override;
 
 	private:
 		CFullySpecifiedType::TPointer m_Type;
-		TSubNodeList m_Declerations;
+		TDeclerationList m_Declerations;
 		bool m_Invariant;
 	};
 }

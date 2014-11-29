@@ -36,6 +36,8 @@ namespace AST
 		TString GetTypeName() const { return m_TypeName; }
 		void SetTypeName(TString val) { m_TypeName = val; }
 
+		CStructSpecifier::TPointer GetStructure() const { return m_Structure; }
+
 		virtual bool VisitNodes(class IVisitor* visitor) override;
 
 	private:

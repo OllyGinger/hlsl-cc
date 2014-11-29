@@ -13,9 +13,6 @@ namespace AST
 		CIRGenASTVisitor();
 		~CIRGenASTVisitor();
 
-		virtual void PushScope() override;
-		virtual void PopScope() override;
-
 		virtual bool VisitAttribute(CAttribute::TPointer attribute) override;
 		virtual bool VisitAttributeArgument(CAttributeArgument::TPointer attributeArgument) override;
 		virtual bool VisitCompoundStatement(CCompoundStatement::TPointer compoundStatement) override;
@@ -44,13 +41,26 @@ namespace AST
 		virtual bool VisitTypeSpecifier(CTypeSpecifier::TPointer typeSpecifier) override;
 		virtual bool VisitFullySpecifiedType(CFullySpecifiedType::TPointer fullySpecifiedType) override;
 
+		llvm::Module* GetModule() const { return m_Module; }
+
+		llvm::Function* m_func;
+
+	protected:
+		virtual void PushBlockScope(llvm::BasicBlock* block);
+		virtual void PopBlockScope();
+
 	private:
-		const llvm::Type* TypeOf(CFullySpecifiedType::TPointer type);
-		const llvm::Type* TypeOf(CTypeSpecifier::TPointer type);
+		llvm::Type* TypeOf(CFullySpecifiedType::TPointer type);
+		llvm::Type* TypeOf(CTypeSpecifier::TPointer type);
+		llvm::BasicBlock* GetCurrentScopeBlock() const { return m_BlockStack.top(); }
+
+		llvm::Instruction::BinaryOps GetBinaryOpInstructionForValues(EOperator::Enum op, llvm::Value* lhs, llvm::Value* rhs);
 
 	private:
 		CSymbolTable m_SymbolTable;
 		llvm::Module* m_Module;
 		llvm::IRBuilder<> m_IRBuilder;
+		std::stack<llvm::BasicBlock*> m_BlockStack;
+		llvm::Value* m_LastValue;
 	};
 }

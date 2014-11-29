@@ -1,0 +1,11 @@
+define i32 @f(i32 %x, float %y) {
+entry:
+  %result = alloca i32
+  %0 = add i32 22, 42
+  %1 = add i32 %0, 5
+  store i32 %1, i32* %result
+  %foo = alloca i32
+  store i32 50, i32* %foo
+  %2 = load i32* %result
+  ret i32 %2
+}

@@ -47,7 +47,7 @@ namespace AST
 		{}
 
 		inline EType::Enum GetType() const { return m_Type; }
-		inline CExpression::TPointer GetExpression() const { return m_ReturnExpression; }
+		inline CExpression::TPointer GetReturnExpression() const { return m_ReturnExpression; }
 		virtual bool VisitNodes(class IVisitor* visitor) override;
 
 	private:

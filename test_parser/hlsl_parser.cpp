@@ -7,6 +7,9 @@
 #include "AST/ParserType.h"
 #include "AST/Visitor/PrintASTVisitor.h"
 #include "AST/Visitor/IRGenASTVisitor.h"
+#include <llvm/PassManager.h>
+#include <llvm/Analysis/Passes.h>
+#include <llvm/LinkAllPasses.h>
 
 using namespace std;
 
@@ -19,6 +22,8 @@ void yyset_debug(int debug, yyscan_t yyscanner);
 int yylex_destroy(yyscan_t yyscanner);
 
 int yylex(YYSTYPE *yylval, YYLTYPE *yylloc, void *scanner);
+
+
 
 int main(int argc, char **argv)
 {
@@ -50,6 +55,24 @@ int main(int argc, char **argv)
 	AST::CIRGenASTVisitor irGenVisitor;
 	buffer->VisitNodes(&irGenVisitor);
 
+	// Optimisation pass :D
+	llvm::InitializeNativeTarget();
+	irGenVisitor.GetModule()->dump();
+	llvm::ExecutionEngine* TheExecutionEngine = EngineBuilder(irGenVisitor.GetModule()).create();
+	llvm::PassManager passManager;
+	passManager.add(llvm::createVerifierPass());
+	passManager.add(new llvm::DataLayoutPass(irGenVisitor.GetModule()));
+	passManager.add(llvm::createConstantMergePass());
+	passManager.add(llvm::createConstantPropagationPass());
+	passManager.add(llvm::createDeadStoreEliminationPass());
+	passManager.add(llvm::createDeadCodeEliminationPass());
+	
+	
+
+	llvm::Function* func = irGenVisitor.GetModule()->getFunction("f");
+	passManager.run(*irGenVisitor.GetModule());
+
+	irGenVisitor.GetModule()->dump();
 	//std::cout << programBlock << std::endl;
 
 // 	CodeGenContext context;

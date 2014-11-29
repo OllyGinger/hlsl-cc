@@ -210,7 +210,7 @@ namespace AST
 
 		m_OutputStream << std::endl;
 		PushScope();
-		flowControlStatement->GetExpression()->VisitNodes(this);
+		flowControlStatement->GetReturnExpression()->VisitNodes(this);
 		PopScope();
 		return true;
 	}
@@ -292,7 +292,16 @@ namespace AST
 
 		m_OutputStream << " " << paramTypeSpecifier->GetTypeName() << " ";
 		m_OutputStream << parameterDeclerator->GetIdentifier();
+		
 		m_OutputStream << std::endl;
+		if (parameterDeclerator->GetDefaultValue())
+		{
+			PushScope();
+			parameterDeclerator->GetDefaultValue()->VisitNodes(this);
+			PopScope();
+			m_OutputStream << std::endl;
+		}
+		
 		return true;
 	}
 

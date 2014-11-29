@@ -42,8 +42,8 @@ namespace AST
 		virtual bool VisitFullySpecifiedType(CFullySpecifiedType::TPointer fullySpecifiedType) override;
 
 	private:
-		inline virtual void PushScope() override { m_Depth++; }
-		inline virtual void PopScope() override { m_Depth--; }
+		inline virtual void PushScope() { m_Depth++; }
+		inline virtual void PopScope() { m_Depth--; }
 		void Indent();
 		void OutputSourceLocation(CNode::TPointer node, bool outputFile = false, bool outputLine = true, bool outputCol = true);
 

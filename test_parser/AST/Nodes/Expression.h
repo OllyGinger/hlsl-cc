@@ -118,7 +118,7 @@ namespace AST
 				".",
 				"[]",
 
-				"()",
+				"functionCall",
 				"{}",
 
 				"ident",
@@ -243,6 +243,7 @@ namespace AST
 		inline EOperator::Enum GetOperator() const { return m_Operator; }
 		inline TExpression GetExpression() const { return m_Expression; }
 		inline TSubExpressionList& GetSubExpressionList() { return m_SubExpressions; }
+		inline TSubNodeList& GetChildExpressionList() { return m_ChildExpressions; }
 
 		virtual bool VisitNodes(class IVisitor* visitor) override;
 

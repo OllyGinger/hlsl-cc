@@ -45,7 +45,11 @@ namespace AST
 
 		m_OutputStream << std::endl;
 		PushScope();
-		decleration->GetInitialiser()->VisitNodes(this);
+		if (decleration->GetInitialiser())
+		{
+			decleration->GetInitialiser()->VisitNodes(this);
+		}
+		
 		PopScope();
 		m_OutputStream << std::endl;
 		return true;
@@ -167,13 +171,66 @@ namespace AST
 			}
 		
 			break;
+
+		case EOperator::FieldSelection:
+		{
+			auto subExpression = expression->GetSubExpressionList()[0];
+			m_OutputStream << std::endl;
+
+			if (subExpression)
+			{
+				PushScope();
+				subExpression->VisitNodes(this);
+				PopScope();
+			}
+
+			m_OutputStream << "." << expression->GetIdentifier();
+			break;
 		}
+		case EOperator::FunctionCall:
+		{
+			auto subExpression = expression->GetSubExpressionList()[0];
+			m_OutputStream << std::endl;
+
+			if (subExpression)
+			{
+				PushScope();
+				subExpression->VisitNodes(this);
+				PopScope();
+			}
+
+			for (auto childExpression : expression->GetChildExpressionList())
+			{
+				m_OutputStream << std::endl;
+				PushScope();
+				if (childExpression)
+				{
+					childExpression->VisitNodes(this);
+				}
+				PopScope();
+			}
+
+			break;
+		}
+		}
+
+		
+
 		return true;
 	}
 
 	bool CPrintASTVisitor::VisitExpressionStatement(CExpressionStatement::TPointer expressionStatement)
 	{
-		throw std::logic_error("The method or operation is not implemented.");
+		Indent();
+		m_OutputStream << "ExpressionStatement ";
+		OutputSourceLocation(expressionStatement);
+		m_OutputStream << " ";
+
+		m_OutputStream << std::endl;
+		PushScope();
+		expressionStatement->GetExpression()->VisitNodes(this);
+		PopScope();
+		return true;
 	}
 
 	bool CPrintASTVisitor::VisitBinaryExpression(CBinaryExpression::TPointer binaryExpression)
@@ -192,7 +249,21 @@ namespace AST
 
 	bool CPrintASTVisitor::VisitFunctionExpression(CFunctionExpression::TPointer functionExpression)
 	{
-		throw std::logic_error("The method or operation is not implemented.");
+		Indent();
+		m_OutputStream << "FunctionExpression ";
+		OutputSourceLocation(functionExpression);
+		m_OutputStream << " ";
+
+		if (functionExpression->IsConstructor())
+		{
+			m_OutputStream << "(constructor) ";
+		}
+
+		m_OutputStream << std::endl;
+		PushScope();
+		VisitExpression(functionExpression);
+		PopScope();
+		return true;
 	}
 
 	bool CPrintASTVisitor::VisitInitialiserListExpression(CInitialiserListExpression::TPointer initialiserListExpression)

@@ -762,75 +762,110 @@ parameter_declarator:
 parameter_declaration:
 	parameter_type_qualifier parameter_qualifier parameter_declarator
 	{
-		#pragma message("FIXME")
+		$1.Flags.i |= $2.Flags.i;
+
+		$$ = $3;
+		$$->GetType()->SetQualifier($1);
 	}
 	| parameter_qualifier parameter_type_qualifier parameter_declarator
 	{
-	   
+		$1.Flags.i |= $2.Flags.i;
+
+		$$ = $3;
+		$$->GetType()->SetQualifier($1);
 	}
 	| parameter_type_qualifier parameter_qualifier parameter_type_qualifier parameter_declarator
 	{
-	  
+		$1.Flags.i |= $2.Flags.i;
+		$1.Flags.i |= $3.Flags.i;
+
+		$$ = $4;
+		$$->GetType()->SetQualifier($1);
 	}
 	| parameter_qualifier parameter_declarator
 	{
-	  
+		$$ = $2;
+		$$->GetType()->SetQualifier($1);
 	}
 	| parameter_type_qualifier parameter_declarator
 	{
-	 
+		$$ = $2;
+		$$->GetType()->SetQualifier($1);
 	}
 	| parameter_declarator
 	| parameter_type_qualifier parameter_qualifier parameter_type_specifier
 	{
-	  
+		$1.Flags.i |= $2.Flags.i;
+
+		$$ = std::make_shared<AST::CParameterDeclerator>();
+		$$->SetSourceLocation(yylloc);
+		
+		AST::CFullySpecifiedType::TPointer fst = std::make_shared<AST::CFullySpecifiedType>($1, $3);
+		$$->SetType(fst);
 	}
 	| parameter_qualifier parameter_type_specifier
 	{
-	  
+		$$ = std::make_shared<AST::CParameterDeclerator>();
+		$$->SetSourceLocation(yylloc);
+		
+		AST::CFullySpecifiedType::TPointer fst = std::make_shared<AST::CFullySpecifiedType>($1, $2);
+		$$->SetType(fst);
 	}
 	;
 
 parameter_qualifier:
 	TOK_IN
 	{
-		#pragma message("FIXME")
+		$$.Reset();
+		$$.Flags.q.In = 1;
 	}
 	| TOK_OUT
 	{
-	  
+		$$.Reset();
+		$$.Flags.q.Out = 1;
 	}
 	| TOK_INOUT
 	{
-	  
+		$$.Reset();
+		$$.Flags.q.In = 1;
+		$$.Flags.q.Out = 1;
 	}
 	| TOK_IN TOK_OUT
 	{
-	
+		$$.Reset();
+		$$.Flags.q.In = 1;
+		$$.Flags.q.Out = 1;
 	}
 	| TOK_OUT TOK_IN
 	{
-		
+		$$.Reset();
+		$$.Flags.q.In = 1;
+		$$.Flags.q.Out = 1;
 	}
 	| TOK_POINT
 	{
-		
+		$$.Reset();
+		$$.Flags.q.Point = 1;
 	}
 	| TOK_LINE
 	{
-		
+		$$.Reset();
+		$$.Flags.q.Line = 1;
 	}
 	| TOK_TRIANGLE
 	{
-		
+		$$.Reset();
+		$$.Flags.q.Triangle = 1;
 	}
 	| TOK_LINEADJ
 	{
-		
+		$$.Reset();
+		$$.Flags.q.LineAdj = 1;
 	}
 	| TOK_TRIANGLEADJ
 	{
-		
+		$$.Reset();
+		$$.Flags.q.TriangleAdj = 1;
 	}
 	;
 
@@ -1373,6 +1408,7 @@ cbuffer_declaration:
 struct_declaration_list:
 	struct_declaration
 	{
+	// 1
 		$$ = $1;
 		$1->AddSelfLink();
 	}
@@ -1386,7 +1422,9 @@ struct_declaration_list:
 struct_declaration:
 	struct_type_specifier struct_declarator_list ';'
 	{
-	   #pragma message("Fix me")
+	   $$ = std::make_shared<AST::CDecleratorList>($1);
+	   $$->SetSourceLocation(yyloc);
+	   $$->AddDecleration($2);
 	}
 	;
 
@@ -1422,6 +1460,7 @@ struct_type_qualifier:
 struct_declarator_list:
 	struct_declarator
 	{
+	//2
 		$$ = $1;
 		$1->AddSelfLink();
 	}

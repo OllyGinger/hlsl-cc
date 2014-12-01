@@ -62,6 +62,11 @@ namespace AST
 	{
 		TTypeQualifier()
 		{
+			Reset();
+		}
+
+		inline void Reset()
+		{
 			Flags.i = 0;
 			Location = 0;
 		}
@@ -125,7 +130,7 @@ namespace AST
 		{}
 
 		inline CTypeSpecifier::TPointer GetTypeSpecifier() const { return m_Specifier; }
-
+		inline void SetQualifier(TTypeQualifier &qualifier) { m_Qualifier = qualifier; }
 		virtual bool VisitNodes(class IVisitor* visitor) override;
 
 	private:

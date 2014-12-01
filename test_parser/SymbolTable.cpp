@@ -48,12 +48,12 @@ CSymbolTable::~CSymbolTable()
 void CSymbolTable::PushScope()
 {
 	CSymbolTableScope::TPointer scope = std::make_shared<CSymbolTableScope>();
-	m_ScopeStack.push(scope);
+	m_ScopeStack.push_front(scope);
 }
 
 void CSymbolTable::PopScope()
 {
-	m_ScopeStack.pop();
+	m_ScopeStack.pop_front();
 }
 
 uint32_t CSymbolTable::GetDepth() const
@@ -63,26 +63,37 @@ uint32_t CSymbolTable::GetDepth() const
 
 bool CSymbolTable::AddVariable(CVariable::TPointer variable)
 {
-	CSymbolTableScope *currentScope = m_ScopeStack.top().get();
+	CSymbolTableScope *currentScope = m_ScopeStack.front().get();
 	return currentScope->AddSymbol(variable);
 }
 
 bool CSymbolTable::AddFunction(CFunction::TPointer func)
 {
-	CSymbolTableScope *currentScope = m_ScopeStack.top().get();
+	CSymbolTableScope *currentScope = m_ScopeStack.front().get();
 	return currentScope->AddSymbol(func);
 }
 
 bool CSymbolTable::AddType(CType::TPointer type)
 {
-	CSymbolTableScope *currentScope = m_ScopeStack.top().get();
+	CSymbolTableScope *currentScope = m_ScopeStack.front().get();
 	return currentScope->AddSymbol(type);
 }
 
 CSymbol::TPointer CSymbolTable::FindSymbol(CSymbol::TString name)
 {
-	CSymbolTableScope *currentScope = m_ScopeStack.top().get();
-	return currentScope->FindSymbol(name);
+	for (TSymbolTableScopeStack::const_reverse_iterator iter = m_ScopeStack.rbegin(); 
+		iter != m_ScopeStack.rend(); 
+		iter++)
+	{
+		CSymbolTableScope::TPointer symbolScope = *(iter);
+		CSymbol::TPointer symbol = symbolScope->FindSymbol(name);
+		if (symbol)
+		{
+			return symbol;
+		}
+	}
+	
+	return nullptr;
 }
 
 CSymbol::TPointer CSymbolTable::FindVariable(CSymbol::TString name)

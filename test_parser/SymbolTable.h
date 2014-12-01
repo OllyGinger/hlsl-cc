@@ -23,7 +23,7 @@ private:
 class CSymbolTable
 {
 public:
-	typedef std::stack<CSymbolTableScope::TPointer> TSymbolTableScopeStack;
+	typedef std::deque<CSymbolTableScope::TPointer> TSymbolTableScopeStack;
 
 	CSymbolTable();
 	~CSymbolTable();

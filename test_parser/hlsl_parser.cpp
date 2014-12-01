@@ -40,44 +40,48 @@ int main(int argc, char **argv)
 	THLSLParserState state;
 	yylex_init_extra(&state, &state.scanner);
 	yyset_in(myfile, state.scanner);
-	yyset_debug(0, state.scanner);
+	yyset_debug(1, state.scanner);
+
 	yyparse(&state);
 //	yylex_destroy(state.scanner);
 	fclose(myfile);
 
-	AST::CNode::TPointer buffer = state.globalNodes.back();
+	if (state.globalNodes.size())
+	{
+		AST::CNode::TPointer buffer = state.globalNodes.back();
 
-	// Print out the AST to stdout
-	AST::CPrintASTVisitor visitor(std::cout);
-	buffer->VisitNodes(&visitor);
+		// Print out the AST to stdout
+		AST::CPrintASTVisitor visitor(std::cout);
+		buffer->VisitNodes(&visitor);
 
-	// Generate LLVM-IR code
-	AST::CIRGenASTVisitor irGenVisitor;
-	buffer->VisitNodes(&irGenVisitor);
+		// Generate LLVM-IR code
+		AST::CIRGenASTVisitor irGenVisitor;
+		buffer->VisitNodes(&irGenVisitor);
 
-	// Optimisation pass :D
-	llvm::InitializeNativeTarget();
-	irGenVisitor.GetModule()->dump();
-	llvm::ExecutionEngine* TheExecutionEngine = EngineBuilder(irGenVisitor.GetModule()).create();
-	llvm::PassManager passManager;
-	passManager.add(llvm::createVerifierPass());
-	passManager.add(new llvm::DataLayoutPass(irGenVisitor.GetModule()));
-	passManager.add(llvm::createConstantMergePass());
-	passManager.add(llvm::createConstantPropagationPass());
-	passManager.add(llvm::createDeadStoreEliminationPass());
-	passManager.add(llvm::createDeadCodeEliminationPass());
+		// Optimisation pass :D
+		/*llvm::InitializeNativeTarget();
+		irGenVisitor.GetModule()->dump();
+		llvm::ExecutionEngine* TheExecutionEngine = EngineBuilder(irGenVisitor.GetModule()).create();
+		llvm::PassManager passManager;
+		passManager.add(llvm::createVerifierPass());
+		passManager.add(new llvm::DataLayoutPass(irGenVisitor.GetModule()));
+		passManager.add(llvm::createConstantMergePass());
+		passManager.add(llvm::createConstantPropagationPass());
+		passManager.add(llvm::createDeadStoreEliminationPass());
+		passManager.add(llvm::createDeadCodeEliminationPass());
+
+
+
+		llvm::Function* func = irGenVisitor.GetModule()->getFunction("f");
+		passManager.run(*irGenVisitor.GetModule());
+
+		irGenVisitor.GetModule()->dump();*/
+
+	}
+	else
+	{
+		std::cerr << "Error parsing =(";
+	}
 	
-	
-
-	llvm::Function* func = irGenVisitor.GetModule()->getFunction("f");
-	passManager.run(*irGenVisitor.GetModule());
-
-	irGenVisitor.GetModule()->dump();
-	//std::cout << programBlock << std::endl;
-
-// 	CodeGenContext context;
-// 	context.generateCode(*programBlock);
-// 	context.runCode();
-
 	return 0;
 }

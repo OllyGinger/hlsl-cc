@@ -829,34 +829,34 @@ static const yytype_uint16 yyrline[] =
      559,   567,   568,   576,   577,   585,   586,   587,   588,   589,
      590,   591,   592,   593,   594,   595,   599,   603,   621,   625,
      633,   640,   644,   648,   655,   658,   666,   667,   671,   676,
-     684,   692,   703,   713,   724,   735,   747,   763,   767,   771,
-     775,   779,   783,   784,   788,   795,   799,   803,   807,   811,
-     815,   819,   823,   827,   831,   838,   842,   843,   853,   863,
-     872,   882,   891,   905,   910,   918,   926,   934,   942,   951,
-     959,   971,   976,   984,   991,   992,   999,  1003,  1010,  1014,
-    1018,  1025,  1026,  1030,  1034,  1038,  1045,  1046,  1047,  1051,
-    1052,  1056,  1060,  1064,  1071,  1075,  1079,  1083,  1087,  1091,
-    1095,  1099,  1103,  1107,  1111,  1115,  1119,  1123,  1127,  1134,
-    1138,  1145,  1146,  1150,  1156,  1161,  1167,  1174,  1179,  1184,
-    1190,  1195,  1200,  1206,  1211,  1216,  1224,  1225,  1226,  1227,
-    1228,  1229,  1230,  1231,  1232,  1233,  1234,  1235,  1236,  1237,
-    1238,  1239,  1240,  1241,  1242,  1243,  1244,  1245,  1246,  1247,
-    1248,  1249,  1250,  1251,  1252,  1253,  1254,  1255,  1256,  1257,
-    1258,  1259,  1260,  1261,  1262,  1263,  1264,  1265,  1266,  1267,
-    1268,  1269,  1270,  1271,  1272,  1273,  1274,  1275,  1276,  1277,
-    1282,  1283,  1284,  1285,  1286,  1287,  1288,  1289,  1290,  1291,
-    1292,  1293,  1294,  1295,  1296,  1297,  1301,  1302,  1303,  1307,
-    1311,  1315,  1318,  1321,  1327,  1334,  1339,  1344,  1351,  1358,
-    1366,  1374,  1379,  1387,  1394,  1399,  1407,  1408,  1412,  1416,
-    1423,  1428,  1436,  1442,  1446,  1453,  1462,  1467,  1475,  1476,
-    1484,  1489,  1494,  1501,  1507,  1508,  1509,  1513,  1521,  1522,
-    1523,  1524,  1525,  1526,  1530,  1537,  1536,  1549,  1550,  1554,
-    1559,  1567,  1572,  1580,  1585,  1593,  1601,  1606,  1614,  1618,
-    1635,  1642,  1646,  1653,  1657,  1664,  1668,  1675,  1679,  1686,
-    1690,  1697,  1701,  1705,  1712,  1713,  1717,  1719,  1725,  1729,
-    1737,  1742,  1747,  1752,  1757,  1765,  1766,  1770,  1774,  1781,
-    1785,  1792,  1796,  1800,  1804,  1811,  1816,  1823,  1829,  1841,
-    1845,  1849,  1853
+     684,   692,   703,   713,   724,   735,   747,   763,   770,   777,
+     785,   790,   795,   796,   806,   817,   822,   827,   833,   839,
+     845,   850,   855,   860,   865,   873,   877,   878,   888,   898,
+     907,   917,   926,   940,   945,   953,   961,   969,   977,   986,
+     994,  1006,  1011,  1019,  1026,  1027,  1034,  1038,  1045,  1049,
+    1053,  1060,  1061,  1065,  1069,  1073,  1080,  1081,  1082,  1086,
+    1087,  1091,  1095,  1099,  1106,  1110,  1114,  1118,  1122,  1126,
+    1130,  1134,  1138,  1142,  1146,  1150,  1154,  1158,  1162,  1169,
+    1173,  1180,  1181,  1185,  1191,  1196,  1202,  1209,  1214,  1219,
+    1225,  1230,  1235,  1241,  1246,  1251,  1259,  1260,  1261,  1262,
+    1263,  1264,  1265,  1266,  1267,  1268,  1269,  1270,  1271,  1272,
+    1273,  1274,  1275,  1276,  1277,  1278,  1279,  1280,  1281,  1282,
+    1283,  1284,  1285,  1286,  1287,  1288,  1289,  1290,  1291,  1292,
+    1293,  1294,  1295,  1296,  1297,  1298,  1299,  1300,  1301,  1302,
+    1303,  1304,  1305,  1306,  1307,  1308,  1309,  1310,  1311,  1312,
+    1317,  1318,  1319,  1320,  1321,  1322,  1323,  1324,  1325,  1326,
+    1327,  1328,  1329,  1330,  1331,  1332,  1336,  1337,  1338,  1342,
+    1346,  1350,  1353,  1356,  1362,  1369,  1374,  1379,  1386,  1393,
+    1401,  1409,  1415,  1423,  1432,  1437,  1445,  1446,  1450,  1454,
+    1461,  1467,  1475,  1481,  1485,  1492,  1501,  1506,  1514,  1515,
+    1523,  1528,  1533,  1540,  1546,  1547,  1548,  1552,  1560,  1561,
+    1562,  1563,  1564,  1565,  1569,  1576,  1575,  1588,  1589,  1593,
+    1598,  1606,  1611,  1619,  1624,  1632,  1640,  1645,  1653,  1657,
+    1674,  1681,  1685,  1692,  1696,  1703,  1707,  1714,  1718,  1725,
+    1729,  1736,  1740,  1744,  1751,  1752,  1756,  1758,  1764,  1768,
+    1776,  1781,  1786,  1791,  1796,  1804,  1805,  1809,  1813,  1820,
+    1824,  1831,  1835,  1839,  1843,  1850,  1855,  1862,  1868,  1880,
+    1884,  1888,  1892
 };
 #endif
 
@@ -4379,119 +4379,154 @@ yyreduce:
   case 117:
 
     {
-		#pragma message("FIXME")
+		(yyvsp[(1) - (3)].typeQualifier).Flags.i |= (yyvsp[(2) - (3)].typeQualifier).Flags.i;
+
+		(yyval.parameterDeclerator) = (yyvsp[(3) - (3)].parameterDeclerator);
+		(yyval.parameterDeclerator)->GetType()->SetQualifier((yyvsp[(1) - (3)].typeQualifier));
 	}
     break;
 
   case 118:
 
     {
-	   
+		(yyvsp[(1) - (3)].typeQualifier).Flags.i |= (yyvsp[(2) - (3)].typeQualifier).Flags.i;
+
+		(yyval.parameterDeclerator) = (yyvsp[(3) - (3)].parameterDeclerator);
+		(yyval.parameterDeclerator)->GetType()->SetQualifier((yyvsp[(1) - (3)].typeQualifier));
 	}
     break;
 
   case 119:
 
     {
-	  
+		(yyvsp[(1) - (4)].typeQualifier).Flags.i |= (yyvsp[(2) - (4)].typeQualifier).Flags.i;
+		(yyvsp[(1) - (4)].typeQualifier).Flags.i |= (yyvsp[(3) - (4)].typeQualifier).Flags.i;
+
+		(yyval.parameterDeclerator) = (yyvsp[(4) - (4)].parameterDeclerator);
+		(yyval.parameterDeclerator)->GetType()->SetQualifier((yyvsp[(1) - (4)].typeQualifier));
 	}
     break;
 
   case 120:
 
     {
-	  
+		(yyval.parameterDeclerator) = (yyvsp[(2) - (2)].parameterDeclerator);
+		(yyval.parameterDeclerator)->GetType()->SetQualifier((yyvsp[(1) - (2)].typeQualifier));
 	}
     break;
 
   case 121:
 
     {
-	 
+		(yyval.parameterDeclerator) = (yyvsp[(2) - (2)].parameterDeclerator);
+		(yyval.parameterDeclerator)->GetType()->SetQualifier((yyvsp[(1) - (2)].typeQualifier));
 	}
     break;
 
   case 123:
 
     {
-	  
+		(yyvsp[(1) - (3)].typeQualifier).Flags.i |= (yyvsp[(2) - (3)].typeQualifier).Flags.i;
+
+		(yyval.parameterDeclerator) = std::make_shared<AST::CParameterDeclerator>();
+		(yyval.parameterDeclerator)->SetSourceLocation(yylloc);
+		
+		AST::CFullySpecifiedType::TPointer fst = std::make_shared<AST::CFullySpecifiedType>((yyvsp[(1) - (3)].typeQualifier), (yyvsp[(3) - (3)].typeSpecifier));
+		(yyval.parameterDeclerator)->SetType(fst);
 	}
     break;
 
   case 124:
 
     {
-	  
+		(yyval.parameterDeclerator) = std::make_shared<AST::CParameterDeclerator>();
+		(yyval.parameterDeclerator)->SetSourceLocation(yylloc);
+		
+		AST::CFullySpecifiedType::TPointer fst = std::make_shared<AST::CFullySpecifiedType>((yyvsp[(1) - (2)].typeQualifier), (yyvsp[(2) - (2)].typeSpecifier));
+		(yyval.parameterDeclerator)->SetType(fst);
 	}
     break;
 
   case 125:
 
     {
-		#pragma message("FIXME")
+		(yyval.typeQualifier).Reset();
+		(yyval.typeQualifier).Flags.q.In = 1;
 	}
     break;
 
   case 126:
 
     {
-	  
+		(yyval.typeQualifier).Reset();
+		(yyval.typeQualifier).Flags.q.Out = 1;
 	}
     break;
 
   case 127:
 
     {
-	  
+		(yyval.typeQualifier).Reset();
+		(yyval.typeQualifier).Flags.q.In = 1;
+		(yyval.typeQualifier).Flags.q.Out = 1;
 	}
     break;
 
   case 128:
 
     {
-	
+		(yyval.typeQualifier).Reset();
+		(yyval.typeQualifier).Flags.q.In = 1;
+		(yyval.typeQualifier).Flags.q.Out = 1;
 	}
     break;
 
   case 129:
 
     {
-		
+		(yyval.typeQualifier).Reset();
+		(yyval.typeQualifier).Flags.q.In = 1;
+		(yyval.typeQualifier).Flags.q.Out = 1;
 	}
     break;
 
   case 130:
 
     {
-		
+		(yyval.typeQualifier).Reset();
+		(yyval.typeQualifier).Flags.q.Point = 1;
 	}
     break;
 
   case 131:
 
     {
-		
+		(yyval.typeQualifier).Reset();
+		(yyval.typeQualifier).Flags.q.Line = 1;
 	}
     break;
 
   case 132:
 
     {
-		
+		(yyval.typeQualifier).Reset();
+		(yyval.typeQualifier).Flags.q.Triangle = 1;
 	}
     break;
 
   case 133:
 
     {
-		
+		(yyval.typeQualifier).Reset();
+		(yyval.typeQualifier).Flags.q.LineAdj = 1;
 	}
     break;
 
   case 134:
 
     {
-		
+		(yyval.typeQualifier).Reset();
+		(yyval.typeQualifier).Flags.q.TriangleAdj = 1;
 	}
     break;
 
@@ -5473,6 +5508,7 @@ yyreduce:
   case 291:
 
     {
+	// 1
 		(yyval.node) = (yyvsp[(1) - (1)].decleratorList);
 		(yyvsp[(1) - (1)].decleratorList)->AddSelfLink();
 	}
@@ -5489,7 +5525,9 @@ yyreduce:
   case 293:
 
     {
-	   #pragma message("Fix me")
+	   (yyval.decleratorList) = std::make_shared<AST::CDecleratorList>((yyvsp[(1) - (3)].fullySpecifiedType));
+	   (yyval.decleratorList)->SetSourceLocation(yyloc);
+	   (yyval.decleratorList)->AddDecleration((yyvsp[(2) - (3)].declaration));
 	}
     break;
 
@@ -5533,6 +5571,7 @@ yyreduce:
   case 300:
 
     {
+	//2
 		(yyval.declaration) = (yyvsp[(1) - (1)].declaration);
 		(yyvsp[(1) - (1)].declaration)->AddSelfLink();
 	}

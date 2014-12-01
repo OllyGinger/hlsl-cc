@@ -196,8 +196,14 @@ namespace AST
 			if (flowControlStatement->GetReturnExpression())
 			{
 				flowControlStatement->GetReturnExpression()->VisitNodes(this);
-				llvm::LoadInst* retLoad = new llvm::LoadInst(m_LastValue, "", GetCurrentScopeBlock());
-				llvm::ReturnInst::Create(llvm::getGlobalContext(), retLoad, GetCurrentScopeBlock());
+				llvm::Value* retVal = m_LastValue;
+				llvm::Type* retType = m_LastValue->getType();
+				if (retType->isPointerTy())
+				{
+					retVal = new llvm::LoadInst(m_LastValue, "", GetCurrentScopeBlock());
+				}		
+				
+				llvm::ReturnInst::Create(llvm::getGlobalContext(), retVal, GetCurrentScopeBlock());
 			}
 			else
 			{
@@ -229,7 +235,7 @@ namespace AST
 		}
 
 		llvm::FunctionType* functionType = llvm::FunctionType::get(TypeOf(func->GetReturnType()), argTypes, false);
-		llvm::Function* function = llvm::Function::Create(functionType, llvm::GlobalValue::ExternalLinkage, func->GetIdentifier(), m_Module);
+		llvm::Function* function = llvm::Function::Create(functionType, llvm::GlobalValue::InternalLinkage, func->GetIdentifier(), m_Module);
 		llvm::BasicBlock* functionBlock = llvm::BasicBlock::Create(llvm::getGlobalContext(), "entry", function);
 		PushBlockScope(functionBlock);
 		llvm::Function::arg_iterator irArgs = function->arg_begin();

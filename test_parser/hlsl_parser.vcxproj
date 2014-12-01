@@ -222,7 +222,7 @@
     <CustomBuild Include="parser.yy">
       <FileType>Document</FileType>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"../third_party/bin/win_bison.exe" -d -o %(Filename).cpp %(Identity)</Command>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"../third_party/bin/win_bison.exe" -l -t -d -o %(Filename).cpp %(Identity)</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"../third_party/bin/win_bison.exe" -t -l -d -o %(Filename).cpp %(Identity)</Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building BISON parser</Message>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building BISON parser</Message>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Filename).cpp;%(Outputs)</Outputs>
